@@ -21,9 +21,13 @@ Route::get('/login', function () {
     return view('auth.login');
 });
 
+Route::post('/login', [LoginController::class, 'login'])->name('login');
+
 Route::get('/registration', function () {
     return view('auth.registration');
 });
+
+Route::post('/register', [LoginController::class, 'register'])->name('register');
 
 Route::get('/reset', function () {
     return view('auth.reset');
