@@ -16,6 +16,16 @@ class LoginController extends Controller
         $this->api_base_url = config('api.api_base_url');
     }
 
+    public function loginForm()
+    {
+        return view('auth.login');
+    }
+
+    public function registerForm()
+    {
+        return view('auth.registration');
+    }
+
     public function login(LoginRequest $request)
     {
 
@@ -48,14 +58,28 @@ class LoginController extends Controller
     public function register(RegisterRequest $request)
     {
 
-        $response = Http::get($this->api_base_url . '/register', [
-            'username' => $request->username,
-            'password' => $request->password,
-        ]);
+        $validatedData = $request->validated();
+
+        $response = Http::accept('application/json')
+            ->withBody(
+                json_encode([
+                    'username' => $validatedData['username'],
+                    'password' => $validatedData['password'],
+                ]),
+                'application/json'
+            )->post($this->api_base_url . '/register');
 
         if ($response->successful()) {
-            $user = $response->body();
+            $user = $response->json();
+
+            return view('auth.login', [
+                'message' => 'Úspešne ste sa zaregistrovali. Môžete sa prihlásiť.'
+            ]);
         }
+
+        return view('auth.registration', [
+            'message' => 'Uživateľ už existuje.'
+        ]);
     }
 
     public function logout()
