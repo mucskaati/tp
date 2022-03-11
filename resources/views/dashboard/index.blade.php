@@ -17,7 +17,7 @@
                         </div>
                     </form>
 
-                    <button type="button" data-modal-toggle="add-user-modal"
+                    <a href="{{ route('nomenclator.create') }}"
                         class="inline-flex items-center justify-center w-1/2 px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 sm:w-auto">
                         <svg class="w-6 h-6 mr-2 -ml-1" fill="currentColor" viewBox="0 0 20 20"
                             xmlns="http://www.w3.org/2000/svg">
@@ -26,7 +26,7 @@
                                 clip-rule="evenodd"></path>
                         </svg>
                         Pridať klúč
-                    </button>
+                    </a>
                 </div>
             </div>
             <div class="flex flex-col">
