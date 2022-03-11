@@ -2,12 +2,64 @@
 @tailwind components;
 @tailwind utilities;
 
-.container {
-    @apply w-full mx-auto;
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+    body {
+        @apply text-gray-700;
+    }
+    * {
+        box-sizing: border-box;
+    }
+    a,
+    button {
+        @apply text-sm transition-all cursor-pointer;
+    }
+    p {
+        @apply text-sm leading-normal;
+    }
 }
-.box {
-    @apply bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8;
-}
-.box-nav {
-    @apply bg-white shadow rounded-lg rounded-t-none px-4 sm:px-6 xl:px-8;
+
+@layer components {
+    /* container */
+    .container {
+        @apply w-full max-w-5xl px-5 mx-auto;
+    }
+
+    /* box */
+    .box {
+        @apply p-4 bg-white rounded-lg shadow sm:p-6 xl:p-8;
+    }
+    .box-nav {
+        @apply px-4 bg-white rounded-lg rounded-t-none shadow sm:px-6 xl:px-8;
+    }
+
+    /* buttons */
+    .btn {
+        @apply inline-block px-4 py-2 font-semibold transition-all bg-transparent border rounded-lg cursor-pointer;
+    }
+    .btn-primary {
+        @apply text-white border bg-cyan-600 border-cyan-600 hover:bg-cyan-700 hover:text-white;
+    }
+    .btn-secondary {
+        @apply text-gray-900 bg-gray-200 border border-gray-200 hover:bg-gray-300;
+    }
+
+    /* form */
+    .input-label {
+        @apply inline-block w-full mb-1 text-sm font-semibold text-gray-600;
+    }
+    .input-label-error {
+        @apply inline-block ml-1 text-sm text-red-500;
+    }
+    .input {
+        @apply w-full px-3 py-2 text-sm rounded-lg;
+    }
+    .input-error {
+        @apply text-red-500 bg-red-100 border border-red-500;
+    }
+    .input-success {
+        @apply text-green-500 bg-green-100 border border-green-500;
+    }
 }

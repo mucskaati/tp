@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('nomenclators/create', function () {
+    return view('nomenclator.create');
+})->name('nomenclator.create');
+
 Route::get('/', function () {
     return view('dashboard.index');
 })->middleware('api.logged')->name('dashboard');
