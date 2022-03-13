@@ -16,16 +16,50 @@ class DashboardController extends Controller
 
     public function index()
     {
-        $response = Http::withBody(
-            json_encode([
-                'token' => loggedUser()['token'],
-            ]),
-            'application/json'
-        )
-            ->accept('application/json')->post($this->api_base_url . '/nomenclatorKeys');
+        $response = Http::accept('application/json')->get($this->api_base_url . '/nomenclatorKeys');
         $keys = $response->json();
 
+        dd($keys);
+
         return view('dashboard.index', [
+            'keys' => $keys
+        ]);
+    }
+
+    public function myKeys()
+    {
+        $response = Http::withHeaders([
+            'authorization' => loggedUser()['token']
+        ])
+            ->accept('application/json')->get($this->api_base_url . '/nomenclatorKeys');
+        $keys = $response->json();
+
+        dd($keys);
+        return view('dashboard.my-keys', [
+            'keys' => $keys
+        ]);
+    }
+
+    public function admin()
+    {
+        $response = Http::withHeaders([
+            'authorization' => loggedUser()['token']
+        ])
+            ->accept('application/json')->get($this->api_base_url . '/nomenclatorKeys');
+
+        $keys = $response->json();
+
+        return view('admin.index', [
+            'keys' => $keys
+        ]);
+    }
+
+    public function guest()
+    {
+        $response = Http::accept('application/json')->post($this->api_base_url . '/nomenclatorKeys');
+        $keys = $response->json();
+
+        return view('guest.index', [
             'keys' => $keys
         ]);
     }

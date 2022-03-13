@@ -18,7 +18,7 @@
         <div class="flex flex-col max-w-screen-xl mx-auto md:items-center md:justify-between md:flex-row">
             <div class="flex flex-row items-center justify-between p-4">
                 <router-link to="/">
-                    <span class="text-lg font-semibold tracking-widest text-gray-900">HC Portal</span>
+                    <span class="text-lg font-semibold tracking-widest text-gray-900">HC Portal Administrácia</span>
                 </router-link>
 
                 <button class="rounded-lg md:hidden focus:outline-none focus:shadow-outline">
