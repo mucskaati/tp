@@ -9,13 +9,14 @@
 
             <div class="grid grid-cols-3 gap-5">
                 <x-form.input name="name" class="col-span-3">Názov</x-form.input>
-
+                
                 <x-form.select name="cipher_type" label="Typ šifry">[
+                    {"value":"", "label":"Nedefinovaný"},
                     {"value":"nomenclator", "label":"Nomenklator"},
                     {"value":"code", "label":"Kód"},
                     {"value":"???", "label":"Jednoduchá substitúcia"}
-                    ]</x-form.select>
-                <x-form.select name="key_type" label="Typ kľúča">[
+                ]</x-form.select>
+                <x-form.select name="keyType" label="Typ kľúča">[
                     {"value":"e", "label":"e"},
                     {"value":"ed", "label":"ed"}
                     ]</x-form.select>
@@ -28,8 +29,18 @@
                 <x-form.input name="used_to" type="date">Používaný do</x-form.input>
                 <x-form.input name="used_around">Používaný okolo</x-form.input>
 
-                <x-form.input name="main_users" class="col-span-3">Hlavný uživateľia</x-form.input>
-                <x-form.input name="users" class="col-span-3">Uživatelia</x-form.input>
+                <x-form.input name="main_users" class="col-span-3">Hlavní použivateľia</x-form.input>
+                <x-form.input name="users" class="col-span-3">Použivatelia</x-form.input>
+                
+                <x-form.input name="folder">Priečinok</x-form.input>
+                <x-form.input name="signature">Signatúra</x-form.input>
+                <x-form.input name="group_id">Číslo skupiny</x-form.input>
+
+                <x-form.input name="completeStructure" class="col-span-3">Kompletná štruktúra / Spôsob utajenia</x-form.input> {{-- == sposob utajenia --}}
+                
+                <x-form.input name="used_chars" class="col-span-3">Použité znaky</x-form.input>
+                
+                <x-form.input name="place_of_creation" class="col-span-3">Miesto vytvorenia</x-form.input>
 
                 <x-form.textarea name="note" class="col-span-3">Poznámka</x-form.textarea>
             </div>

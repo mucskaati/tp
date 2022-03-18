@@ -24,7 +24,20 @@ class StoreKeyRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'nullable',
+            'folder' => 'nullable',
+            'signature' => 'nullable',
+            'completeStructure' => 'required',
+            'cipher_type' => 'nullable',
+            'keyType' => 'string',
+            'group_id' => 'nullable|numeric',
+            'used_from' => 'nullable|date',
+            'used_to' => 'nullable|date',
+            'used_around' => 'nullable',
+            'place_of_creation' => 'nullable|numeric',
+            // key users doplnit
+            'language' => 'required',
+            // images
         ];
     }
 }
