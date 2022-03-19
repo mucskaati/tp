@@ -35,9 +35,11 @@ class KeysController extends Controller
         // dd($va);
 
         $res = Http::withHeaders([
-            'authorization' => loggedUser()['token']
+            'authorization' => loggedUser()['token'],
         ])
-            ->accept('application/json')->post($this->api_base_url . '/nomenclatorKeys', $va);
+            ->accept('application/json')
+            ->attach('nomenclatorImage', $request->file('nomenclatorImage'), 'nomenclatorImage.jpg')
+            ->post($this->api_base_url . '/nomenclatorKeys', $va);
 
         $keys = $res->json();
 

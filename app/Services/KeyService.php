@@ -29,13 +29,11 @@ class KeyService {
     {
         if (isset($va['nomenclatorImage'])) {
             $image = [];
-            $image['nomenclatorImage'] = $va['nomenclatorImage'];
             $image['structure'] = $va['structure'];
             $image['hasInstructions'] = $va['hasInstructions'];
 
-            $va['images'] = [$image];                               // skusil som dat do pola lebo bez neho sa nenahralo ale ani takto nie zatial
+            $va['images'] = $image;                               // skusil som dat do pola lebo bez neho sa nenahralo ale ani takto nie zatial
 
-            unset($va['nomenclatorImage']);
             unset($va['structure']);
             unset($va['hasInstructions']);
         }
