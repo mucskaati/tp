@@ -25,4 +25,20 @@ class KeyService {
         unset($va['keyUserId']); unset($va['keyUserName']); unset($va['keyUserMain']);
     }
 
+    public static function prepareImage(&$va)
+    {
+        if (isset($va['nomenclatorImage'])) {
+            $image = [];
+            $image['nomenclatorImage'] = $va['nomenclatorImage'];
+            $image['structure'] = $va['structure'];
+            $image['hasInstructions'] = $va['hasInstructions'];
+
+            $va['images'] = [$image];
+
+            unset($va['nomenclatorImage']);
+            unset($va['structure']);
+            unset($va['hasInstructions']);
+        }
+    }
+
 }

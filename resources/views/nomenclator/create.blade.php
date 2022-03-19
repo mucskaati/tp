@@ -4,7 +4,7 @@
 
     <div class="mt-4 box">
         <h1 class="mb-5 text-xl font-semibold text-center text-gray-900">Pridať nový kľúč</h1>
-        <form action="#" method="POST" class="{{ route('nomenclator.store') }}">
+        <form action="#" method="POST" class="{{ route('nomenclator.store') }}" enctype="multipart/form-data">
             @csrf
 
             <div class="grid grid-cols-3 gap-5">
@@ -37,17 +37,22 @@
 
                 <x-form.input name="keyUserId[]">Id používateľa</x-form.input>
                 <x-form.input name="keyUserName[]">Meno používateľa</x-form.input>
-                <x-form.check name="keyUserMain[]">Je hlavný</x-form.check>
+                <x-form.check name="keyUserMain[]">Je hlavný?</x-form.check>
                 
                 <x-form.input name="folder">Priečinok</x-form.input>
                 <x-form.input name="signature">Signatúra</x-form.input>
                 <x-form.input name="group_id">Číslo skupiny</x-form.input>
-
+                
                 <x-form.input name="completeStructure" class="col-span-3">Kompletná štruktúra / Spôsob utajenia</x-form.input> {{-- == sposob utajenia --}}
                 
                 <x-form.input name="used_chars" class="col-span-3">Použité znaky</x-form.input>
                 
                 <x-form.input name="place_of_creation" class="col-span-3">Miesto vytvorenia</x-form.input>
+                
+                
+                <x-form.input name="structure">Štruktúra kľ. na obrázku</x-form.input>
+                <x-form.check name="hasInstructions">Má inštrukcie?</x-form.check>
+                <x-form.file name="nomenclatorImage">Obrázok</x-form.file>
 
                 <x-form.textarea name="note" class="col-span-3">Poznámka</x-form.textarea>
             </div>

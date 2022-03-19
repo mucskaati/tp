@@ -20,6 +20,7 @@ class StoreKeyRequest extends FormRequest
     {
         $this->merge([
             'keyUserMain' => (bool) $this->keyUserMain,
+            'hasInstructions' => (bool) $this->hasInstructions,
         ]);
     }
 
@@ -45,7 +46,9 @@ class StoreKeyRequest extends FormRequest
             'keyUserName' => 'nullable',
             'keyUserMain' => 'boolean',
             'language' => 'required',
-            // images
+            'nomenclatorImage' => 'image|nullable',
+            'structure' => 'nullable',
+            'hasInstructions' => 'boolean',
         ];
     }
 }

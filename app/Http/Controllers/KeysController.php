@@ -28,9 +28,11 @@ class KeysController extends Controller
         $va['keyUsers'] = KeyService::prepareUsersForPost($va['keyUserId'], $va['keyUserName'], $va['keyUserMain']);
         KeyService::unsetFormKeyUsersData($va);
 
+        KeyService::prepareImage($va);
+
         $va = unsetMissingValues($va);                  // cuz if value == null api still reads it as submitted
 
-        dd($va);
+        // dd($va);
 
         $res = Http::withHeaders([
             'authorization' => loggedUser()['token']
