@@ -16,6 +16,13 @@ class StoreKeyRequest extends FormRequest
         return true;
     }
 
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'keyUserMain' => (bool) $this->keyUserMain,
+        ]);
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -24,7 +31,6 @@ class StoreKeyRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'nullable',
             'folder' => 'nullable',
             'signature' => 'nullable',
             'completeStructure' => 'required',
@@ -35,7 +41,9 @@ class StoreKeyRequest extends FormRequest
             'used_to' => 'nullable|date',
             'used_around' => 'nullable',
             'place_of_creation' => 'nullable|numeric',
-            // key users doplnit
+            'keyUserId' => 'nullable',
+            'keyUserName' => 'nullable',
+            'keyUserMain' => 'boolean',
             'language' => 'required',
             // images
         ];

@@ -8,7 +8,7 @@
             @csrf
 
             <div class="grid grid-cols-3 gap-5">
-                <x-form.input name="name" class="col-span-3">Názov</x-form.input>
+                {{-- <x-form.input name="name" class="col-span-3">Názov</x-form.input> --}}
                 
                 <x-form.select name="cipher_type" label="Typ šifry">[
                     {"value":"", "label":"Nedefinovaný"},
@@ -29,8 +29,15 @@
                 <x-form.input name="used_to" type="date">Používaný do</x-form.input>
                 <x-form.input name="used_around">Používaný okolo</x-form.input>
 
-                <x-form.input name="main_users" class="col-span-3">Hlavní použivateľia</x-form.input>
-                <x-form.input name="users" class="col-span-3">Použivatelia</x-form.input>
+                {{-- <x-form.input name="main_users" class="col-span-3">Hlavní použivateľia</x-form.input>
+                <x-form.input name="users" class="col-span-3">Použivatelia</x-form.input> --}}
+
+                <p class="col-span-3">Kym nebude dodana api /key-users vyplnajte iba pole id alebo iba name, nie obe.
+                Potom to prerobime na nejaky multiselect. (asi pole selectov)</p>
+
+                <x-form.input name="keyUserId[]">Id používateľa</x-form.input>
+                <x-form.input name="keyUserName[]">Meno používateľa</x-form.input>
+                <x-form.check name="keyUserMain[]">Je hlavný</x-form.check>
                 
                 <x-form.input name="folder">Priečinok</x-form.input>
                 <x-form.input name="signature">Signatúra</x-form.input>

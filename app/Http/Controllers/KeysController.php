@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreKeyRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use App\Services\KeyService;
 
 class KeysController extends Controller
 {
@@ -22,13 +23,14 @@ class KeysController extends Controller
 
     public function store(StoreKeyRequest $request)
     {
-        $va = $request->validated();                    // validated attributes 
+        $va = $request->validated();                    // validated attributes
 
-        foreach ($va as $vkey => $v) {                  // cuz if value == null api still reads it as submitted
-            if (!$v) unset($va[$vkey]);
-        }
+        $va['keyUsers'] = KeyService::prepareUsersForPost($va['keyUserId'], $va['keyUserName'], $va['keyUserMain']);
+        KeyService::unsetFormKeyUsersData($va);
 
-        $va['keyUsers'] = [['id' => 1]];                // skusam uz hocico len nech sa tam jeden kluc prida dopici
+        $va = unsetMissingValues($va);                  // cuz if value == null api still reads it as submitted
+
+        dd($va);
 
         $res = Http::withHeaders([
             'authorization' => loggedUser()['token']
