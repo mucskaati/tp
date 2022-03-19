@@ -33,7 +33,7 @@ class KeyService {
             $image['structure'] = $va['structure'];
             $image['hasInstructions'] = $va['hasInstructions'];
 
-            $va['images'] = [$image];
+            $va['images'] = [$image];                               // skusil som dat do pola lebo bez neho sa nenahralo ale ani takto nie zatial
 
             unset($va['nomenclatorImage']);
             unset($va['structure']);
