@@ -19,6 +19,8 @@ class DashboardController extends Controller
         $response = Http::accept('application/json')->get($this->api_base_url . '/nomenclatorKeys');
         $keys = $response->json();
 
+        // dd($keys);
+
         return view('dashboard.index', [
             'keys' => $keys
         ]);
@@ -31,6 +33,8 @@ class DashboardController extends Controller
         ])
             ->accept('application/json')->get($this->api_base_url . '/nomenclatorKeys');
         $keys = $response->json();
+
+        // dd($keys);
 
         return view('dashboard.my-keys', [
             'keys' => $keys
@@ -45,6 +49,8 @@ class DashboardController extends Controller
             ->accept('application/json')->get($this->api_base_url . '/nomenclatorKeys');
 
         $keys = $response->json();
+
+        // dd($keys);
 
         return view('admin.index', [
             'keys' => $keys
