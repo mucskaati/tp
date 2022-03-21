@@ -55,16 +55,16 @@ class KeysController extends Controller
             'multipart' => $va,
         ]);
 
-        // $res = Http::acceptJson()->attach('attachment', file_get_contents($request->file('nomenclatorImage'), 'nomecnaltor.jpg'))->withHeaders([
+        // $req = Http::acceptJson()->attach('attachment', file_get_contents($request->file('nomenclatorImage'), 'nomecnaltor.jpg'))->withHeaders([
         //     'authorization' => loggedUser()['token'],
         // ])
         //     ->accept('application/json');
 
-        // // if ($request->has('nomenclatorImage')) $res = $res->attach('nomenclatorImage', $request->file('nomenclatorImage'), 'nomenclatorImage.jpg');
+        // // if ($request->has('nomenclatorImage')) $req = $req->attach('nomenclatorImage', $request->file('nomenclatorImage'), 'nomenclatorImage.jpg');
 
-        // $res->post($this->api_base_url . '/nomenclatorKeys', $va);
+        // $response = $req->post($this->api_base_url . '/nomenclatorKeys', $va);
 
-        //keys = $res->json();
+        // $keys = $response->json();
 
         dd($response->getBody());
 
