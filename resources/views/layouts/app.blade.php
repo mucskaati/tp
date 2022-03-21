@@ -68,7 +68,9 @@
     </footer>
 
     {{-- scripts --}}
-    <script src="{{ asset('js/main.js?v=') . time() }}"></script>
+    {{-- <script src="{{ asset('js/main.js?v=') . time() }}"></script> --}}
+    <script src="{{ asset('js/app.js') }}"></script>
+    @yield('bottom-script')
 </body>
 
 </html>

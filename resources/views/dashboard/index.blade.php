@@ -22,7 +22,7 @@
                 <div class="overflow-x-auto">
                     <div class="inline-block min-w-full align-middle">
                         <div class="overflow-hidden shadow">
-                            <table class="min-w-full mt-5 divide-y divide-gray-200 table-fixed">
+                            <table class="min-w-full mt-5 divide-y divide-gray-200 table-fixed" id="indexTable">
                                 <thead class="bg-gray-100">
                                     <tr>
                                         <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase">
@@ -133,13 +133,124 @@
                                     </tr>
                                 </tbody>
                             </table>
+                            {{-- <table class="min-w-full mt-5 divide-y divide-gray-200 table-fixed">
+                                <thead class="bg-gray-100">
+                                    <tr>
+                                        <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase">
+                                            Názov / Autor
+                                        </th>
+                                        <th scope="col" class="p-4 text-xs font-medium text-center text-gray-500 uppercase">
+                                            Lokácia
+                                        </th>
+                                        <th scope="col" class="p-4 text-xs font-medium text-center text-gray-500 uppercase">
+                                            Dátum pridania
+                                        </th>
+                                        <th scope="col" class="p-4 text-xs font-medium text-center text-gray-500 uppercase">
+                                            Stav
+                                        </th>
+                                        <th scope="col" class="p-4 text-xs font-medium text-center text-gray-500 uppercase">
+                                            Akcie
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                    <tr class="hover:bg-gray-100">
+                                        <td class="flex items-center gap-4 p-4 whitespace-nowrap">
+                                            <img src="https://cryptograms.hcportal.eu/api/uploads/27691600850778.png" alt=""
+                                                class="w-10 h-10 rounded-full">
+                                            <div class="text-sm font-normal text-gray-500">
+                                                <a href="/detail"
+                                                    class="text-base font-semibold text-cyan-600 hover:text-cyan-700">Správa
+                                                    z pohľadnice rok 1903</a>
+                                                <div class="text-sm font-normal text-gray-500">jankomrkvicka@gmail.com</div>
+                                            </div>
+                                        </td>
+                                        <td class="p-4 text-center text-gray-700 whitespace-nowrap">Európa</td>
+                                        <td class="p-4 text-center text-gray-700 whitespace-nowrap">20.5.2021</td>
+                                        <td class="p-4 text-center text-green-500 whitespace-nowrap">Schválený</td>
+                                        <td class="p-4 space-x-2 text-center whitespace-nowrap">
+                                            <button type="button" data-modal-toggle="user-modal"
+                                                class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200">
+                                                Zobraziť
+                                            </button>
+
+                                        </td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-100">
+                                        <td class="flex items-center gap-4 p-4 whitespace-nowrap">
+                                            <img src="https://cryptograms.hcportal.eu/api/uploads/27691600850778.png" alt=""
+                                                class="w-10 h-10 rounded-full">
+                                            <div class="text-sm font-normal text-gray-500">
+                                                <div class="text-base font-semibold text-cyan-600 hover:text-cyan-700">
+                                                    Správa z pohľadnice rok 1903</div>
+                                                <div class="text-sm font-normal text-gray-500">jankomrkvicka@gmail.com</div>
+                                            </div>
+                                        </td>
+                                        <td class="p-4 text-center text-gray-700 whitespace-nowrap">Európa</td>
+                                        <td class="p-4 text-center text-gray-700 whitespace-nowrap">20.5.2021</td>
+                                        <td class="p-4 font-normal text-center text-yellow-500 whitespace-nowrap">Na
+                                            schválenie</td>
+                                        <td class="p-4 space-x-2 text-center whitespace-nowrap">
+                                            <button type="button" data-modal-toggle="user-modal"
+                                                class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200">
+                                                Zobraziť
+                                            </button>
+
+                                        </td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-100">
+                                        <td class="flex items-center gap-4 p-4 whitespace-nowrap">
+                                            <img src="https://cryptograms.hcportal.eu/api/uploads/27691600850778.png" alt=""
+                                                class="w-10 h-10 rounded-full">
+                                            <div class="text-sm font-normal text-gray-500">
+                                                <div class="text-base font-semibold text-cyan-600 hover:text-cyan-700">
+                                                    Správa z pohľadnice rok 1903</div>
+                                                <div class="text-sm font-normal text-gray-500">jankomrkvicka@gmail.com</div>
+                                            </div>
+                                        </td>
+                                        <td class="p-4 text-center text-gray-700 whitespace-nowrap">Európa</td>
+                                        <td class="p-4 text-center text-gray-700 whitespace-nowrap">20.5.2021</td>
+                                        <td class="p-4 font-normal text-center text-yellow-500 whitespace-nowrap">Na zmenu
+                                        </td>
+                                        <td class="p-4 space-x-2 text-center whitespace-nowrap">
+                                            <button type="button" data-modal-toggle="user-modal"
+                                                class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200">
+                                                Zobraziť
+                                            </button>
+
+                                        </td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-100">
+                                        <td class="flex items-center gap-4 p-4 whitespace-nowrap">
+                                            <img src="https://cryptograms.hcportal.eu/api/uploads/27691600850778.png" alt=""
+                                                class="w-10 h-10 rounded-full">
+                                            <div class="text-sm font-normal text-gray-500">
+                                                <div class="text-base font-semibold text-cyan-600 hover:text-cyan-700">
+                                                    Správa z pohľadnice rok 1903</div>
+                                                <div class="text-sm font-normal text-gray-500">jankomrkvicka@gmail.com</div>
+                                            </div>
+                                        </td>
+                                        <td class="p-4 text-center text-gray-700 whitespace-nowrap">Európa</td>
+                                        <td class="p-4 text-center text-gray-700 whitespace-nowrap">20.5.2021</td>
+                                        <td class="p-4 font-normal text-center text-red-500 whitespace-nowrap">Zamietnutý
+                                        </td>
+                                        <td class="p-4 space-x-2 text-center whitespace-nowrap">
+                                            <button type="button" data-modal-toggle="user-modal"
+                                                class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200">
+                                                Zobraziť
+                                            </button>
+
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table> --}}
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Paggination -->
-            <div
+            {{-- <div
                 class="sticky bottom-0 right-0 flex items-center justify-center w-full pt-4 bg-white border-t border-gray-200">
                 <div class="flex items-center mb-4 sm:mb-0">
                     <a href="#"
@@ -162,7 +273,7 @@
                             class="font-semibold text-gray-900">1-20</span> zo <span
                             class="font-semibold text-gray-900">100</span></span>
                 </div>
-            </div>
+            </div> --}}
 
             <!-- New key popup -->
             <div class="fixed left-0 right-0 z-50 items-center justify-center hidden overflow-x-hidden overflow-y-auto top-4 md:inset-0 h-modal sm:h-full"
@@ -280,4 +391,13 @@
 
     </div>
 
+@endsection
+
+
+@section('bottom-script')
+<script>
+    $(document).ready(function () {
+        customDatatable('indexTable', 0, [0, 'asc'], null)
+    });
+</script>
 @endsection
