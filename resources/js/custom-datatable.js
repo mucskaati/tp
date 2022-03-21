@@ -8,7 +8,6 @@ window.customDatatable = (tableId, dateColumnNum, order, pageLength) => {
      
             $('input', this).on('keyup change', function () {
             	latinized = latinize(this.value)
-            	// latinized = this.value
                 if (allRepsTable.column(i).search() !== latinized) {
                     allRepsTable
                         .column(i)
@@ -26,7 +25,7 @@ window.customDatatable = (tableId, dateColumnNum, order, pageLength) => {
     let allRepsTable = $(`#${tableId}`).DataTable({
         "pageLength": pageLength ? pageLength : 50,
         "order": [order],
-        "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Všetky"]],
+        "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
         // "columnDefs": columnDefs,
         // fixedHeader: true,
         orderCellsTop: true,

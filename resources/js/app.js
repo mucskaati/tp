@@ -1,6 +1,6 @@
 require('./bootstrap');
 
-require('jquery')
+window.$ = require('jquery')
 
 require('datatables.net-dt');
 require('datatables.net-fixedheader-dt');
