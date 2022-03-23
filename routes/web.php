@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::get('/my-keys', [DashboardController::class, 'myKeys'])->middleware('api.logged')->name('dashboard.my');
@@ -36,6 +38,9 @@ Route::get('/reset', function () {
 // Nomenclator keys
 Route::get('/nomenclators/create', [KeysController::class, 'create'])->middleware('api.logged')->name('nomenclator.create');
 Route::post('/nomenclators/create', [KeysController::class, 'store'])->middleware('api.logged')->name('nomenclator.store');
+Route::get('/nomenclators/{nomenclator}', function () {
+    return view('nomenclator.show');
+});
 
 // Admin
 Route::get('/admin', [DashboardController::class, 'admin'])->middleware('api.admin')->name('admin.dashboard');
