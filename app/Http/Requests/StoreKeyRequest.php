@@ -47,7 +47,7 @@ class StoreKeyRequest extends FormRequest
             'keyUserName' => 'nullable',
             'keyUserMain' => 'boolean',
             'language' => 'required',
-            'nomenclatorImage' => 'image|nullable',
+            // 'nomenclatorImage' => 'image|nullable',    // vypiname aby nebol zbytocne dvakrat v poli multipart
             'structure' => 'nullable',
             'hasInstructions' => 'boolean',
         ];

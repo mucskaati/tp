@@ -6,6 +6,8 @@ class KeyService {
     
     public static function prepareUsersForPost($ids, $names, $mains)
     {
+        // dd($ids, $names);
+        if (isset($ids) && $ids[0] == null && isset($names) && $names[0] == null) return null;
         $keyUsers = [];
         // potom to naloopovat ked pridame viacere
         // este si nie som isty strukturou preto teraz robim len na 1

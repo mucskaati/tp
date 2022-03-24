@@ -34,40 +34,51 @@ class KeysController extends Controller
 
         // dd($va);
 
-        $image_path = $request->file('nomenclatorImage')->getPathname();
-        $image_mime = $request->file('nomenclatorImage')->getmimeType();
-        $image_org  = $request->file('nomenclatorImage')->getClientOriginalName();
+        if ($request->has('nomenclatorImage')) {
 
-        $va['nomenclatorImages'] =
-            [
-                'name'     => 'image',
+            $multipart = [];
+
+            foreach ($va as $key => $v) {
+                $multipart[] = [
+                    'name' => $key,
+                    'contents' => $v
+                ];
+            }
+
+            $images = ['name' => 'images'];
+            $image_path = $request->file('nomenclatorImage')->getPathname();
+            $image_mime = $request->file('nomenclatorImage')->getmimeType();
+            $image_org  = $request->file('nomenclatorImage')->getClientOriginalName();
+
+            $images['contents'] = [
+                'name'     => 'nomenclatorImage',
                 'filename' => $image_org,
                 'Mime-Type' => $image_mime,
-                'contents' => $request->file('nomenclatorImage')->get(),
+                // 'contents' => $request->file('nomenclatorImage')->get(),
+                'contents' => file_get_contents($request->file('nomenclatorImage')->getRealPath()),
             ];
+            $multipart[] = $images;
 
-        dd($va);
-        $client = new \GuzzleHttp\Client();
-        $response = $client->request('POST', $this->api_base_url . '/nomenclatorKeys', [
-            'headers' => [
-                'authorization' => loggedUser()['token']
-            ],
-            'multipart' => $va,
-        ]);
+            $client = new \GuzzleHttp\Client();
+            $response = $client->request('POST', $this->api_base_url . '/nomenclatorKeys', [
+                'headers' => [
+                    'authorization' => loggedUser()['token']
+                ],
+                'multipart' => [$multipart],
+            ]);
 
-        // $req = Http::acceptJson()->attach('attachment', file_get_contents($request->file('nomenclatorImage'), 'nomecnaltor.jpg'))->withHeaders([
-        //     'authorization' => loggedUser()['token'],
-        // ])
-        //     ->accept('application/json');
+            dd($va, $multipart);
+        } else {
+            $req = Http::acceptJson()->withHeaders([
+                'authorization' => loggedUser()['token'],
+            ])
+                ->accept('application/json');
 
-        // // if ($request->has('nomenclatorImage')) $req = $req->attach('nomenclatorImage', $request->file('nomenclatorImage'), 'nomenclatorImage.jpg');
+            $response = $req->post($this->api_base_url . '/nomenclatorKeys', $va);
+        }
 
-        // $response = $req->post($this->api_base_url . '/nomenclatorKeys', $va);
 
-        // $keys = $response->json();
-
-        dd($response->getBody());
-
+        dd($response->getBody(), $response->json());
 
         return view('nomenclator.create');
     }
