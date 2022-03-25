@@ -19,7 +19,7 @@ class StoreKeyRequest extends FormRequest
     protected function prepareForValidation()
     {
         $this->merge([
-            'keyUserMain' => (bool) $this->keyUserMain,
+            'keyUserMain' => $this->keyUserMain ?? [],
             'hasInstructions' => (bool) $this->hasInstructions,
         ]);
     }
@@ -45,7 +45,7 @@ class StoreKeyRequest extends FormRequest
             'placeOfCreationId' => 'nullable|numeric',
             'keyUserId' => 'nullable',
             'keyUserName' => 'nullable',
-            'keyUserMain' => 'boolean',
+            'keyUserMain' => 'nullable',
             'language' => 'required',
             // 'nomenclatorImage' => 'image|nullable',    // vypiname aby nebol zbytocne dvakrat v poli multipart
             'structure' => 'nullable',

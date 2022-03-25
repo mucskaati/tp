@@ -46,6 +46,10 @@
         @apply text-gray-900 bg-gray-200 border border-gray-200 hover:bg-gray-300;
     }
 
+    .btn-danger {
+        @apply text-gray-900 bg-red-200 border border-red-200 hover:bg-red-300;
+    }
+
     /* form */
     .input-label {
         @apply inline-block w-full mb-1 text-sm font-semibold text-gray-600;

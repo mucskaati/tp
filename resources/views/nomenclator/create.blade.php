@@ -1,68 +1,87 @@
 @extends('layouts.app')
-@section('title', 'Pridať nomenklatorový klúč')
+@section('title', 'Add new nomenclator key')
 @section('content')
 
-    <div class="mt-4 box">
-        <h1 class="mb-5 text-xl font-semibold text-center text-gray-900">Pridať nový kľúč</h1>
-        <form action="#" method="POST" class="{{ route('nomenclator.store') }}" enctype="multipart/form-data">
-            @csrf
+    <create-key inline-template v-cloak>
+        <div class="mt-4 box">
+            <h1 class="mb-5 text-xl font-semibold text-center text-gray-900">Add new nomenclator key</h1>
+            <form action="#" method="POST" class="{{ route('nomenclator.store') }}" enctype="multipart/form-data">
+                @csrf
 
-            <div class="grid grid-cols-3 gap-5">
-                {{-- <x-form.input name="name" class="col-span-3">Názov</x-form.input> --}}
-                
-                <x-form.select name="cipherType" label="Typ šifry">[
-                    {"value":"", "label":"Nedefinovaný"},
-                    {"value":"nomenclator", "label":"Nomenklator"},
-                    {"value":"code", "label":"Kód"},
-                    {"value":"???", "label":"Jednoduchá substitúcia"}
-                ]</x-form.select>
-                <x-form.select name="keyType" label="Typ kľúča">[
-                    {"value":"e", "label":"e"},
-                    {"value":"ed", "label":"ed"}
-                    ]</x-form.select>
-                <x-form.select name="language" label="Jazyk">[
-                    {"value":"sk", "label":"Slovenský"},
-                    {"value":"en", "label":"Anglický"}
-                    ]</x-form.select>
+                <div class="grid grid-cols-3 gap-5">
+                    {{-- <x-form.input name="name" class="col-span-3">Názov</x-form.input> --}}
 
-                <x-form.input name="usedFrom" type="date">Používaný od</x-form.input>
-                <x-form.input name="usedTo" type="date">Používaný do</x-form.input>
-                <x-form.input name="usedAround">Používaný okolo</x-form.input>
+                    <x-form.select name="cipherType" label="Cipher Type">[
+                        {"value":"", "label":"Undefined"},
+                        {"value":"nomenclator", "label":"Nomenclator"},
+                        {"value":"code", "label":"Code"},
+                        {"value":"???", "label":"Simple substitution"}
+                        ]</x-form.select>
+                    <x-form.select name="keyType" label="Key type">[
+                        {"value":"e", "label":"e"},
+                        {"value":"ed", "label":"ed"}
+                        ]</x-form.select>
+                    <x-form.select name="language" label="Language">[
+                        {"value":"sk", "label":"Slovak"},
+                        {"value":"en", "label":"English"}
+                        ]</x-form.select>
 
-                {{-- <x-form.input name="main_users" class="col-span-3">Hlavní použivateľia</x-form.input>
+                    <x-form.input name="usedFrom" type="date">Used from</x-form.input>
+                    <x-form.input name="usedTo" type="date">Used to</x-form.input>
+                    <x-form.input name="usedAround">Used around</x-form.input>
+
+                    {{-- <x-form.input name="main_users" class="col-span-3">Hlavní použivateľia</x-form.input>
                 <x-form.input name="users" class="col-span-3">Použivatelia</x-form.input> --}}
+                </div>
+                <div class="grid grid-cols-4 gap-4 mt-3 mb-3" v-for="(user, index) in keyUsers" v-key="index">
+                    <x-form.select name="keyUserId[]" label="Choose a key user">
+                        {!! $keyUsers->toJSON() !!}
+                    </x-form.select>
+                    <x-form.input name="keyUserName[]">Or fill the user name</x-form.input>
+                    <div class="form-element">
+                        <label :for="'main'+index" class="input-label">
+                            Is main user? <span class="input-label-error">@error('keyUserMain') {{ $message }}
+                                @enderror</span>
+                        </label>
+                        <input :name="'keyUserMain['+index+']'" value="1" type="checkbox" id="'main'+index"
+                            class="input @error('keyUserMain') input-error @enderror">
+                    </div>
+                    <div class="form-element flex items-center">
+                        <button type="submit" @click.prevent="deleteKeyUser(index)" class="btn btn-secondary">Delete
+                            user</button>
+                    </div>
+                </div>
 
-                <p class="col-span-3">Kym nebude dodana api /key-users vyplnajte iba pole id alebo iba name, nie obe.
-                Potom to prerobime na nejaky multiselect. (asi pole selectov)</p>
+                <button type="submit" @click.prevent="addKeyUser" class="btn btn-primary mt-3 mb-3">Add user</button>
+                <div class="grid grid-cols-3 gap-5">
+                    <x-form.input name="folder">Folder</x-form.input>
+                    <x-form.input name="signature">Signature</x-form.input>
+                    <x-form.input name="groupId">Group ID</x-form.input>
 
-                <x-form.input name="keyUserId[]">Id používateľa</x-form.input>
-                <x-form.input name="keyUserName[]">Meno používateľa</x-form.input>
-                <x-form.check name="keyUserMain[]">Je hlavný?</x-form.check>
-                
-                <x-form.input name="folder">Priečinok</x-form.input>
-                <x-form.input name="signature">Signatúra</x-form.input>
-                <x-form.input name="groupId">Číslo skupiny</x-form.input>
-                
-                <x-form.input name="completeStructure" class="col-span-3">Kompletná štruktúra / Spôsob utajenia</x-form.input> {{-- == sposob utajenia --}}
-                
-                <x-form.input name="usedChars" class="col-span-3">Použité znaky</x-form.input>
-                
-                <x-form.input name="placeOfCreationId" class="col-span-3">Miesto vytvorenia</x-form.input>
-                
-                
-                <x-form.input name="structure">Štruktúra kľ. na obrázku</x-form.input>
-                <x-form.check name="hasInstructions">Má inštrukcie?</x-form.check>
-                <x-form.file name="nomenclatorImage">Obrázok</x-form.file>
+                    <x-form.input name="completeStructure" class="col-span-3">Complete structure
+                    </x-form.input> {{-- == sposob utajenia --}}
 
-                <x-form.textarea name="note" class="col-span-3">Poznámka</x-form.textarea>
-            </div>
+                    <x-form.input name="usedChars" class="col-span-3">Used characters</x-form.input>
 
-            <div class="flex items-center justify-end gap-3 mt-5">
-                <a href="{{ route('dashboard') }}" class="btn btn-secondary">Zrušiť</a>
-                <button type="submit" class="btn btn-primary">Pridať kľúč</button>
-            </div>
-        </form>
-    </div>
+
+                    <x-form.select name="placeOfCreationId" label="Place of creation">
+                        {!! $places->toJSON() !!}
+                    </x-form.select>
+
+                    <x-form.input name="structure">Key structure on image</x-form.input>
+                    <x-form.check name="hasInstructions">Has instructions?</x-form.check>
+                    <x-form.file name="nomenclatorImage">Image</x-form.file>
+
+                    <x-form.textarea name="note" class="col-span-3">Note</x-form.textarea>
+                </div>
+
+                <div class="flex items-center justify-end gap-3 mt-5">
+                    <a href="{{ route('dashboard') }}" class="btn btn-secondary">Cancel</a>
+                    <button type="submit" class="btn btn-primary">Add key</button>
+                </div>
+            </form>
+        </div>
+    </create-key>
 
 
 @endsection

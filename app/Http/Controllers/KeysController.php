@@ -18,14 +18,51 @@ class KeysController extends Controller
 
     public function create()
     {
-        return view('nomenclator.create');
+        $response = Http::withHeaders([
+            'authorization' => loggedUser()['token']
+        ])
+            ->accept('application/json')->get($this->api_base_url . '/places');
+
+        $places = $response->json();
+
+        $places = collect($places['items'])->map(function ($item) {
+            return [
+                'value' => $item['id'],
+                'label' => $item['name']
+            ];
+        });
+
+
+        $response = Http::withHeaders([
+            'authorization' => loggedUser()['token']
+        ])
+            ->accept('application/json')->get($this->api_base_url . '/keyUsers');
+
+        $keyUsers = $response->json();
+
+        $keyUsers = collect($keyUsers['items'])->map(function ($item) {
+            return [
+                'value' => $item['id'],
+                'label' => $item['name']
+            ];
+        });
+
+
+        return view('nomenclator.create', [
+            'places' => $places,
+            'keyUsers' => $keyUsers
+        ]);
     }
 
     public function store(StoreKeyRequest $request)
     {
         $va = $request->validated();                    // validated attributes
 
-        $va['keyUsers'] = KeyService::prepareUsersForPost($va['keyUserId'], $va['keyUserName'], $va['keyUserMain']);
+
+        if (isset($va['keyUserId'])) {
+            $va['keyUsers'] = KeyService::prepareUsersForPost($va['keyUserId'], $va['keyUserName'], $va['keyUserMain']);
+        }
+
         KeyService::unsetFormKeyUsersData($va);
 
         KeyService::prepareImage($va);
@@ -45,6 +82,8 @@ class KeysController extends Controller
                 ];
             }
 
+            dd($va);
+
             $images = ['name' => 'images'];
             $image_path = $request->file('nomenclatorImage')->getPathname();
             $image_mime = $request->file('nomenclatorImage')->getmimeType();
@@ -55,14 +94,18 @@ class KeysController extends Controller
                 'filename' => $image_org,
                 'Mime-Type' => $image_mime,
                 // 'contents' => $request->file('nomenclatorImage')->get(),
-                'contents' => file_get_contents($request->file('nomenclatorImage')->getRealPath()),
+                'contents' => fopen($request->file('nomenclatorImage')->getRealPath(), 'r'),
             ];
             $multipart[] = $images;
 
+            //dd($multipart);
+
             $client = new \GuzzleHttp\Client();
-            $response = $client->request('POST', $this->api_base_url . '/nomenclatorKeys', [
+            $response = $client->post($this->api_base_url . '/nomenclatorKeys', [
                 'headers' => [
-                    'authorization' => loggedUser()['token']
+                    'authorization' => loggedUser()['token'],
+                    'Accept'                => 'application/json',
+                    'Content-Type'          => 'multipart/form-data',
                 ],
                 'multipart' => [$multipart],
             ]);

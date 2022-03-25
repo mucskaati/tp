@@ -2,29 +2,42 @@
 
 namespace App\Services;
 
-class KeyService {
-    
+class KeyService
+{
+
     public static function prepareUsersForPost($ids, $names, $mains)
     {
-        // dd($ids, $names);
-        if (isset($ids) && $ids[0] == null && isset($names) && $names[0] == null) return null;
-        $keyUsers = [];
-        // potom to naloopovat ked pridame viacere
-        // este si nie som isty strukturou preto teraz robim len na 1
-        $keyUser = (isset($mains[0]) && $mains[0]) ? ['isMainUser' => true] : [];
-        if (isset($ids[0]) && $ids[0]) {
-            $keyUser['id'] = $ids[0];
-        } else if (isset($names[0]) && $names[0]) {
-            $keyUser['name'] = $names[0];
-        }
-        $keyUsers[] = $keyUser;
 
-        return $keyUsers;
+        $keyUsers = [];
+
+
+        foreach ($names as $key => $name) {
+            $keyUsers[$key]['name'] = $name;
+        }
+
+        foreach ($ids as $key => $id) {
+            $keyUsers[$key]['id'] = (isset($keyUsers[$key]['name']) && $keyUsers[$key]['name']) ? null : $id;
+        }
+
+        foreach ($mains as $key => $main) {
+            $keyUsers[$key]['isMainUser'] = $main;
+        }
+
+
+        return collect($keyUsers)->map(function ($item) {
+            return [
+                'id' => $item['id'],
+                'name' => $item['name'],
+                'isMainUser' => (isset($item['isMainUser'])) ? (bool) $item['isMainUser'] : false
+            ];
+        })->toArray();
     }
 
     public static function unsetFormKeyUsersData(&$va)
     {
-        unset($va['keyUserId']); unset($va['keyUserName']); unset($va['keyUserMain']);
+        unset($va['keyUserId']);
+        unset($va['keyUserName']);
+        unset($va['keyUserMain']);
     }
 
     public static function prepareImage(&$va)
@@ -40,5 +53,4 @@ class KeyService {
             unset($va['hasInstructions']);
         }
     }
-
 }
