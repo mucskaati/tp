@@ -47,7 +47,6 @@ class KeysController extends Controller
             ];
         });
 
-
         return view('nomenclator.create', [
             'places' => $places,
             'keyUsers' => $keyUsers
@@ -120,9 +119,12 @@ class KeysController extends Controller
             $response = $req->post($this->api_base_url . '/nomenclatorKeys', $va);
         }
 
+        if ($response->successful()) {
+            alert()->success('Successfully added key', 'Success');
+        } else {
+            alert()->error('Error occured', 'Error');
+        }
 
-        dd($response->getBody(), $response->json());
-
-        return view('nomenclator.create');
+        return redirect()->route('nomenclator.create');
     }
 }

@@ -11,7 +11,6 @@
 </head>
 
 <body class="container bg-gray-100">
-
     <div id="app">
         {{-- header --}}
 
@@ -74,6 +73,7 @@
     {{-- scripts --}}
     <script src="{{ asset('js/main.js?v=') . time() }}"></script>
     <script src="{{ mix('js/app.js') }}"></script>
+    @include('sweet::alert')
 </body>
 
 </html>
