@@ -68,7 +68,6 @@ class KeysController extends Controller
 
         $va = unsetMissingValues($va);                  // cuz if value == null api still reads it as submitted
 
-        // dd($va);
 
         if ($request->has('nomenclatorImage')) {
 

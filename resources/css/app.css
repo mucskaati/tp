@@ -67,3 +67,24 @@
         @apply text-green-500 bg-green-100 border border-green-500;
     }
 }
+
+/* DATATABLES */
+
+@import url('/vendor/datatables/datatables.min.css');
+
+.datatableFixHead {
+	overflow-y: auto;
+	height: 80vh;
+}
+.datatableFixHead thead tr th {
+	position: sticky;
+	top: 0;
+  color: #495057;
+  background-color: #e9ecef;
+  border-color: #dee2e6;
+  padding: 5px 9px;
+}
+
+.datatableFixHead thead>tr:nth-child(2) th {
+  top: 2.1em;
+}

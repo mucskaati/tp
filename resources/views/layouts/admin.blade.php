@@ -18,7 +18,7 @@
         <div class="flex flex-col max-w-screen-xl mx-auto md:items-center md:justify-between md:flex-row">
             <div class="flex flex-row items-center justify-between p-4">
                 <router-link to="/">
-                    <span class="text-lg font-semibold tracking-widest text-gray-900">HC Portal Administrácia</span>
+                    <span class="text-lg font-semibold tracking-widest text-gray-900">HC Portal Administration</span>
                 </router-link>
 
                 <button class="rounded-lg md:hidden focus:outline-none focus:shadow-outline">
@@ -43,11 +43,10 @@
     {{-- footer --}}
     <footer class="p-4 mt-4 bg-white rounded-lg shadow md:flex md:items-center md:justify-between md:p-6">
         <ul class="flex flex-wrap items-center mb-6 md:mb-0">
-            <li><a href="#" class="mr-4 text-sm font-normal text-gray-500 hover:underline md:mr-6">Všeobecné podmienky
-                    používania</a></li>
-            <li><a href="#" class="mr-4 text-sm font-normal text-gray-500 hover:underline md:mr-6">Cookie nastavenia</a>
+            <li><a href="#" class="mr-4 text-sm font-normal text-gray-500 hover:underline md:mr-6">General conditions of use</a></li>
+            <li><a href="#" class="mr-4 text-sm font-normal text-gray-500 hover:underline md:mr-6">Cookie settings</a>
             </li>
-            <li><a href="#" class="text-sm font-normal text-gray-500 hover:underline">Kontakt</a></li>
+            <li><a href="#" class="text-sm font-normal text-gray-500 hover:underline">Contact</a></li>
         </ul>
         <div class="flex space-x-6 sm:justify-center">
             <a href="#" class="text-gray-500 hover:text-gray-900">
