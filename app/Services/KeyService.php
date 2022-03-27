@@ -53,4 +53,31 @@ class KeyService
             unset($va['hasInstructions']);
         }
     }
+
+    public static function setMainUsersString(&$keys)
+    {
+        foreach ($keys as $ind => $key) {
+            $names = [];
+
+            foreach ($key['keyUsers'] as $user) {
+                if ($user['isMainUser']) $names[] = $user['name'];
+            }
+
+            $keys[$ind]['mainUsersString'] = implode(', ', $names);
+        }
+    }
+
+    public static function setDateString(&$keys)
+    {
+        foreach ($keys as $ind => $key) {
+            $str = '';
+            if ($key['usedAround']) $str = $key['usedAround'];
+            else {
+                if ($key['usedFrom']) $str .= 'from ' . date('Y-m-d', strtotime($key['usedFrom']));
+                if ($key['usedFrom'] && $key['usedTo']) $str .= ' ';
+                if ($key['usedTo']) $str .= 'to ' . date('Y-m-d', strtotime($key['usedTo']));
+            }
+            $keys[$ind]['date'] = $str;
+        }
+    }
 }

@@ -126,4 +126,9 @@ class KeysController extends Controller
 
         return redirect()->route('nomenclator.create');
     }
+
+    public function show($nomenclator)
+    {
+        return view('nomenclator.show');
+    }
 }

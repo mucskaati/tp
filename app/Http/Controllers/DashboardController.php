@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use App\Services\KeyService;
 
 class DashboardController extends Controller
 {
@@ -17,13 +18,14 @@ class DashboardController extends Controller
     public function index()
     {
         $response = Http::accept('application/json')->get($this->api_base_url . '/nomenclatorKeys');
-        $keys = $response->json();
+        $keys = $response->json()['items'];
 
         // dd($keys);
 
-        return view('dashboard.index', [
-            'keys' => $keys
-        ]);
+        KeyService::setMainUsersString($keys);          // TODO if multiple main users, implode them to one string for display
+        KeyService::setDateString($keys);
+
+        return view('dashboard.index', compact('keys'));
     }
 
     public function myKeys()

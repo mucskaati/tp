@@ -73,6 +73,7 @@
     {{-- scripts --}}
     {{-- <script src="{{ asset('js/main.js?v=') . time() }}"></script> --}}
     <script src="{{ mix('js/app.js') }}"></script>
+    {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
     @include('sweet::alert')
     @yield('bottom-script')
 </body>
