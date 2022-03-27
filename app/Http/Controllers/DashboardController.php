@@ -25,10 +25,6 @@ class DashboardController extends Controller
         KeyService::setMainUsersString($keys);          // TODO if multiple main users, implode them to one string for display
         KeyService::setDateString($keys);
 
-        foreach ($keys as $key) {
-            if ($key['placeOfCreation']) dd($key);
-        }
-
         return view('dashboard.index', compact('keys'));
     }
 
