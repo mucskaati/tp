@@ -13,7 +13,9 @@ window.latinize = Latinize;
 
 /* Photo Swipe Lightbox */
 import PhotoSwipeLightbox from "./photoswipe-lightbox.esm.js";
+import PhotoSwipeDynamicCaption from "photoswipe-dynamic-caption-plugin";
 import "../css/photoswipe.css";
+import "photoswipe-dynamic-caption-plugin";
 
 const lightboxImages = document.querySelectorAll("#nomenclator-gallery img");
 lightboxImages.forEach((image) => {
@@ -28,10 +30,14 @@ const lightbox = new PhotoSwipeLightbox({
     children: "a",
     pswpModule: () => import("./photoswipe.esm.js"),
 });
+const captionPlugin = new PhotoSwipeDynamicCaption(lightbox, {
+    type: "below",
+    captionContent: ".pswp-caption-content",
+});
 lightbox.init();
 
 //Components
-import Vue from "vue";
+/* import Vue from "vue";
 Vue.component(
     "create-key",
     require("./components/CreateKeyComponent.vue").default
@@ -39,4 +45,4 @@ Vue.component(
 
 const app = new Vue({
     el: "#app",
-});
+}); */
