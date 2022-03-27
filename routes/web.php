@@ -38,9 +38,7 @@ Route::get('/reset', function () {
 // Nomenclator keys
 Route::get('/nomenclators/create', [KeysController::class, 'create'])->middleware('api.logged')->name('nomenclator.create');
 Route::post('/nomenclators/create', [KeysController::class, 'store'])->middleware('api.logged')->name('nomenclator.store');
-Route::get('/nomenclators/{nomenclator}', function () {
-    return view('nomenclator.show');
-});
+Route::get('/nomenclators/{nomenclator}', [KeysController::class, 'show'])->name('nomenclator.show');
 
 // Admin
 Route::get('/admin', [DashboardController::class, 'admin'])->middleware('api.admin')->name('admin.dashboard');

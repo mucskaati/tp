@@ -6,7 +6,7 @@
         <div class="mt-4 box">
             <div class="bg-white block sm:flex items-center justify-betweenlg:mt-1.5">
                 <div class="flex items-center justify-between w-full">
-                    <h1 class="text-xl font-semibold text-gray-900">Nomenklátorové kľúče</h1>
+                    <h1 class="text-xl font-semibold text-gray-900">Nomenclator keys</h1>
 
                     {{-- <form action="#" method="GET">
                         <label for="users-search" class="sr-only">Search</label>
@@ -28,54 +28,42 @@
                                         <tr>
                                             <th scope="col"
                                                 class="p-4 text-xs font-medium text-left text-gray-500 uppercase">
-                                                Názov / Autor
+                                                Name / Author
                                             </th>
                                             <th scope="col"
                                                 class="p-4 text-xs font-medium text-center text-gray-500 uppercase">
-                                                Lokácia
+                                                Language
                                             </th>
                                             <th scope="col"
                                                 class="p-4 text-xs font-medium text-center text-gray-500 uppercase">
-                                                Dátum pridania
-                                            </th>
-                                            <th scope="col"
-                                                class="p-4 text-xs font-medium text-center text-gray-500 uppercase">
-                                                Stav
-                                            </th>
-                                            <th scope="col"
-                                                class="p-4 text-xs font-medium text-center text-gray-500 uppercase">
-                                                Akcie
+                                                Date
                                             </th>
                                         </tr>
                                     </thead>
                                     <tbody class="bg-white divide-y divide-gray-200">
-                                        <tr class="hover:bg-gray-100">
-                                            <td class="flex items-center gap-4 p-4 whitespace-nowrap"
-                                                data-search="{{ Str::ascii('Správa z pohľadnice rok 1903 jankomrkvicka@gmail.com') }}">
-                                                <img src="https://cryptograms.hcportal.eu/api/uploads/27691600850778.png"
-                                                    alt="" class="w-10 h-10 rounded-full">
-                                                <div class="text-sm font-normal text-gray-500">
-                                                    <a href="/detail"
-                                                        class="text-base font-semibold text-cyan-600 hover:text-cyan-700">Správa
-                                                        z pohľadnice rok 1903</a>
-                                                    <div class="text-sm font-normal text-gray-500">jankomrkvicka@gmail.com
+                                        @foreach ($keys as $key)
+                                            <tr class="hover:bg-gray-100">
+                                                <td class="flex items-center gap-4 p-4 whitespace-nowrap">
+                                                    {{-- doplnit default img --}}
+                                                    <img src="{{ count($key['images'])? "https://{$key['images'][0]['url']}": 'https://cryptograms.hcportal.eu/api/uploads/27691600850778.png' }}"
+                                                        alt="thumb" class="w-10 h-10 rounded-full">
+                                                    <div class="text-sm font-normal text-gray-500">
+                                                        <a href="{{ route('nomenclator.show', $key['id']) }}"
+                                                            class="text-base font-semibold text-cyan-600 hover:text-cyan-700">
+                                                            {{ $key['signature'] }}
+                                                        </a>
+                                                        <div class="text-sm font-normal text-gray-500">
+                                                            {{ $key['mainUsersString'] }}
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </td>
-                                            <td class="p-4 text-center text-gray-700 whitespace-nowrap"
-                                            data-search="{{ Str::ascii('Európa') }}">Európa</td>
-                                            <td class="p-4 text-center text-gray-700 whitespace-nowrap"
-                                            data-order="2021-05-20">20.5.2021</td>
-                                            <td class="p-4 text-center text-green-500 whitespace-nowrap"
-                                            data-search="{{ Str::ascii('Schválený') }}">Schválený</td>
-                                            <td class="p-4 space-x-2 text-center whitespace-nowrap">
-                                                <button type="button" data-modal-toggle="user-modal"
-                                                    class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200">
-                                                    Zobraziť
-                                                </button>
-
-                                            </td>
-                                        </tr>
+                                                </td>
+                                                <td class="p-4 text-center text-gray-700 whitespace-nowrap"
+                                                    data-search="{{ Str::ascii($key['language']) }}">{{ $key['language'] }}</td>
+                                                <td class="p-4 text-center text-gray-700 whitespace-nowrap">
+                                                    {{ $key['date'] }}
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                         <tr class="hover:bg-gray-100">
                                             <td class="flex items-center gap-4 p-4 whitespace-nowrap">
                                                 <img src="https://cryptograms.hcportal.eu/api/uploads/27691600850778.png"
@@ -89,7 +77,7 @@
                                             </td>
                                             <td class="p-4 text-center text-gray-700 whitespace-nowrap">Európa</td>
                                             <td class="p-4 text-center text-gray-700 whitespace-nowrap">20.5.2021</td>
-                                            <td class="p-4 font-normal text-center text-yellow-500 whitespace-nowrap">Na
+                                            {{-- <td class="p-4 font-normal text-center text-yellow-500 whitespace-nowrap">Na
                                                 schválenie</td>
                                             <td class="p-4 space-x-2 text-center whitespace-nowrap">
                                                 <button type="button" data-modal-toggle="user-modal"
@@ -97,7 +85,7 @@
                                                     Zobraziť
                                                 </button>
 
-                                            </td>
+                                            </td> --}}
                                         </tr>
                                         <tr class="hover:bg-gray-100">
                                             <td class="flex items-center gap-4 p-4 whitespace-nowrap">
@@ -112,7 +100,7 @@
                                             </td>
                                             <td class="p-4 text-center text-gray-700 whitespace-nowrap">Európa</td>
                                             <td class="p-4 text-center text-gray-700 whitespace-nowrap">20.5.2021</td>
-                                            <td class="p-4 font-normal text-center text-yellow-500 whitespace-nowrap">Na
+                                            {{-- <td class="p-4 font-normal text-center text-yellow-500 whitespace-nowrap">Na
                                                 zmenu
                                             </td>
                                             <td class="p-4 space-x-2 text-center whitespace-nowrap">
@@ -121,7 +109,7 @@
                                                     Zobraziť
                                                 </button>
 
-                                            </td>
+                                            </td> --}}
                                         </tr>
                                         <tr class="hover:bg-gray-100">
                                             <td class="flex items-center gap-4 p-4 whitespace-nowrap">
@@ -136,7 +124,7 @@
                                             </td>
                                             <td class="p-4 text-center text-gray-700 whitespace-nowrap">Európa</td>
                                             <td class="p-4 text-center text-gray-700 whitespace-nowrap">20.5.2021</td>
-                                            <td class="p-4 font-normal text-center text-red-500 whitespace-nowrap">
+                                            {{-- <td class="p-4 font-normal text-center text-red-500 whitespace-nowrap">
                                                 Zamietnutý
                                             </td>
                                             <td class="p-4 space-x-2 text-center whitespace-nowrap">
@@ -145,12 +133,12 @@
                                                     Zobraziť
                                                 </button>
 
-                                            </td>
+                                            </td> --}}
                                         </tr>
                                     </tbody>
                                 </table>
-                                <div class="datatableFixHead">
-                                    {{-- <table class="min-w-full mt-5 divide-y divide-gray-200 table-fixed">
+                                {{-- <div class="datatableFixHead">
+                                    <table class="min-w-full mt-5 divide-y divide-gray-200 table-fixed">
                                 <thead class="bg-gray-100">
                                     <tr>
                                         <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase">
@@ -260,8 +248,8 @@
                                         </td>
                                     </tr>
                                 </tbody>
-                            </table> --}}
-                                </div>
+                            </table>
+                                </div> --}}
                             </div>
                         </div>
                     </div>
@@ -409,16 +397,16 @@
                     </div>
 
                 </div>
-
             </div>
+        </div>
+    </div>
+@endsection
 
-        @endsection
 
-
-        @section('bottom-script')
-            <script>
-                $(document).ready(function() {
-                    customDatatable('indexTable', 0, [0, 'asc'], null)
-                });
-            </script>
-        @endsection
+@section('bottom-script')
+    <script>
+        $(document).ready(function() {
+            customDatatable('indexTable', 0, [0, 'asc'], null)
+        });
+    </script>
+@endsection
