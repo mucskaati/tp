@@ -43,7 +43,8 @@
     {{-- footer --}}
     <footer class="p-4 mt-4 bg-white rounded-lg shadow md:flex md:items-center md:justify-between md:p-6">
         <ul class="flex flex-wrap items-center mb-6 md:mb-0">
-            <li><a href="#" class="mr-4 text-sm font-normal text-gray-500 hover:underline md:mr-6">General conditions of use</a></li>
+            <li><a href="#" class="mr-4 text-sm font-normal text-gray-500 hover:underline md:mr-6">General conditions of
+                    use</a></li>
             <li><a href="#" class="mr-4 text-sm font-normal text-gray-500 hover:underline md:mr-6">Cookie settings</a>
             </li>
             <li><a href="#" class="text-sm font-normal text-gray-500 hover:underline">Contact</a></li>
@@ -67,7 +68,11 @@
     </footer>
 
     {{-- scripts --}}
-    <script src="{{ asset('js/main.js?v=') . time() }}"></script>
+    {{-- <script src="{{ asset('js/main.js?v=') . time() }}"></script> --}}
+    <script src="{{ mix('js/app.js') }}"></script>
+    {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
+    @include('sweet::alert')
+    @yield('bottom-script')
 </body>
 
 </html>

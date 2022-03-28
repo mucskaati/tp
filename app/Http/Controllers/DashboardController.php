@@ -34,9 +34,10 @@ class DashboardController extends Controller
             'authorization' => loggedUser()['token']
         ])
             ->accept('application/json')->get($this->api_base_url . '/nomenclatorKeys');
-        $keys = $response->json();
+        $keys = $response->json()['items'];
 
-        // dd($keys);
+        KeyService::setMainUsersString($keys);          // TODO if multiple main users, implode them to one string for display
+        KeyService::setDateString($keys);
 
         return view('dashboard.my-keys', [
             'keys' => $keys
@@ -49,10 +50,10 @@ class DashboardController extends Controller
             'authorization' => loggedUser()['token']
         ])
             ->accept('application/json')->get($this->api_base_url . '/nomenclatorKeys');
+        $keys = $response->json()['items'];
 
-        $keys = $response->json();
-
-        // dd($keys);
+        KeyService::setMainUsersString($keys);          // TODO if multiple main users, implode them to one string for display
+        KeyService::setDateString($keys);
 
         return view('admin.index', [
             'keys' => $keys

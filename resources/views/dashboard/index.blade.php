@@ -19,7 +19,7 @@
                 </div>
             </div>
             <div class="flex flex-col">
-                <div class="overflow-x-auto">
+                <div class="">
                     <div class="inline-block min-w-full align-middle">
                         <div class="overflow-hidden shadow">
                             <div class="datatableFixHead">
@@ -45,7 +45,7 @@
                                             <tr class="hover:bg-gray-100">
                                                 <td class="flex items-center gap-4 p-4 whitespace-nowrap">
                                                     {{-- doplnit default img --}}
-                                                    <img src="{{ count($key['images'])? "https://{$key['images'][0]['url']}": 'https://cryptograms.hcportal.eu/api/uploads/27691600850778.png' }}"
+                                                    <img src="{{ count($key['images']) ? "https://{$key['images'][0]['url']}" : 'https://cryptograms.hcportal.eu/api/uploads/27691600850778.png' }}"
                                                         alt="thumb" class="w-10 h-10 rounded-full">
                                                     <div class="text-sm font-normal text-gray-500">
                                                         <a href="{{ route('nomenclator.show', $key['id']) }}"
@@ -58,7 +58,8 @@
                                                     </div>
                                                 </td>
                                                 <td class="p-4 text-center text-gray-700 whitespace-nowrap"
-                                                    data-search="{{ Str::ascii($key['language']) }}">{{ $key['language'] }}</td>
+                                                    data-search="{{ Str::ascii($key['language']) }}">
+                                                    {{ $key['language'] }}</td>
                                                 <td class="p-4 text-center text-gray-700 whitespace-nowrap">
                                                     {{ $key['date'] }}
                                                 </td>
@@ -408,5 +409,6 @@
         $(document).ready(function() {
             customDatatable('indexTable', 0, [0, 'asc'], null)
         });
+
     </script>
 @endsection
