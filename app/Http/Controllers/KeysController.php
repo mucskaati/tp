@@ -118,6 +118,8 @@ class KeysController extends Controller
             $response = $req->post($this->api_base_url . '/nomenclatorKeys', $va);
         }
 
+        // dd($response->json());
+
         if ($response->successful()) {
             alert()->success('Successfully added key', 'Success');
         } else {
@@ -127,8 +129,24 @@ class KeysController extends Controller
         return redirect()->route('nomenclator.create');
     }
 
-    public function show($nomenclator)
+    public function show($nomenclatorID)
     {
-        return view('nomenclator.show');
+
+        $response = Http::withHeaders([
+            'authorization' => loggedUser()['token']
+        ])
+            ->accept('application/json')->get($this->api_base_url . '/nomenclatorKeys/' . $nomenclatorID);
+
+        $key = $response->json();
+
+        if ($response->successful() && $key) {
+
+            return view('nomenclator.show', [
+                'key' => $key
+            ]);
+        }
+
+        alert()->error('Key not found', 'Error');
+        return redirect()->route('dashboard');
     }
 }

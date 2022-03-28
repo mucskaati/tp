@@ -65,77 +65,7 @@
                                                 </td>
                                             </tr>
                                         @endforeach
-                                        <tr class="hover:bg-gray-100">
-                                            <td class="flex items-center gap-4 p-4 whitespace-nowrap">
-                                                <img src="https://cryptograms.hcportal.eu/api/uploads/27691600850778.png"
-                                                    alt="" class="w-10 h-10 rounded-full">
-                                                <div class="text-sm font-normal text-gray-500">
-                                                    <div class="text-base font-semibold text-cyan-600 hover:text-cyan-700">
-                                                        Správa z pohľadnice rok 1903</div>
-                                                    <div class="text-sm font-normal text-gray-500">jankomrkvicka@gmail.com
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="p-4 text-center text-gray-700 whitespace-nowrap">Európa</td>
-                                            <td class="p-4 text-center text-gray-700 whitespace-nowrap">20.5.2021</td>
-                                            {{-- <td class="p-4 font-normal text-center text-yellow-500 whitespace-nowrap">Na
-                                                schválenie</td>
-                                            <td class="p-4 space-x-2 text-center whitespace-nowrap">
-                                                <button type="button" data-modal-toggle="user-modal"
-                                                    class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200">
-                                                    Zobraziť
-                                                </button>
 
-                                            </td> --}}
-                                        </tr>
-                                        <tr class="hover:bg-gray-100">
-                                            <td class="flex items-center gap-4 p-4 whitespace-nowrap">
-                                                <img src="https://cryptograms.hcportal.eu/api/uploads/27691600850778.png"
-                                                    alt="" class="w-10 h-10 rounded-full">
-                                                <div class="text-sm font-normal text-gray-500">
-                                                    <div class="text-base font-semibold text-cyan-600 hover:text-cyan-700">
-                                                        Správa z pohľadnice rok 1903</div>
-                                                    <div class="text-sm font-normal text-gray-500">jankomrkvicka@gmail.com
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="p-4 text-center text-gray-700 whitespace-nowrap">Európa</td>
-                                            <td class="p-4 text-center text-gray-700 whitespace-nowrap">20.5.2021</td>
-                                            {{-- <td class="p-4 font-normal text-center text-yellow-500 whitespace-nowrap">Na
-                                                zmenu
-                                            </td>
-                                            <td class="p-4 space-x-2 text-center whitespace-nowrap">
-                                                <button type="button" data-modal-toggle="user-modal"
-                                                    class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200">
-                                                    Zobraziť
-                                                </button>
-
-                                            </td> --}}
-                                        </tr>
-                                        <tr class="hover:bg-gray-100">
-                                            <td class="flex items-center gap-4 p-4 whitespace-nowrap">
-                                                <img src="https://cryptograms.hcportal.eu/api/uploads/27691600850778.png"
-                                                    alt="" class="w-10 h-10 rounded-full">
-                                                <div class="text-sm font-normal text-gray-500">
-                                                    <div class="text-base font-semibold text-cyan-600 hover:text-cyan-700">
-                                                        Správa z pohľadnice rok 1903</div>
-                                                    <div class="text-sm font-normal text-gray-500">jankomrkvicka@gmail.com
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="p-4 text-center text-gray-700 whitespace-nowrap">Európa</td>
-                                            <td class="p-4 text-center text-gray-700 whitespace-nowrap">20.5.2021</td>
-                                            {{-- <td class="p-4 font-normal text-center text-red-500 whitespace-nowrap">
-                                                Zamietnutý
-                                            </td>
-                                            <td class="p-4 space-x-2 text-center whitespace-nowrap">
-                                                <button type="button" data-modal-toggle="user-modal"
-                                                    class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200">
-                                                    Zobraziť
-                                                </button>
-
-                                            </td> --}}
-                                        </tr>
                                     </tbody>
                                 </table>
                                 {{-- <div class="datatableFixHead">

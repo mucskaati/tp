@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Detail')
+@section('title', 'Key detail - ' . $key['signature'])
 @section('content')
 
     <div class="mt-4 box">
@@ -37,7 +37,7 @@
             </div>
             {{-- main informations --}}
             <div class="w-[35rem]">
-                <h1 class="mb-10 text-xl font-semibold text-gray-900">Shorthand message on a postcard from 1903</h1>
+                <h1 class="mb-10 text-xl font-semibold text-gray-900">{{ $key['signature'] }}</h1>
                 <div class="flex gap-5 text-sm text-gray-500 justify-evenly md:gap-10">
                     <ul class="flex flex-col gap-6">
                         <li>
@@ -49,7 +49,7 @@
                                 </svg>
                                 <span>Language</span>
                             </div>
-                            <span class="text-base text-gray-900">English</span>
+                            <span class="text-base text-gray-900">{{ $key['language'] }}</span>
                         </li>
                         <li>
                             <div class="flex items-center gap-2 mb-1">
@@ -60,7 +60,7 @@
                                 </svg>
                                 <span>Place of creation</span>
                             </div>
-                            <span class="text-base text-gray-900">Unknown</span>
+                            <span class="text-base text-gray-900">TODO:GONO</span>
                         </li>
                         <li>
                             <div class="flex items-center gap-2 mb-1">
@@ -71,7 +71,7 @@
                                 </svg>
                                 <span>Dated from</span>
                             </div>
-                            <span class="text-base text-gray-900">15.7.1897</span>
+                            <span class="text-base text-gray-900">{{ $key['usedFrom'] ?: 'Unknown' }}</span>
                         </li>
                         <li>
                             <div class="flex items-center gap-2 mb-1">
@@ -82,7 +82,7 @@
                                 </svg>
                                 <span>Dated to</span>
                             </div>
-                            <span class="text-base text-gray-900">15.7.1897</span>
+                            <span class="text-base text-gray-900">{{ $key['usedTo'] ?: 'Unknown' }}</span>
                         </li>
                         <li>
                             <div class="flex items-center gap-2 mb-1">
@@ -93,7 +93,7 @@
                                 </svg>
                                 <span>Dated around</span>
                             </div>
-                            <span class="text-base text-gray-900">March 1897</span>
+                            <span class="text-base text-gray-900">TODO:gono</span>
                         </li>
                     </ul>
                     <ul class="flex flex-col gap-6">
@@ -106,7 +106,7 @@
                                 </svg>
                                 <span>Cipher type</span>
                             </div>
-                            <span class="text-base text-gray-900">Nomenclator</span>
+                            <span class="text-base text-gray-900">{{ $key['cipherType'] ?: 'Unknown' }}</span>
                         </li>
                         <li>
                             <div class="flex items-center gap-2 mb-1">
@@ -117,7 +117,7 @@
                                 </svg>
                                 <span>Key type</span>
                             </div>
-                            <span class="text-base text-gray-900">ed, d, x</span>
+                            <span class="text-base text-gray-900">{{ $key['keyType'] ?: 'Unknown' }}</span>
                         </li>
                         <li>
                             <div class="flex items-center gap-2 mb-1">
@@ -128,7 +128,7 @@
                                 </svg>
                                 <span>Complete structure</span>
                             </div>
-                            <span class="text-base text-gray-900">1pnls</span>
+                            <span class="text-base text-gray-900">{{ $key['completeStructure'] }}</span>
                         </li>
                         <li>
                             <div class="flex items-center gap-2 mb-1">
@@ -139,7 +139,7 @@
                                 </svg>
                                 <span>Used chars</span>
                             </div>
-                            <span class="text-base text-gray-900">n,l,s</span>
+                            <span class="text-base text-gray-900">{{ $key['usedChars'] ?: 'Unknown' }}</span>
                         </li>
                         <li>
                             <div class="flex items-center gap-2 mb-1">
@@ -150,7 +150,7 @@
                                 </svg>
                                 <span>Location</span>
                             </div>
-                            <span class="text-base text-gray-900">Archiv</span>
+                            <span class="text-base text-gray-900">TODO: Data?</span>
                         </li>
                     </ul>
                 </div>
@@ -168,7 +168,13 @@
                     </svg>
                     <span>Main users</span>
                 </div>
-                <span class="text-base text-gray-900">Amelie Elisabeth, Landgravine of Hessen-Kassel</span>
+                <span class="text-base text-gray-900">
+                    @forelse (collect($key['keyUsers'])->where('isMainUser', true) as $user)
+                        {{ $user['name'] }},
+                    @empty
+                        No main users
+                    @endforelse
+                </span>
             </li>
             <li>
                 <div class="flex items-center gap-2 mb-1">
@@ -179,8 +185,13 @@
                     </svg>
                     <span>Other users</span>
                 </div>
-                <span class="text-base text-gray-900">Günterode, Moritz Otto von nebo Günterode, Hans Heinrich von;
-                    Eberstein, Kaspar von; Torstensson, Lennart</span>
+                <span class="text-base text-gray-900">
+                    @forelse (collect($key['keyUsers'])->where('isMainUser', false) as $user)
+                        {{ $user['name'] }},
+                    @empty
+                        No other users
+                    @endforelse
+                </span>
             </li>
         </ul>
     </div>
