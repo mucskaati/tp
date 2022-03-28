@@ -132,9 +132,15 @@ class KeysController extends Controller
     public function show($nomenclatorID)
     {
 
-        $response = Http::withHeaders([
-            'authorization' => loggedUser()['token']
-        ])
+        if (loggedUser()) {
+            $header = [
+                'authorization' => loggedUser()['token']
+            ];
+        } else {
+            $header = [];
+        }
+
+        $response = Http::withHeaders($header)
             ->accept('application/json')->get($this->api_base_url . '/nomenclatorKeys/' . $nomenclatorID);
 
         $key = $response->json();
