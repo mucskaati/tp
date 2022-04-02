@@ -89,7 +89,7 @@ class KeyService
 
         $urls = self::createImages($request, $url);
 
-        foreach ($urls['urls'] as $key => $url) {
+        foreach ($urls as $key => $url) {
             $nomenclatorImages[$key]['url'] = $url;
         }
 
@@ -132,11 +132,14 @@ class KeyService
         $body = json_decode($resp->body());
 
 
+        if (!is_array($body->urls)) {
+            return [];
+        }
         //$body['urls'] = [
         //    'link1.test',
         //    'link2.test'
         //];
 
-        return $body;
+        return $body->urls;
     }
 }
