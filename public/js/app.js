@@ -2072,7 +2072,8 @@ __webpack_require__.r(__webpack_exports__);
   // *----------------------- D a t a -----------------------------------------------------------
   data: function data() {
     return {
-      keyUsers: []
+      keyUsers: [],
+      images: []
     };
   },
   // *----------------------- C o m p u t e d ---------------------------------------------------
@@ -2090,6 +2091,14 @@ __webpack_require__.r(__webpack_exports__);
     },
     deleteKeyUser: function deleteKeyUser(index) {
       this.keyUsers.splice(index, 1);
+    },
+    addImage: function addImage() {
+      this.images.push({
+        id: ""
+      });
+    },
+    deleteImage: function deleteImage(index) {
+      this.images.splice(index, 1);
     }
   },
   // *----------------------- W a t c h ---------------------------------------------------------

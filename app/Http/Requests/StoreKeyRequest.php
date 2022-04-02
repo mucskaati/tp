@@ -20,7 +20,7 @@ class StoreKeyRequest extends FormRequest
     {
         $this->merge([
             'keyUserMain' => $this->keyUserMain ?? [],
-            'hasInstructions' => (bool) $this->hasInstructions,
+            'hasInstructions' => $this->hasInstructions ?? [],
         ]);
     }
 
@@ -48,8 +48,8 @@ class StoreKeyRequest extends FormRequest
             'keyUserMain' => 'nullable',
             'language' => 'required',
             // 'nomenclatorImage' => 'image|nullable',    // vypiname aby nebol zbytocne dvakrat v poli multipart
-            'structure' => 'nullable',
-            'hasInstructions' => 'boolean',
+            'structure' => 'array',
+            'hasInstructions' => 'array',
         ];
     }
 }

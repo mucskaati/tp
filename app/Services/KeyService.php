@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use Illuminate\Support\Facades\Http;
+
 class KeyService
 {
 
@@ -79,5 +81,62 @@ class KeyService
             }
             $keys[$ind]['date'] = $str;
         }
+    }
+
+    public static function prepareImagesForPost($request, $structures, $instructions, $url)
+    {
+        $nomenclatorImages = [];
+
+        $urls = self::createImages($request, $url);
+
+        foreach ($urls['urls'] as $key => $url) {
+            $nomenclatorImages[$key]['url'] = $url;
+        }
+
+        foreach ($structures as $key => $structure) {
+            $nomenclatorImages[$key]['structure'] = $structure;
+        }
+
+        foreach ($instructions as $key => $instruction) {
+            $nomenclatorImages[$key]['hasInstructions'] = $instruction;
+        }
+
+        return collect($nomenclatorImages)->map(function ($item) {
+            return [
+                'url' => $item['url'],
+                'structure' => $item['structure'],
+                'hasInstructions' => (isset($item['hasInstructions'])) ? (bool) $item['hasInstructions'] : false,
+                'isLocal' => true
+            ];
+        })->toArray();
+    }
+
+    public static function createImages($request, $url)
+    {
+        $req = Http::withHeaders([
+            'authorization' => loggedUser()['token']
+        ]);
+
+        if ($request->hasFile('nomenclatorImages')) {
+            /** @var UploadedFile $f */
+            foreach ($request->file('nomenclatorImages') as $f) {
+                $req->attach('nomenclatorImages[]', file_get_contents($f), $f->getClientOriginalName());
+            }
+        }
+
+        $url = $url . '/nomenclatorKeyImages';
+
+        $req = $req->asMultipart();
+        $resp = $req->post($url, []);
+
+        $body = json_decode($resp->body());
+
+
+        //$body['urls'] = [
+        //    'link1.test',
+        //    'link2.test'
+        //];
+
+        return $body;
     }
 }

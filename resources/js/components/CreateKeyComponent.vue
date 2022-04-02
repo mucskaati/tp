@@ -7,6 +7,7 @@ export default {
   data() {
     return {
       keyUsers: [],
+      images: [],
     };
   },
   // *----------------------- C o m p u t e d ---------------------------------------------------
@@ -25,6 +26,16 @@ export default {
 
     deleteKeyUser(index) {
       this.keyUsers.splice(index, 1);
+    },
+
+    addImage() {
+      this.images.push({
+        id: "",
+      });
+    },
+
+    deleteImage(index) {
+      this.images.splice(index, 1);
     },
   },
   // *----------------------- W a t c h ---------------------------------------------------------

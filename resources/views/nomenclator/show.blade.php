@@ -60,7 +60,8 @@
                                 </svg>
                                 <span>Place of creation</span>
                             </div>
-                            <span class="text-base text-gray-900">TODO:GONO</span>
+                            <span
+                                class="text-base text-gray-900">{{ isset($key['placeOfCreation']['name']) ? $key['placeOfCreation']['name'] : 'Unknown' }}</span>
                         </li>
                         <li>
                             <div class="flex items-center gap-2 mb-1">
@@ -93,7 +94,7 @@
                                 </svg>
                                 <span>Dated around</span>
                             </div>
-                            <span class="text-base text-gray-900">TODO:gono</span>
+                            <span class="text-base text-gray-900">{{ $key['usedAround'] ?: 'Unknown' }}</span>
                         </li>
                     </ul>
                     <ul class="flex flex-col gap-6">

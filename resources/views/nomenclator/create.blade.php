@@ -33,7 +33,7 @@
                     {{-- <x-form.input name="main_users" class="col-span-3">Hlavní použivateľia</x-form.input>
                 <x-form.input name="users" class="col-span-3">Použivatelia</x-form.input> --}}
                 </div>
-                <div class="grid grid-cols-4 gap-4 mt-3 mb-3" v-for="(user, index) in keyUsers" v-key="index">
+                <div class="grid grid-cols-4 gap-4 mt-3 mb-3" v-for="(user, index) in keyUsers" :key="index">
                     <x-form.select name="keyUserId[]" label="Choose a key user">
                         {!! $keyUsers->toJSON() !!}
                     </x-form.select>
@@ -67,13 +67,25 @@
                     <x-form.select name="placeOfCreationId" label="Place of creation">
                         {!! $places->toJSON() !!}
                     </x-form.select>
-
-                    <x-form.input name="structure">Key structure on image</x-form.input>
-                    <x-form.check name="hasInstructions">Has instructions?</x-form.check>
-                    <x-form.file name="nomenclatorImage">Image</x-form.file>
-
                     <x-form.textarea name="note" class="col-span-3">Note</x-form.textarea>
                 </div>
+                <div class="grid grid-cols-4 gap-4 mt-3 mb-3" v-for="(image, ind) in images" :key="ind">
+                    <x-form.file name="nomenclatorImages[]">Image</x-form.file>
+                    <x-form.input name="structure[]">Key structure on image</x-form.input>
+                    <div class="form-element">
+                        <label :for="'hasInstructions'+ind" class="input-label">
+                            Has instructions? <span class="input-label-error">@error('instruct') {{ $message }}
+                                @enderror</span>
+                        </label>
+                        <input :name="'hasInstructions['+ind+']'" value="1" type="checkbox" :id="'hasInstructions'+ind"
+                            class="input @error('hasInstructions') input-error @enderror">
+                    </div>
+                    <div class="form-element flex items-center">
+                        <button type="submit" @click.prevent="deleteImage(ind)" class="btn btn-secondary">Delete
+                            image</button>
+                    </div>
+                </div>
+                <button type="submit" @click.prevent="addImage" class="btn btn-primary mt-3 mb-3">Add image</button>
 
                 <div class="flex items-center justify-end gap-3 mt-5">
                     <a href="{{ route('dashboard') }}" class="btn btn-secondary">Cancel</a>
