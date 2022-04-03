@@ -45,7 +45,7 @@
                                             <tr class="hover:bg-gray-100">
                                                 <td class="flex items-center gap-4 p-4 whitespace-nowrap">
                                                     {{-- doplnit default img --}}
-                                                    <img src="{{ count($key['images']) ? "https://{$key['images'][0]['url']}" : 'https://cryptograms.hcportal.eu/api/uploads/27691600850778.png' }}"
+                                                    <img src="{{ count($key['images']) ? "{$key['images'][0]['url']}" : 'https://cryptograms.hcportal.eu/api/uploads/27691600850778.png' }}"
                                                         alt="thumb" class="w-10 h-10 rounded-full">
                                                     <div class="text-sm font-normal text-gray-500">
                                                         <a href="{{ route('nomenclator.show', $key['id']) }}"

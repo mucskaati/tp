@@ -48,7 +48,7 @@
                                                 <td class="flex items-center gap-4 p-4 whitespace-nowrap">
                                                     {{-- doplnit default img --}}
                                                     @if (isset($key['images']))
-                                                        <img src="{{ count($key['images']) ? "https://{$key['images'][0]['url']}" : 'https://cryptograms.hcportal.eu/api/uploads/27691600850778.png' }}"
+                                                        <img src="{{ count($key['images']) ? "{$key['images'][0]['url']}" : 'https://cryptograms.hcportal.eu/api/uploads/27691600850778.png' }}"
                                                             alt="thumb" class="w-10 h-10 rounded-full">
                                                     @endif
                                                     <div class="text-sm font-normal text-gray-500">

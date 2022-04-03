@@ -6,33 +6,32 @@
         <div class="flex gap-10">
             {{-- images --}}
             <div id="nomenclator-gallery">
-                <a href="{{ asset('images/nomenclators/post-card.jpeg') }}" target="_blank">
-                    <img src="{{ asset('images/nomenclators/post-card.jpeg') }}" alt="" />
-                    <span class="pswp-caption-content">Has instructions: No | Image structure: 1pnl</span>
-                </a>
+                @if (isset($key['images']) && count($key['images']) > 0)
+                    <a href="{{ $key['images'][0]['url'] ?: 'https://cryptograms.hcportal.eu/api/uploads/27691600850778.png' }}"
+                        target="_blank">
+                        <img src="{{ $key['images'][0]['url'] ?: 'https://cryptograms.hcportal.eu/api/uploads/27691600850778.png' }}"
+                            class="@if ($key['images'][0]['hasInstructions']) border-[3px] border-blue-500 @endif" alt="{{ $key['signature'] }}" />
+                        <span class="pswp-caption-content">Has instructions:
+                            {{ $key['images'][0]['hasInstructions'] ? 'Yes' : 'No' }} |
+                            {{ $key['images'][0]['structure'] ? 'Image structure: ' . $key['images'][0]['structure'] : 'No image structure' }}</span>
+                    </a>
+                @endif
                 <div class="flex flex-wrap justify-center gap-3 mt-3">
-                    <a href="{{ asset('images/nomenclators/post-card.jpeg') }}" target="_blank"> {{-- If image contains instrucions add to class list: border-[3px] border-blue-500 --}}
-                        <img src="{{ asset('images/nomenclators/post-card.jpeg') }}" alt=""
-                            class="object-cover w-20 h-20 border-[3px] border-blue-500" />
-                        <span class="pswp-caption-content">Has instructions: Yes | Image structure: Undefined</span>
-                    </a>
-                    <a href="{{ asset('images/nomenclators/post-card.jpeg') }}" target="_blank">
-                        <img src="{{ asset('images/nomenclators/post-card.jpeg') }}" alt=""
-                            class="object-cover w-20 h-20 border-[3px] border-blue-500" />
-                        <span class="pswp-caption-content">Has instructions: Yes | Image structure: Undefined</span>
-                    </a>
-                    <a href="{{ asset('images/nomenclators/post-card.jpeg') }}" target="_blank">
-                        <img src="{{ asset('images/nomenclators/post-card.jpeg') }}" alt=""
-                            class="object-cover w-20 h-20" />
-                    </a>
-                    <a href="{{ asset('images/nomenclators/post-card.jpeg') }}" target="_blank">
-                        <img src="{{ asset('images/nomenclators/post-card.jpeg') }}" alt=""
-                            class="object-cover w-20 h-20" />
-                    </a>
-                    <a href="{{ asset('images/nomenclators/post-card.jpeg') }}" target="_blank">
-                        <img src="{{ asset('images/nomenclators/post-card.jpeg') }}" alt=""
-                            class="object-cover w-20 h-20" />
-                    </a>
+                    @if (isset($key['images']) && count($key['images']) > 0)
+                        @foreach ($key['images'] as $index => $image)
+                            @if ($index != 0)
+                                <a href="{{ $image['url'] }}" target="_blank">
+                                    {{-- If image contains instrucions add to class list: border-[3px] border-blue-500 --}}
+                                    <img src="{{ $image['url'] }}" alt="{{ $key['signature'] }}"
+                                        class="object-cover w-20 h-20 @if ($image['hasInstructions']) border-[3px] border-blue-500 @endif" />
+                                    <span class="pswp-caption-content">Has instructions:
+                                        {{ $image['hasInstructions'] ? 'Yes' : 'No' }} |
+                                        {{ $image['structure'] ? 'Image structure: ' . $image['structure'] : 'No image structure' }}
+                                    </span>
+                                </a>
+                            @endif
+                        @endforeach
+                    @endif
                 </div>
             </div>
             {{-- main informations --}}
@@ -142,7 +141,7 @@
                             </div>
                             <span class="text-base text-gray-900">{{ $key['usedChars'] ?: 'Unknown' }}</span>
                         </li>
-                        <li>
+                        {{-- <li>
                             <div class="flex items-center gap-2 mb-1">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
                                     stroke="currentColor" stroke-width="2">
@@ -152,7 +151,7 @@
                                 <span>Location</span>
                             </div>
                             <span class="text-base text-gray-900">TODO: Data?</span>
-                        </li>
+                        </li> --}}
                     </ul>
                 </div>
             </div>
