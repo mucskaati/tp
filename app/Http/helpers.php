@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Key;
+
 function loggedUser()
 {
     $user = session('user');
@@ -20,4 +22,18 @@ function unsetMissingValues($arr)
         if (!$v) unset($arr[$key]);
     }
     return $arr;
+}
+
+function getStateColor($state)
+{
+    switch ($state) {
+        case Key::NEW:
+            return 'text-cyan-600';
+        case Key::APPROVED:
+            return 'text-green-500';
+        case Key::DELETED:
+            return 'text-red-500';
+        default:
+            return 'text-black';
+    }
 }

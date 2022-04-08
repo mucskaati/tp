@@ -20,9 +20,7 @@ class DashboardController extends Controller
         $response = Http::accept('application/json')->get($this->api_base_url . '/nomenclatorKeys');
         $keys = $response->json()['items'];
 
-        // dd($keys);
-
-        KeyService::setMainUsersString($keys);          // TODO if multiple main users, implode them to one string for display
+        KeyService::setMainUsersString($keys);
         KeyService::setDateString($keys);
 
         return view('dashboard.index', compact('keys'));
@@ -36,7 +34,7 @@ class DashboardController extends Controller
             ->accept('application/json')->get($this->api_base_url . '/nomenclatorKeys');
         $keys = $response->json()['items'];
 
-        KeyService::setMainUsersString($keys);          // TODO if multiple main users, implode them to one string for display
+        KeyService::setMainUsersString($keys);
         KeyService::setDateString($keys);
 
         return view('dashboard.my-keys', [
@@ -52,7 +50,7 @@ class DashboardController extends Controller
             ->accept('application/json')->get($this->api_base_url . '/nomenclatorKeys');
         $keys = $response->json()['items'];
 
-        KeyService::setMainUsersString($keys);          // TODO if multiple main users, implode them to one string for display
+        KeyService::setMainUsersString($keys);
         KeyService::setDateString($keys);
 
         return view('admin.index', [
