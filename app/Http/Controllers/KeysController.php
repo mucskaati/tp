@@ -148,6 +148,29 @@ class KeysController extends Controller
 
     public function updateState(Request $r, $nomenclatorID)
     {
-        dd($r, $nomenclatorID);
+        if (loggedUser() && loggedIsAdmin()) {
+            $header = [
+                'authorization' => loggedUser()['token']
+            ];
+        } else return redirect()->route('dashboard');
+
+        $va = $r->validate([
+            'state' => 'required',
+            'note' => 'nullable'
+        ]);
+
+        $va = unsetMissingValues($va);
+
+        $req = Http::acceptJson()->withHeaders($header)->accept('application/json');
+
+        $response = $req->post($this->api_base_url . "/nomenclatorKeys/$nomenclatorID/state", $va);
+// dd($va, $response, $response->body());
+        if ($response->successful()) {
+            alert()->success('Successfully updated state', 'Success');
+        } else {
+            alert()->error('Error occured', 'Error');
+        }
+
+        return redirect()->route('nomenclator.show', $nomenclatorID);
     }
 }

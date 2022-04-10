@@ -197,11 +197,13 @@
         </ul>
 
         @if (loggedIsAdmin())
+            <p>State: {{ ucfirst($key['state']['state']) }}</p>
             <a class="px-4 py-2 mt-2 text-sm font-semibold text-gray-900 bg-transparent md:mt-0 md:ml-4 hover:text-blue-800"
                 href="{{ route('nomenclator.edit_state', $key['id']) }}"
             >
                 Edit state
             </a>
+            <p>State note: {{ $key['state']['note'] }}</p>
         @endif
     </div>
 

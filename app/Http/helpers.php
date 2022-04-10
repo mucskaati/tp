@@ -19,7 +19,7 @@ function loggedIsAdmin()
 function unsetMissingValues($arr)
 {
     foreach ($arr as $key => $v) {                  // cuz if value == null api still reads it as submitted
-        if (!$v) unset($arr[$key]);
+        if (!$v) unset($arr[$key]);                 // maybe change to if ($v === null) instead of if (!$v)
     }
     return $arr;
 }
