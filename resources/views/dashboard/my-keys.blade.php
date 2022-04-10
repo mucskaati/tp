@@ -39,6 +39,10 @@
                                                 class="p-4 text-xs font-medium text-center text-gray-500 uppercase">
                                                 Date
                                             </th>
+                                            <th scope="col"
+                                                class="p-4 text-xs font-medium text-center text-gray-500 uppercase">
+                                                State
+                                            </th>
                                         </tr>
                                     </thead>
                                     <tbody class="bg-white divide-y divide-gray-200">
@@ -66,6 +70,9 @@
                                                     {{ $key['language'] }}</td>
                                                 <td class="p-4 text-center text-gray-700 whitespace-nowrap">
                                                     {{ $key['date'] }}
+                                                </td>
+                                                <td class="p-4 text-center {{ getStateColor($key['state']['state']) }} whitespace-nowrap">
+                                                    {{ Str::ucfirst($key['state']['state']) }}
                                                 </td>
                                             </tr>
                                         @endforeach

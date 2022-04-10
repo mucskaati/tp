@@ -5,7 +5,7 @@
     <create-key inline-template v-cloak>
         <div class="mt-4 box">
             <h1 class="mb-5 text-xl font-semibold text-center text-gray-900">Add new nomenclator key</h1>
-            <form action="#" method="POST" class="{{ route('nomenclator.store') }}" enctype="multipart/form-data">
+            <form action="{{ route('nomenclator.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <div class="grid grid-cols-3 gap-5">

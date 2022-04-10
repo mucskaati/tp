@@ -119,4 +119,58 @@ class KeysController extends Controller
         alert()->error('Key not found', 'Error');
         return redirect()->route('dashboard');
     }
+
+    public function editState($nomenclatorID)
+    {
+        if (loggedUser() && loggedIsAdmin()) {
+            $header = [
+                'authorization' => loggedUser()['token']
+            ];
+        } else {
+            return redirect()->route('dashboard');
+        }
+
+        $response = Http::withHeaders($header)
+            ->accept('application/json')->get($this->api_base_url . '/nomenclatorKeys/' . $nomenclatorID);
+
+        $key = $response->json();
+
+        if ($response->successful() && $key) {
+
+            return view('nomenclator.edit-state', [
+                'key' => $key
+            ]);
+        }
+
+        alert()->error('Key not found', 'Error');
+        return redirect()->route('dashboard');
+    }
+
+    public function updateState(Request $r, $nomenclatorID)
+    {
+        if (loggedUser() && loggedIsAdmin()) {
+            $header = [
+                'authorization' => loggedUser()['token']
+            ];
+        } else return redirect()->route('dashboard');
+
+        $va = $r->validate([
+            'state' => 'required',
+            'note' => 'nullable'
+        ]);
+
+        $va = unsetMissingValues($va);
+
+        $req = Http::acceptJson()->withHeaders($header)->accept('application/json');
+
+        $response = $req->post($this->api_base_url . "/nomenclatorKeys/$nomenclatorID/state", $va);
+// dd($va, $response, $response->body());
+        if ($response->successful()) {
+            alert()->success('Successfully updated state', 'Success');
+        } else {
+            alert()->error('Error occured', 'Error');
+        }
+
+        return redirect()->route('nomenclator.show', $nomenclatorID);
+    }
 }
