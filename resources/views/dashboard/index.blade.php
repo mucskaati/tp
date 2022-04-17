@@ -3,7 +3,7 @@
 @section('content')
 
     {{-- Hero --}}
-    <section class="relative bg-center bg-no-repeat bg-cover" style="background-image: url({{ asset('images/hero.jpg') }}); box-shadow: inset 0 0 0 2000px #00000099;">
+    <section class="relative bg-center bg-no-repeat bg-cover" style="background-image: url({{ asset('images/hero.jpg') }}); box-shadow: inset 0 0 0 2000px #3089ffCC;">
         <div class="container relative flex justify-center pt-32 pb-24 md:pt-40 md:pb-32 lg:pt-52 lg:pb-44">
             <div class="text-center text-white">
                 <h1 class="mb-4 text-xl leading-snug tracking-wider md:mb-8 sm:text-2xl md:text-3xl lg:text-4xl">HC Portal database of cryptograms</h1>

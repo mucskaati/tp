@@ -14,21 +14,21 @@
     <div id="app">
         {{-- header --}}
         <header>
-            <nav class="{{ Route::is('dashboard') ? 'nav-hero' : 'nav' }}" x-data="{ open: false, dropdown: 0 }">
+            <nav class="{{ Route::is('dashboard') ? 'nav-hero' : 'nav' }}" x-data="{ open: false, dropdown: 0 }" x-bind:class="open ? '!fixed' : ''">
                 <div class="container relative flex items-center justify-between h-16">
-                    <a href="{{ route('dashboard') }}" class="z-20 flex-grow text-xl font-semibold text-white">HC Portal</a>
+                    <a href="{{ route('dashboard') }}" class="z-[110] flex-grow text-xl font-semibold text-white">HC Portal</a>
                     {{-- Nav mobile login / logout --}}
                     @if (!LoggedUser())
-                        <a href="{{ route('login') }}" x-on:click="open = false" class="z-20 text-white nav:hidden">
+                        <a href="{{ route('login') }}" x-on:click="open = false" class="z-[110] text-white nav:hidden">
                             <x-heroicon-o-user class="w-6 h-6" />
                         </a>
                     @else
-                        <a href="{{ route('logout') }}" x-on:click="open = false" class="z-20 text-white nav:hidden">
+                        <a href="{{ route('logout') }}" x-on:click="open = false" class="z-[110] text-white nav:hidden">
                             <x-heroicon-o-logout class="w-6 h-6" />
                         </a>
                     @endif
                     {{-- Nav mobile menu open / close --}}
-                    <button class="z-20 p-3 text-2xl text-white nav:hidden hover:text-white" x-on:click="open = !open">
+                    <button class="z-[110] p-3 text-2xl text-white nav:hidden hover:text-white" x-on:click="open = !open">
                         <x-heroicon-o-menu x-show="!open" class="w-8 h-8" />
                         <x-heroicon-o-x x-cloak x-show="open" class="w-8 h-8" />
                     </button>
