@@ -2187,7 +2187,7 @@ window.customDatatable = function (tableId, dateColumnNum, order, pageLength) {
   $("#".concat(tableId, " thead tr:eq(1) th")).each(function (i) {
     var title = $(this).text();
     $(this).html('<input type="text" class="form-control" style="width: 100%;">');
-    $('input', this).on('keyup change', function () {
+    $("input", this).on("keyup change", function () {
       latinized = latinize(this.value);
 
       if (allRepsTable.column(i).search() !== latinized) {
@@ -2199,15 +2199,15 @@ window.customDatatable = function (tableId, dateColumnNum, order, pageLength) {
 
   if (!(dateColumnNum === undefined || dateColumnNum === null)) {
     columnDefs.push({
-      "width": "75px",
-      "targets": dateColumnNum
+      width: "75px",
+      targets: dateColumnNum
     });
   }
 
   var allRepsTable = $("#".concat(tableId)).DataTable({
-    "pageLength": pageLength ? pageLength : 50,
-    "order": [order],
-    "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+    pageLength: pageLength ? pageLength : 10,
+    order: [order],
+    lengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
     // "columnDefs": columnDefs,
     // fixedHeader: true,
     orderCellsTop: true

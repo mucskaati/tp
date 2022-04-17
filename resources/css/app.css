@@ -102,17 +102,31 @@
 
 @import url("/vendor/datatables/datatables.min.css");
 
+.dataTables_wrapper {
+    position: static;
+}
+select[name="indexTable_length"]{
+    width: 70px;
+}
+input.form-control {
+    @apply rounded;
+    border-color: #bfc3c7;
+}
+
 .datatableFixHead {
-    overflow-y: auto;
-    height: 80vh;
+    /* overflow-y: auto;
+    height: 80vh; */
 }
 .datatableFixHead thead tr th {
-    position: sticky;
+    /* position: sticky; */
     top: 0;
     color: #495057;
-    background-color: #e9ecef;
-    border-color: #dee2e6;
+    /* background-color: #e9ecef; */
+    border-color: transparent;
     padding: 5px 9px;
+}
+.datatableFixHead thead {
+    border-bottom: 1px solid #bfc3c7;
 }
 
 .datatableFixHead thead > tr:nth-child(2) th {
