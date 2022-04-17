@@ -28,12 +28,12 @@ function getStateColor($state)
 {
     switch ($state) {
         case Key::NEW:
-            return 'text-cyan-600';
+            return (object)['text' => 'text-yellow-500', 'bg' => 'bg-yellow-500', 'border' => 'border-yellow-500'];
         case Key::APPROVED:
-            return 'text-green-500';
+            return (object)['text' => 'text-green-500', 'bg' => 'bg-green-500', 'border' => 'border-green-500'];
         case Key::DELETED:
-            return 'text-red-500';
+            return (object)['text' => 'text-red-500', 'bg' => 'bg-red-500', 'border' => 'border-red-500'];
         default:
-            return 'text-black';
+            return (object)['text' => 'text-gray-700', 'bg' => 'bg-gray-700', 'border' => 'border-gray-700'];
     }
 }

@@ -15,7 +15,7 @@
                                 {{ $key['images'][0]['structure'] ? 'Image structure: ' . $key['images'][0]['structure'] : 'No image structure' }}</span>
                         </a>
                     @else
-                        <img src="{{ asset('images/default-image-large.png') }}" alt="Default image">
+                        <img src="{{ asset('images/default-image-large.png') }}" alt="Default image" onerror="if (this.src != 'images/default-image-small.png') this.src = 'images/default-image-small.png';">
                     @endif
                     <div class="flex flex-wrap justify-center gap-3 mt-3">
                         @if (isset($key['images']) && count($key['images']) > 0)
@@ -41,13 +41,13 @@
                     @if (loggedIsAdmin())
                         <div class="mb-5">
                             <div class="flex items-center justify-between gap-5 ">
-                                <span class="inline-block px-3 py-1 text-sm text-white bg-gray-700 rounded">State: {{ ucfirst($key['state']['state']) }}</span>
+                                <span class="inline-block px-3 py-1 text-sm text-white {{ getStateColor($key['state']['state'])->bg }} rounded">State: {{ ucfirst($key['state']['state']) }}</span>
                                 <a href="{{ route('nomenclator.edit_state', $key['id']) }}" class="btn btn-primary">Edit state</a>
                             </div>
                             @if ($key['state']['note'])
-                                <div class="flex items-center gap-3 p-4 mt-4 bg-white border-b border-gray-700 rounded shadow-md">
-                                    <x-heroicon-o-information-circle class="w-5 h-5 text-gray-700" />
-                                    <p class="text-gray-500">{{ $key['state']['note'] }}</p>
+                                <div class="flex items-center gap-3 p-4 mt-4 bg-white border-b {{ getStateColor($key['state']['state'])->border }} rounded shadow-md">
+                                    <x-heroicon-o-information-circle class="w-5 h-5 {{ getStateColor($key['state']['state'])->text }}" />
+                                    <p class="{{ getStateColor($key['state']['state'])->text }}">{{ $key['state']['note'] }}</p>
                                 </div>
                             @endif
                         </div>

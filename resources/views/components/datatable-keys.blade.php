@@ -52,7 +52,7 @@
                         {{ $key['date'] }}
                     </td>
                     @if ($state)
-                        <td class="p-4 text-center {{ getStateColor($key['state']['state']) }} whitespace-nowrap">
+                        <td class="p-4 text-center {{ getStateColor($key['state']['state'])->text }} whitespace-nowrap">
                             {{ Str::ucfirst($key['state']['state']) }}
                         </td>
                     @endif
