@@ -51,13 +51,13 @@
 
     /* form */
     .input-label {
-        @apply inline-block w-full mb-1 text-sm font-semibold text-gray-600;
+        @apply inline-block w-full mb-1 text-sm font-semibold text-gray-700;
     }
     .input-label-error {
         @apply inline-block ml-1 text-sm text-red-500;
     }
-    .input {
-        @apply w-full px-3 py-2 text-sm rounded-lg;
+    .input:not([type=checkbox]) {
+        @apply w-full px-3 py-2 text-sm rounded;
     }
     .input-error {
         @apply text-red-500 bg-red-100 border border-red-500;
