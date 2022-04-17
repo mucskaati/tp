@@ -5,7 +5,11 @@ module.exports = {
         "./resources/**/*.vue",
     ],
     theme: {
-        extend: {},
+        extend: {
+            screens: {
+                nav: "640px",
+            },
+        },
     },
     plugins: [require("@tailwindcss/forms")],
 };

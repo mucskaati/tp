@@ -68,6 +68,36 @@
     }
 }
 
+/* Alpine js x-clock */
+[x-cloak] {
+    display: none !important;
+}
+
+/* navbar */
+.nav-hero {
+    @apply absolute top-0 z-10 w-full pt-2 nav:pt-5;
+}
+.nav {
+    @apply w-full py-2;
+    background-image: url(/images/hero.jpg);
+    box-shadow: inset 0 0 0 2000px #00000099;
+    @apply bg-center bg-no-repeat bg-cover;
+}
+.nav-wrapper {
+    @apply absolute left-0 z-10 flex flex-col justify-center w-full h-0 overflow-hidden transition-all -top-2 nav:-top-5;
+    @apply nav:static nav:flex-row nav:justify-start nav:w-auto nav:h-auto nav:bg-transparent nav:flex nav:border-none nav:shadow-none;
+    background-image: url(/images/hero.jpg);
+    box-shadow: inset 0 0 0 2000px #00000099;
+    @apply bg-center bg-no-repeat bg-cover nav:shadow-none nav:bg-none;
+}
+.nav-link {
+    @apply inline-block w-full py-3 text-lg text-center text-white uppercase hover:underline underline-offset-4;
+    @apply nav:px-6 nav:py-2 nav:text-[.95rem];
+}
+.nav-link-active {
+    @apply underline;
+}
+
 /* DATATABLES */
 
 @import url("/vendor/datatables/datatables.min.css");
