@@ -39,6 +39,8 @@ Route::get('/reset', function () {
 Route::get('/nomenclators/create', [KeysController::class, 'create'])->middleware('api.logged')->name('nomenclator.create');
 Route::post('/nomenclators/create', [KeysController::class, 'store'])->middleware('api.logged')->name('nomenclator.store');
 Route::get('/nomenclators/{nomenclator}', [KeysController::class, 'show'])->name('nomenclator.show');
+Route::get('/nomenclators/{nomenclator}/create', [KeysController::class, 'edit'])->middleware('api.logged')->name('nomenclator.edit');
+Route::put('/nomenclators/{nomenclator}/create', [KeysController::class, 'update'])->middleware('api.logged');
 Route::get('/nomenclators/{nomenclator}/edit-state', [KeysController::class, 'editState'])->name('nomenclator.edit_state');
 Route::put('/nomenclators/{nomenclator}/edit-state', [KeysController::class, 'updateState']);
 

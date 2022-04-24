@@ -19,7 +19,7 @@ function loggedIsAdmin()
 function unsetMissingValues($arr)
 {
     foreach ($arr as $key => $v) {                  // cuz if value == null api still reads it as submitted
-        if (!$v) unset($arr[$key]);                 // maybe change to if ($v === null) instead of if (!$v)
+        if (!$v && $v !== false) unset($arr[$key]);                 // maybe change to if ($v === null) instead of if (!$v)
     }
     return $arr;
 }
@@ -36,4 +36,10 @@ function getStateColor($state)
         default:
             return (object)['text' => 'text-gray-700', 'bg' => 'bg-gray-700', 'border' => 'border-gray-700'];
     }
+}
+
+function isUserSubmitter($key)
+{
+    return true;            // zmazat tento riadok ked bude na logine prichadzat id
+    return $key['state']['createdById'] == session('user')['id'];
 }
