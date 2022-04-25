@@ -118,7 +118,6 @@ class KeyService
         ]);
 
         if ($request->hasFile('nomenclatorImages')) {
-            /** @var UploadedFile $f */
             foreach ($request->file('nomenclatorImages') as $f) {
                 $req->attach('nomenclatorImages[]', file_get_contents($f), $f->getClientOriginalName());
             }

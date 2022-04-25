@@ -38,8 +38,8 @@ function getStateColor($state)
     }
 }
 
-function isUserSubmitter($key)
+function isUserSubmitter($keyOrId)
 {
     return true;            // zmazat tento riadok ked bude na logine prichadzat id
-    return $key['state']['createdById'] == session('user')['id'];
+    return (is_numeric($keyOrId) ? $keyOrId : $keyOrId['state']['createdById']) == loggedUser()['id'];
 }
