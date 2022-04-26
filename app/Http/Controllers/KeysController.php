@@ -66,6 +66,11 @@ class KeysController extends Controller
             $va['nomenclatorImages'] = KeyService::prepareImagesForPost($request, $va['structure'], $va['hasInstructions'], $this->api_base_url);
         }
 
+        //TODO: Create new place
+        // if ($request->placeOfCreationText) {
+        //     $va['placeOfCreationId'] = $this->createPlace();
+        // }
+
 
         KeyService::unsetFormKeyUsersData($va);
 
@@ -164,7 +169,7 @@ class KeysController extends Controller
         $req = Http::acceptJson()->withHeaders($header)->accept('application/json');
 
         $response = $req->post($this->api_base_url . "/nomenclatorKeys/$nomenclatorID/state", $va);
-// dd($va, $response, $response->body());
+        // dd($va, $response, $response->body());
         if ($response->successful()) {
             alert()->success('Successfully updated state', 'Success');
         } else {
