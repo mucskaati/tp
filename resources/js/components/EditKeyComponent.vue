@@ -2,11 +2,12 @@
 export default {
   name: "edit-key",
   // *----------------------- P r o p s ----------------------------------------------------------
-  props: ['preSubmittedKeyUsers'],
+  props: ["preSubmittedKeyUsers", "allKeyUsers"],
   // *----------------------- D a t a -----------------------------------------------------------
   data() {
     return {
       keyUsers: [],
+      allKeyUsersModified: [],
       images: [],
     };
   },
@@ -15,7 +16,8 @@ export default {
   // *----------------------- L i f e   c i r c l e ---------------------------------------------
   created() {},
   mounted() {
-    this.addPreSubmittedKeyUsers()
+    this.addPreSubmittedKeyUsers();
+    this.addAllKeyUsersModified = this.allKeyUsers;
   },
   // *----------------------- M e t h o d s -----------------------------------------------------
   methods: {
@@ -28,6 +30,7 @@ export default {
     },
 
     deleteKeyUser(index) {
+      //TODO: API request to delete user
       this.keyUsers.splice(index, 1);
     },
 
@@ -42,16 +45,19 @@ export default {
     },
 
     addPreSubmittedKeyUsers() {
-      if (!this.preSubmittedKeyUsers) return
-      const pskus = JSON.parse(this.preSubmittedKeyUsers)
-      pskus.forEach(psku => {
+      if (!this.preSubmittedKeyUsers) return;
+      const pskus = JSON.parse(this.preSubmittedKeyUsers);
+      pskus.forEach((psku) => {
         this.keyUsers.push({
-        id: psku.id,
-        name: psku.name,
-        isMainUser: psku.isMainUser == 1 || psku.isMainUser == '1' || psku.isMainUser == true,
-      })
-      })
-    }
+          id: psku.id,
+          name: psku.name,
+          isMainUser:
+            psku.isMainUser == 1 ||
+            psku.isMainUser == "1" ||
+            psku.isMainUser == true,
+        });
+      });
+    },
   },
   // *----------------------- W a t c h ---------------------------------------------------------
   watch: {},

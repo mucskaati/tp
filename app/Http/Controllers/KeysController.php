@@ -165,7 +165,7 @@ class KeysController extends Controller
         $req = Http::acceptJson()->withHeaders($header)->accept('application/json');
 
         $response = $req->post($this->api_base_url . "/nomenclatorKeys/$nomenclatorID/state", $va);
-// dd($va, $response, $response->body());
+        // dd($va, $response, $response->body());
         if ($response->successful()) {
             alert()->success('Successfully updated state', 'Success');
         } else {
@@ -209,6 +209,7 @@ class KeysController extends Controller
             ];
         });
 
+
         $response = Http::withHeaders([
             'authorization' => loggedUser()['token']
         ])
@@ -216,7 +217,7 @@ class KeysController extends Controller
 
         if (!$response->successful()) abort(404);
         $key = $response->json();
-// dd($key);
+
         return view('nomenclator.edit', compact('places', 'keyUsers', 'key'));
     }
 
