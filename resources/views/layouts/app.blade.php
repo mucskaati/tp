@@ -8,6 +8,10 @@
     <title>HC Portal | @yield('title')</title>
 
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script>
+        window._api_base_url = {{ Js::from(config('api.api_base_url')) }}
+        window._token = {{ Js::from(loggedUser()['token']) }}
+    </script>
 </head>
 
 <body class="min-h-screen bg-gray-100">

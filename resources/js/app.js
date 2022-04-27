@@ -11,6 +11,8 @@ require("./custom-datatable.js");
 import Latinize from "latinize";
 window.latinize = Latinize;
 
+const axios = require('axios').default;
+
 //Components
 import Vue from "vue";
 Vue.component(

@@ -17,3 +17,5 @@ mix.js("resources/js/app.js", "public/js")
     .version();
 
 mix.js("resources/js/lightbox.js", "public/js").version();
+
+mix.disableSuccessNotifications()

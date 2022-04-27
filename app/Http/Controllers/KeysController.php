@@ -225,9 +225,9 @@ class KeysController extends Controller
     {
         $va = $request->validated();                    // validated attributes
 
-        if (isset($va['keyUserId'])) {
-            $va['keyUsers'] = KeyService::prepareUsersForPost($va['keyUserId'], $va['keyUserName'], $va['keyUserMain']);
-        }
+        // if (isset($va['keyUserId'])) {
+        //     $va['keyUsers'] = KeyService::prepareUsersForPost($va['keyUserId'], $va['keyUserName'], $va['keyUserMain']);
+        // }
 
         // if ($request->has('nomenclatorImages')) {
         //     $va['nomenclatorImages'] = KeyService::prepareImagesForPost($request, $va['structure'], $va['hasInstructions'], $this->api_base_url);
