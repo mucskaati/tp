@@ -789,7 +789,7 @@ select {
   --tw-text-opacity: 1;
   color: rgb(239 68 68 / var(--tw-text-opacity));
 }
-.input:not([type=checkbox]) {
+.input:not([type="checkbox"]) {
   width: 100%;
   border-radius: 0.25rem;
   padding-left: 0.75rem;
@@ -986,6 +986,12 @@ select {
 .grid-cols-4 {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
+.grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.grid-cols-5 {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
 .flex-col {
   flex-direction: column;
 }
@@ -997,6 +1003,12 @@ select {
 }
 .items-center {
   align-items: center;
+}
+.items-baseline {
+  align-items: baseline;
+}
+.items-stretch {
+  align-items: stretch;
 }
 .justify-end {
   justify-content: flex-end;
@@ -1439,7 +1451,7 @@ select {
 }
 .nav-wrapper {
     background-image: url(/images/hero.jpg);
-    box-shadow: inset 0 0 0 2000px #3089ffCC;
+    box-shadow: inset 0 0 0 2000px #3089ffcc;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -1499,7 +1511,7 @@ select {
 .dataTables_wrapper {
     position: static;
 }
-select[name="indexTable_length"]{
+select[name="indexTable_length"] {
     width: 70px;
 }
 input.form-control {
@@ -1507,7 +1519,8 @@ input.form-control {
     border-color: #bfc3c7;
 }
 
-.dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+.dataTables_wrapper .dataTables_paginate .paginate_button.current,
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
     background: #f3f4f6;
     border-color: #9ca3af;
     color: #1f2937 !important;
@@ -1585,6 +1598,10 @@ input.form-control {
     bottom: 0;
     background: rgba(0, 0, 0, 0.5);
     padding: 10px 15px;
+}
+
+.items-baseline {
+    align-items: baseline !important;
 }
 
 .hover\:bg-cyan-700:hover {

@@ -40,8 +40,9 @@
                         </x-form.select>
                         <x-form.input name="keyUserName[]">Or fill the user name</x-form.input>
                         <div class="flex items-center form-element">
-                            <label :for="'main' + index" class="input-label">
-                                <input :name="'keyUserMain[' + index + ']'" value="1" type="checkbox" id="'main'+index" class="input @error('keyUserMain') input-error @enderror">
+                            <label :for="'keyUserMain[' + index + ']'" class="input-label">
+                                <input :name="'keyUserMain[' + index + ']'" value="1" type="checkbox" id="'main'+index"
+                                    class="input @error('keyUserMain') input-error @enderror">
                                 <span class="ml-2">Is main user?</span>
                                 <span class="input-label-error">
                                     @error('keyUserMain')
@@ -66,21 +67,25 @@
                         </x-form.input> {{-- == sposob utajenia --}}
 
                         <x-form.input name="usedChars" class="col-span-3">Used characters</x-form.input>
-
-
-                        <div class="col-span-3">
-                            <x-form.select name="placeOfCreationId" label="Place of creation">
-                                {!! $places->toJSON() !!}
-                            </x-form.select>
-                        </div>
-                        <x-form.textarea name="note" class="col-span-3">Note</x-form.textarea>
                     </div>
+                    <div class="grid grid-cols-3 gap-5 mt-3 mb-3">
+                        <x-form.select name="placeOfCreationId" label="Choose a place of cretion">
+                            {!! $places->toJSON() !!}
+                        </x-form.select>
+                        <div class="flex items-baseline form-element">
+                            <x-form.input name="placeOfCreationText" class="col-span-3">Or fill the place of creation
+                            </x-form.input>
+                        </div>
+                    </div>
+                    <x-form.textarea name="note" class="col-span-3">Note</x-form.textarea>
                     <div class="grid grid-cols-4 gap-4 mt-3 mb-3" v-for="(image, ind) in images" :key="ind">
                         <x-form.file name="nomenclatorImages[]">Image</x-form.file>
                         <x-form.input name="structure[]">Key structure on image</x-form.input>
                         <div class="flex items-center form-element">
                             <label :for="'hasInstructions' + ind" class="input-label">
-                                <input :name="'hasInstructions[' + ind + ']'" value="1" type="checkbox" :id="'hasInstructions' + ind" class="input @error('hasInstructions') input-error @enderror">
+                                <input :name="'hasInstructions[' + ind + ']'" value="1" type="checkbox"
+                                    :id="'hasInstructions' + ind"
+                                    class="input @error('hasInstructions') input-error @enderror">
                                 <span class="ml-2">Has instructions? </span>
                                 <span class="input-label-error">
                                     @error('instruct')

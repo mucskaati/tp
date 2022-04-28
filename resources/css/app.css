@@ -59,7 +59,7 @@
     .input-label-error {
         @apply inline-block ml-1 text-sm text-red-500;
     }
-    .input:not([type=checkbox]) {
+    .input:not([type="checkbox"]) {
         @apply w-full px-3 py-2 text-sm rounded;
     }
     .input-error {
@@ -90,7 +90,7 @@
     @apply fixed top-0 left-0 flex flex-col justify-center w-full h-0 overflow-hidden transition-all z-[100];
     @apply nav:static nav:flex-row nav:justify-start nav:w-auto nav:h-auto nav:bg-transparent nav:flex nav:border-none nav:shadow-none;
     background-image: url(/images/hero.jpg);
-    box-shadow: inset 0 0 0 2000px #3089ffCC;
+    box-shadow: inset 0 0 0 2000px #3089ffcc;
     @apply bg-center bg-no-repeat bg-cover nav:shadow-none nav:bg-none;
 }
 .nav-link {
@@ -108,7 +108,7 @@
 .dataTables_wrapper {
     position: static;
 }
-select[name="indexTable_length"]{
+select[name="indexTable_length"] {
     width: 70px;
 }
 input.form-control {
@@ -116,15 +116,16 @@ input.form-control {
     border-color: #bfc3c7;
 }
 
-.dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
-    background: theme('colors.gray.100');
-    border-color: theme('colors.gray.400');
-    color: theme('colors.gray.800') !important;
+.dataTables_wrapper .dataTables_paginate .paginate_button.current,
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+    background: theme("colors.gray.100");
+    border-color: theme("colors.gray.400");
+    color: theme("colors.gray.800") !important;
 }
 .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
-    background: theme('colors.gray.100');
-    border-color: theme('colors.gray.400');
-    color: theme('colors.gray.800') !important;
+    background: theme("colors.gray.100");
+    border-color: theme("colors.gray.400");
+    color: theme("colors.gray.800") !important;
 }
 
 .datatableFixHead {
@@ -194,4 +195,8 @@ input.form-control {
     bottom: 0;
     background: rgba(0, 0, 0, 0.5);
     padding: 10px 15px;
+}
+
+.items-baseline {
+    align-items: baseline !important;
 }

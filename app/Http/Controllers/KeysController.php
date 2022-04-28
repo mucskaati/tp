@@ -67,6 +67,11 @@ class KeysController extends Controller
             $va['nomenclatorImages'] = KeyService::prepareImagesForPost($request, $va['structure'], $va['hasInstructions'], $this->api_base_url);
         }
 
+        //TODO: Create new place
+        // if ($request->placeOfCreationText) {
+        //     $va['placeOfCreationId'] = $this->createPlace();
+        // }
+
 
         KeyService::unsetFormKeyUsersData($va);
 
