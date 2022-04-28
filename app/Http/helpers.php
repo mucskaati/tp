@@ -19,7 +19,7 @@ function loggedIsAdmin()
 function unsetMissingValues($arr)
 {
     foreach ($arr as $key => $v) {                  // cuz if value == null api still reads it as submitted
-        if (!$v) unset($arr[$key]);                 // maybe change to if ($v === null) instead of if (!$v)
+        if (!$v && $v !== false) unset($arr[$key]);                 // maybe change to if ($v === null) instead of if (!$v)
     }
     return $arr;
 }
@@ -33,7 +33,17 @@ function getStateColor($state)
             return (object)['text' => 'text-green-500', 'bg' => 'bg-green-500', 'border' => 'border-green-500'];
         case Key::DELETED:
             return (object)['text' => 'text-red-500', 'bg' => 'bg-red-500', 'border' => 'border-red-500'];
+        case Key::REJECTED:
+            return (object)['text' => 'text-violet-500', 'bg' => 'bg-violet-500', 'border' => 'border-violet-500'];
+        case Key::UPDATED:
+            return (object)['text' => 'text-TEAL-500', 'bg' => 'bg-TEAL-500', 'border' => 'border-TEAL-500'];
         default:
             return (object)['text' => 'text-gray-700', 'bg' => 'bg-gray-700', 'border' => 'border-gray-700'];
     }
+}
+
+function isUserSubmitter($keyOrId)
+{
+    return true;            // zmazat tento riadok ked bude na logine prichadzat id
+    return (is_numeric($keyOrId) ? $keyOrId : $keyOrId['state']['createdById']) == loggedUser()['id'];
 }

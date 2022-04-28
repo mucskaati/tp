@@ -48,6 +48,9 @@
     .btn-danger {
         @apply text-white bg-red-500 border border-red-500 hover:bg-red-600;
     }
+    .btn-success {
+        @apply text-white bg-green-500 border border-green-500 hover:bg-green-600;
+    }
 
     /* form */
     .input-label {
