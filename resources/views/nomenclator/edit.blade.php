@@ -74,7 +74,7 @@
                             <button type="button" @click="storeKeyUser(keyUser)" class="btn btn-success" v-if="!keyUser.persisted">
                                 Persist user
                             </button>
-                            <button type="submit" @click.prevent="deleteKeyUser(index)" class="btn btn-danger" v-if="keyUser.persisted">
+                            <button type="submit" @click.prevent="deleteKeyUser(keyUser, index)" class="btn btn-danger" v-if="keyUser.persisted">
                                 Delete user
                             </button>
                         </div>

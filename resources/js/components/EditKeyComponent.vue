@@ -43,27 +43,45 @@ export default {
                 ? (userData.name = keyUser.name)
                 : (userData.id = keyUser.id)
 
-            const formBody = Object.keys(keyUser).map(key => encodeURIComponent(key) + '=' + encodeURIComponent(keyUser[key])).join('&');
-
-            console.log(formBody)
+            userData = [userData]
 
             const response = await fetch(this.keyUserAddUrl, {
                 method: "POST",
                 mode: "cors",
                 headers: {
-                    "Content-Type": 'application/x-www-form-urlencoded', //application/json
+                    "Content-Type": 'application/json',
                     'authorization': window._token,
                 },
-                // body: JSON.stringify(userData),
-                body: formBody,
+                body: JSON.stringify(userData),
             })
 
-            console.log(response.json())
+            if (response.ok) {
+                keyUser.persisted = true
+            }
         },
 
-        deleteKeyUser(index) {
-            //TODO: API request to delete user
-            this.keyUsers.splice(index, 1)
+        async deleteKeyUser(keyUser, index) {
+            if (!keyUser.name && !keyUser.id) return
+            let userData = {}
+            keyUser.name
+                ? (userData.name = keyUser.name)
+                : (userData.id = keyUser.id)
+
+            userData = [userData]
+
+            const response = await fetch(this.keyUserRemoveUrl, {
+                method: "POST",
+                mode: "cors",
+                headers: {
+                    "Content-Type": 'application/json',
+                    'authorization': window._token,
+                },
+                body: JSON.stringify(userData),
+            })
+
+            if (response.ok) {
+                this.keyUsers.splice(index, 1)
+            }            
         },
 
         addImage() {
