@@ -68,9 +68,12 @@ class KeysController extends Controller
         }
 
         //TODO: Create new place
-        // if ($request->placeOfCreationText) {
-        //     $va['placeOfCreationId'] = $this->createPlace();
-        // }
+        if ($request->placeOfCreationText) {
+            $placeID = $this->createPlace($va['placeOfCreationText']);
+            if ($placeID) {
+                $va['placeOfCreationId'] =  $placeID;
+            }
+        }
 
 
         KeyService::unsetFormKeyUsersData($va);
@@ -78,7 +81,6 @@ class KeysController extends Controller
         KeyService::prepareImage($va);
 
         $va = unsetMissingValues($va);                  // cuz if value == null api still reads it as submitted
-
 
 
         $req = Http::acceptJson()->withHeaders([
@@ -261,5 +263,25 @@ class KeysController extends Controller
         }
 
         return redirect()->route('nomenclator.show', $nomenclatorID);
+    }
+
+    public function createPlace($place)
+    {
+        $req = Http::acceptJson()->withHeaders([
+            'authorization' => loggedUser()['token'],
+        ])
+            ->accept('application/json');
+
+        $response = $req->post($this->api_base_url . '/places', [
+            'name' => $place
+        ]);
+
+        $placeID = $response->json();
+
+        if ($placeID) {
+            return $placeID['id'];
+        }
+
+        return null;
     }
 }

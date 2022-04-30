@@ -43,6 +43,7 @@ class StoreKeyRequest extends FormRequest
             'usedTo' => 'nullable|date',
             'usedAround' => 'nullable',
             'placeOfCreationId' => 'nullable|numeric',
+            'placeOfCreationText' => 'nullable|string',
             'keyUserId' => 'nullable',
             'keyUserName' => 'nullable',
             'keyUserMain' => 'nullable',
