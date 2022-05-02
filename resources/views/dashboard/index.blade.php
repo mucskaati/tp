@@ -12,18 +12,53 @@
         </div>
     </section>
 
-    {{-- Table of new keys --}}
-    <section class="container">
-        <div class="mt-4 box">
-            {{-- Box Heading --}}
-            <div class="bg-white block sm:flex items-center justify-betweenlg:mt-1.5 mb-5">
-                <div class="flex items-center justify-between w-full">
-                    <h1 class="text-xl font-semibold text-gray-900">Newest nomenclator keys</h1>
+    <section id="stats" class="mt-10 md:mt-20">
+        <div class="container">
+            <div class="grid gap-10 text-gray-500 md:grid-cols-2 lg:grid-cols-3">
+                <div class="p-5 transition-all bg-white border-b-4 border-blue-400 shadow-md hover:scale-105">
+                    <div class="flex items-center justify-center gap-3 mb-5">
+                        <x-heroicon-o-database class="w-10 h-10 text-blue-400" />
+                        <span class="text-2xl font-semibold text-gray-700">{{ 54 }}</span>
+                        <h3 class="text-lg text-gray-700 capitalize">Cryptograms</h3>
+                    </div>
+                    <p class="max-w-md mx-auto text-center">Our complete database contains {{ 54 }} cryptograms.</p>
+                </div>
+
+                <div class="p-5 transition-all bg-white border-b-4 border-blue-400 shadow-md hover:scale-105">
+                    <div class="flex items-center justify-center gap-3 mb-5">
+                        <x-heroicon-o-lock-closed class="w-10 h-10 text-blue-400" />
+                        <span class="text-2xl font-semibold text-gray-700">{{ 10 }}</span>
+                        <h3 class="text-lg text-gray-700 capitalize">New Cryptograms</h3>
+                    </div>
+                    <p class="max-w-md mx-auto text-center">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rerum, modi.</p>
+                </div>
+
+                <div class="p-5 transition-all bg-white border-b-4 border-blue-400 shadow-md hover:scale-105">
+                    <div class="flex items-center justify-center gap-3 mb-5">
+                        <x-heroicon-o-sparkles class="w-10 h-10 text-blue-400" />
+                        <span class="text-2xl font-semibold text-gray-700">{{ 20 }}</span>
+                        <h3 class="text-lg text-gray-700 capitalize">Solved Cryptograms</h3>
+                    </div>
+                    <p class="max-w-md mx-auto text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, praesentium?</p>
                 </div>
             </div>
+        </div>
+    </section>
 
-            {{-- Datatables --}}
-            <x-datatable-keys :keys="$keys" :state="false" />
+    {{-- Table of new keys --}}
+    <section id="new-keys-table" class="mt-10 md:mt-20">
+        <div class="container">
+            <div class="box">
+                {{-- Box Heading --}}
+                <div class="bg-white block sm:flex items-center justify-betweenlg:mt-1.5 mb-5">
+                    <div class="flex items-center justify-between w-full">
+                        <h1 class="text-xl font-semibold text-gray-900">Newest nomenclator keys</h1>
+                    </div>
+                </div>
+
+                {{-- Datatables --}}
+                <x-datatable-keys :keys="$keys" :state="false" />
+            </div>
         </div>
     </section>
 @endsection
