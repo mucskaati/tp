@@ -12,17 +12,17 @@
                     <div class="grid grid-cols-3 gap-5">
                         {{-- <x-form.input name="name" class="col-span-3">Názov</x-form.input> --}}
 
-                        <x-form.select name="cipherType" label="Cipher Type">[
+                        <x-form.select name="cipherType" label="Cipher Type*">[
                             {"value":"", "label":"Undefined"},
                             {"value":"nomenclator", "label":"Nomenclator"},
                             {"value":"code", "label":"Code"},
                             {"value":"???", "label":"Simple substitution"}
                             ]</x-form.select>
-                        <x-form.select name="keyType" label="Key type">[
+                        <x-form.select name="keyType" label="Key type*">[
                             {"value":"e", "label":"e"},
                             {"value":"ed", "label":"ed"}
                             ]</x-form.select>
-                        <x-form.select name="language" label="Language">[
+                        <x-form.select name="language" label="Language*">[
                             {"value":"sk", "label":"Slovak"},
                             {"value":"en", "label":"English"}
                             ]</x-form.select>
@@ -61,7 +61,7 @@
                     <div class="grid grid-cols-3 gap-5">
                         <div class="form-element mb-5">
                             <label for="archive" class="input-label">
-                                Choose an archive <span class="input-label-error">@error('archive')
+                                Choose an archive* <span class="input-label-error">@error('archive')
                                     {{ $message }} @enderror</span>
                             </label>
                             <select name="archive" @change="loadFonds($event)" v-model="archive" id="archive"
@@ -76,7 +76,7 @@
                         <div class="form-element mb-5">
 
                             <label for="fond" class="input-label">
-                                Choose a fond <span class="input-label-error">@error('fond')
+                                Choose a fond* <span class="input-label-error">@error('fond')
                                     {{ $message }} @enderror</span>
                             </label>
                             <select name="fond" @change="loadFolders($event)" v-model="fond" id="fond"
@@ -92,7 +92,7 @@
                         <div class="form-element mb-5">
 
                             <label for="folder" class="input-label">
-                                Choose a folder <span class="input-label-error">@error('folder')
+                                Choose a folder* <span class="input-label-error">@error('folder')
                                     {{ $message }} @enderror</span>
                             </label>
                             <select name="folder" id="folder" class="input @error('folder') input-error @enderror">
@@ -111,7 +111,7 @@
                             {!! $keys->toJSON() !!}
                         </x-form.select>
 
-                        <x-form.input name="completeStructure" class="col-span-3">Complete structure
+                        <x-form.input name="completeStructure" class="col-span-3">Complete structure*
                         </x-form.input> {{-- == sposob utajenia --}}
 
                         <x-form.input name="usedChars" class="col-span-3">Used characters</x-form.input>

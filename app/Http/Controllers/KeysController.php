@@ -76,6 +76,21 @@ class KeysController extends Controller
             }
         }
 
+        //Folders
+
+        if ($va['archive_text']) {
+            $va['archive'] =  $va['archive_text'];
+        }
+
+        if ($va['fond_text']) {
+            $va['fond'] =  $va['fond_text'];
+        }
+
+        if ($va['folder_text']) {
+            $va['folder'] =  $va['folder_text'];
+        }
+
+
 
         KeyService::unsetFormKeyUsersData($va);
 
