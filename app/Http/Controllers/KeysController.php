@@ -50,7 +50,9 @@ class KeysController extends Controller
 
         return view('nomenclator.create', [
             'places' => $places,
-            'keyUsers' => $keyUsers
+            'keyUsers' => $keyUsers,
+            'keys' => $this->getAllNomenclatorKeys(),
+            'archives' => $this->getArchives()
         ]);
     }
 
@@ -67,7 +69,6 @@ class KeysController extends Controller
             $va['nomenclatorImages'] = KeyService::prepareImagesForPost($request, $va['structure'], $va['hasInstructions'], $this->api_base_url);
         }
 
-        //TODO: Create new place
         if ($request->placeOfCreationText) {
             $placeID = $this->createPlace($va['placeOfCreationText']);
             if ($placeID) {
@@ -284,4 +285,129 @@ class KeysController extends Controller
 
         return null;
     }
+
+    private function getAllNomenclatorKeys()
+    {
+        $response = Http::accept('application/json')->withHeaders([
+            'authorization' => loggedUser()['token'],
+        ])->get($this->api_base_url . '/nomenclatorKeys');
+        $response = $response->json()['items'];
+        $keys = collect([]);
+
+        if ($response) {
+            $keys = collect($response)->map(function ($item) {
+                return [
+                    'value' => $item['groupId'],
+                    'label' => $item['signature']
+                ];
+            });
+        }
+
+        $keys->prepend(['value' => null, 'label' => 'Undefined']);
+
+        return $keys;
+    }
+
+    private function getArchives()
+    {
+        $response = Http::accept('application/json')->withHeaders([
+            'authorization' => loggedUser()['token'],
+        ])->get($this->api_base_url . '/archives?limit=2');
+        $response = $response->json();
+        $archives = collect([]);
+        $archives->push([
+            'name' => 'Archiv 1',
+            'fonds' => [
+                [
+                    'name' => 'Fond 1',
+                    'folders' => [
+                        [
+                            'name' => 'Folder 1',
+                        ],
+                        [
+                            'name' => 'Folder 2',
+                        ],
+                        [
+                            'name' => 'Folder 3',
+                        ],
+                    ],
+                ],
+                [
+                    'name' => 'Fond 2',
+                    'folders' => [
+                        [
+                            'name' => 'Folder 4',
+                        ],
+                        [
+                            'name' => 'Folder 5',
+                        ],
+                        [
+                            'name' => 'Folder 6',
+                        ],
+                    ],
+                ]
+            ]
+        ]);
+
+        $archives->push([
+            'name' => 'Archiv 2',
+            'fonds' => [
+                [
+                    'name' => 'Fond 3',
+                    'folders' => [
+                        [
+                            'name' => 'Folder 7',
+                        ],
+                        [
+                            'name' => 'Folder 8',
+                        ],
+                        [
+                            'name' => 'Folder 9',
+                        ],
+                    ],
+                ],
+                [
+                    'name' => 'Fond 4',
+                    'folders' => [
+                        [
+                            'name' => 'Folder 10',
+                        ],
+                        [
+                            'name' => 'Folder 11',
+                        ],
+                        [
+                            'name' => 'Folder 12',
+                        ],
+                    ],
+                ]
+            ]
+        ]);
+
+
+        if ($response) {
+            $archives = collect($response);
+        }
+
+        return $archives;
+    }
+
+    // private function createFolder($request)
+    // {
+    //     $req = Http::acceptJson()->withHeaders([
+    //         'authorization' => loggedUser()['token'],
+    //     ])
+    //         ->accept('application/json');
+
+    //     $response = $req->post($this->api_base_url . '/places', [
+    //         'name' => $place
+    //     ]);
+
+    //     $placeID = $response->json();
+
+    //     if ($placeID) {
+    //         return $placeID['id'];
+    //     }
+
+    //     return null;
+    // }
 }
