@@ -281,6 +281,36 @@ class KeysController extends Controller
         return redirect()->route('nomenclator.show', $nomenclatorID);
     }
 
+    public function editUsers($nomenclatorID)
+    {
+        if (!isUserSubmitter($nomenclatorID)) abort(401);
+
+        $response = Http::withHeaders([
+            'authorization' => loggedUser()['token']
+        ])
+            ->accept('application/json')->get($this->api_base_url . '/keyUsers');
+
+        $keyUsers = $response->json();
+
+        $keyUsers = collect($keyUsers['items'])->map(function ($item) {
+            return [
+                'value' => $item['id'],
+                'label' => $item['name']
+            ];
+        });
+
+
+        $response = Http::withHeaders([
+            'authorization' => loggedUser()['token']
+        ])
+            ->accept('application/json')->get($this->api_base_url . '/nomenclatorKeys/' . $nomenclatorID);
+
+        if (!$response->successful()) abort(404);
+        $key = $response->json();
+
+        return view('nomenclator.edit-users', compact('keyUsers', 'key'));
+    }
+
     public function createPlace($place)
     {
         $req = Http::acceptJson()->withHeaders([

@@ -21,6 +21,10 @@ Vue.component(
     "edit-key",
     require("./components/EditKeyComponent.vue").default
 );
+Vue.component(
+    "edit-key-users",
+    require("./components/EditKeyUsersComponent.vue").default
+);
 
 const app = new Vue({
     el: "#app",
