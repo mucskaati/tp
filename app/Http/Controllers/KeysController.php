@@ -241,6 +241,8 @@ class KeysController extends Controller
         if (!$response->successful()) abort(404);
         $key = $response->json();
 
+        dd($key);
+
         return view('nomenclator.edit', compact('places', 'keyUsers', 'key'));
     }
 

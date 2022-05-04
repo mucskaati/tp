@@ -2,85 +2,37 @@
 @section('title', 'Edit a nomenclator key')
 @section('content')
 
-    <edit-key inline-template v-cloak :all-key-users="{{ $keyUsers->toJSON() }}" nomenclator-key-id="{{ $key['id'] }}"
-        pre-submitted-key-users="{{ json_encode($key['keyUsers']) }}">
-        <div class="container">
-            <div class="mt-4 box">
-                <h1 class="mb-5 text-xl font-semibold text-center text-gray-900">Edit a nomenclator key</h1>
-                <form action="{{ route('nomenclator.edit', $key['id']) }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    @method('PUT')
+    <div class="container">
+        <div class="mt-4 box">
+            <h1 class="mb-5 text-xl font-semibold text-center text-gray-900">Edit a nomenclator key</h1>
+            <form action="{{ route('nomenclator.edit', $key['id']) }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
 
-                    <div class="grid grid-cols-3 gap-5">
-                        {{-- <x-form.input name="name" class="col-span-3">Názov</x-form.input> --}}
+                <div class="grid grid-cols-3 gap-5">
 
-                        <x-form.select name="cipherType" label="Cipher Type" value="{{ $key['cipherType'] }}">[
-                            {"value":"", "label":"Undefined"},
-                            {"value":"nomenclator", "label":"Nomenclator"},
-                            {"value":"code", "label":"Code"},
-                            {"value":"???", "label":"Simple substitution"}
-                            ]</x-form.select>
-                        <x-form.select name="keyType" label="Key type" value="{{ $key['keyType'] }}">[
-                            {"value":"e", "label":"e"},
-                            {"value":"ed", "label":"ed"}
-                            ]</x-form.select>
-                        <x-form.select name="language" label="Language" value="{{ $key['language'] }}">[
-                            {"value":"sk", "label":"Slovak"},
-                            {"value":"en", "label":"English"}
-                            ]</x-form.select>
+                    <x-form.select name="cipherType" label="Cipher Type" value="{{ $key['cipherType'] }}">[
+                        {"value":"", "label":"Undefined"},
+                        {"value":"nomenclator", "label":"Nomenclator"},
+                        {"value":"code", "label":"Code"},
+                        {"value":"???", "label":"Simple substitution"}
+                        ]</x-form.select>
+                    <x-form.select name="keyType" label="Key type" value="{{ $key['keyType'] }}">[
+                        {"value":"e", "label":"e"},
+                        {"value":"ed", "label":"ed"}
+                        ]</x-form.select>
+                    <x-form.select name="language" label="Language" value="{{ $key['language'] }}">[
+                        {"value":"sk", "label":"Slovak"},
+                        {"value":"en", "label":"English"}
+                        ]</x-form.select>
 
-                        <x-form.input name="usedFrom" type="date" value="{{ $key['usedFrom'] ?? '' }}">Used from
-                        </x-form.input>
-                        <x-form.input name="usedTo" type="date" value="{{ $key['usedTo'] ?? '' }}">Used to</x-form.input>
-                        <x-form.input name="usedAround" value="{{ $key['usedAround'] ?? '' }}">Used around</x-form.input>
+                    <x-form.input name="usedFrom" type="date" value="{{ parseDateStrToYmd($key['usedFrom'] ?? '') }}">
+                        Used from
+                    </x-form.input>
+                    <x-form.input name="usedTo" type="date" value="{{ parseDateStrToYmd($key['usedTo'] ?? '') }}">Used to</x-form.input>
+                    <x-form.input name="usedAround" value="{{ $key['usedAround'] ?? '' }}">Used around</x-form.input>
+                </div>
 
-                        {{-- <x-form.input name="main_users" class="col-span-3">Hlavní použivateľia</x-form.input>
-                <x-form.input name="users" class="col-span-3">Použivatelia</x-form.input> --}}
-                    </div>
-                    <div class="grid grid-cols-4 gap-4 mt-3 mb-3" v-for="(keyUser, index) in keyUsers" :key="`keyUsers${index}`">
-                        <div class="form-element">
-                            <label for="keyUserId" class="input-label">
-                                Choose a key user <span class="input-label-error">@error('keyUserId')
-                                    {{ $message }} @enderror</span>
-                            </label>
-                            <select name="keyUserId[]" id="keyUserId[]" v-model="keyUser.id"
-                                class="input @error('keyUserId') input-error @enderror">
-                                <option v-for="key in allKeyUsers" :key="`ks${key.value}${index}`" :value="key.value"> {{-- :selected="keyUser.id === key.value" --}}
-                                    @{{ key . label }}
-                                </option>
-                            </select>
-                        </div>
-                        <div class="form-element">
-                            <label for="keyUserName[]" class="input-label">
-                                Or fill the user name
-                            </label>
-                            <input name="keyUserName[]" type="text" class="input" v-model="keyUser.name">
-                         </div>
-                        <div class="flex items-center form-element">
-                            <label :for="'main' + index" class="input-label">
-                                <input :name="'keyUserMain[' + index + ']'" {{-- value="1" :checked="keyUser.isMainUser" --}}
-                                    v-model="keyUser.isMainUser"
-                                    type="checkbox" :id="'main'+index"
-                                    class="input @error('keyUserMain') input-error @enderror">
-                                <span class="ml-2">Is main user?</span>
-                                <span class="input-label-error">
-                                    @error('keyUserMain')
-                                        {{ $message }}
-                                    @enderror
-                                </span>
-                            </label>
-                        </div>
-                        <div class="flex items-center form-element">
-                            <button type="button" @click="storeKeyUser(keyUser)" class="btn btn-success" v-if="!keyUser.persisted">
-                                Persist user
-                            </button>
-                            <button type="submit" @click.prevent="deleteKeyUser(keyUser, index)" class="btn btn-danger" v-if="keyUser.persisted">
-                                Delete user
-                            </button>
-                        </div>
-                    </div>
-
-                <button type="submit" @click.prevent="addKeyUser" class="mt-3 mb-3 btn btn-primary">Add user</button>
                 <div class="grid grid-cols-3 gap-5">
                     <x-form.input name="folder" value="{{ $key['folder'] ?? '' }}">Folder</x-form.input>
                     <x-form.input name="signature" value="{{ $key['signature'] ?? '' }}">Signature</x-form.input>
@@ -100,38 +52,16 @@
                             {!! $places->toJSON() !!}
                         </x-form.select>
                     </div>
-                    <x-form.textarea name="note" class="col-span-3" value="{{ $key['note'] ?? '' }}">Note
-                    </x-form.textarea>
+                    {{-- <x-form.textarea name="note" class="col-span-3" value="{{ $key['note'] ?? '' }}">Note
+                    </x-form.textarea> --}} {{-- ma to tu vobec byt?? --}}
                 </div>
-                {{-- <div class="grid grid-cols-4 gap-4 mt-3 mb-3" v-for="(image, ind) in images" :key="ind">
-                        <x-form.file name="nomenclatorImages[]">Image</x-form.file>
-                        <x-form.input name="structure[]">Key structure on image</x-form.input>
-                        <div class="flex items-center form-element">
-                            <label :for="'hasInstructions' + ind" class="input-label">
-                                <input :name="'hasInstructions[' + ind + ']'" value="1" type="checkbox" :id="'hasInstructions' + ind" class="input @error('hasInstructions') input-error @enderror">
-                                <span class="ml-2">Has instructions? </span>
-                                <span class="input-label-error">
-                                    @error('instruct')
-                                        {{ $message }}
-                                    @enderror
-                                </span>
-                            </label>
-                        </div>
-                        <div class="flex items-center form-element">
-                            <button type="submit" @click.prevent="deleteImage(ind)" class="btn btn-secondary">Delete
-                                image</button>
-                        </div>
-                    </div> --}}
-                {{-- <button type="submit" @click.prevent="addImage" class="mt-3 mb-3 btn btn-primary">Add image</button> --}}
 
                 <div class="flex items-center justify-end gap-3 mt-5">
                     <a href="{{ route('dashboard') }}" class="btn btn-secondary">Cancel</a>
                     <button type="submit" class="btn btn-primary">Update key</button>
                 </div>
-                </form>
-            </div>
+            </form>
         </div>
-    </edit-key>
-
+    </div>
 
 @endsection

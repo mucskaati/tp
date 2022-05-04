@@ -2,7 +2,7 @@
 @section('title', 'Edit a nomenclator key')
 @section('content')
 
-    <edit-key inline-template v-cloak :all-key-users="{{ $keyUsers->toJSON() }}" nomenclator-key-id="{{ $key['id'] }}"
+    <edit-key-users inline-template v-cloak :all-key-users="{{ $keyUsers->toJSON() }}" nomenclator-key-id="{{ $key['id'] }}"
         pre-submitted-key-users="{{ json_encode($key['keyUsers']) }}">
         <div class="container">
             <div class="mt-4 box">
@@ -58,7 +58,7 @@
 
             </div>
         </div>
-    </edit-key>
+    </edit-key-users>
 
 
 @endsection

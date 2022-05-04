@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Key;
+use Carbon\Carbon;
 
 function loggedUser()
 {
@@ -44,4 +45,9 @@ function isUserSubmitter($keyOrId)
 {
     return true;            // zmazat tento riadok ked bude na logine prichadzat id
     return (is_numeric($keyOrId) ? $keyOrId : $keyOrId['state']['createdById']) == loggedUser()['id'];
+}
+
+function parseDateStrToYmd($str)
+{
+    return $str ? Carbon::parse($str)->format('Y-m-d') : '';
 }
