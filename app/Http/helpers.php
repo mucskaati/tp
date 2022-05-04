@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Key;
+use Carbon\Carbon;
 
 function loggedUser()
 {
@@ -27,7 +28,7 @@ function unsetMissingValues($arr)
 function getStateColor($state)
 {
     switch ($state) {
-        case Key::NEW:
+        case Key::AWAITING:
             return (object)['text' => 'text-yellow-500', 'bg' => 'bg-yellow-500', 'border' => 'border-yellow-500'];
         case Key::APPROVED:
             return (object)['text' => 'text-green-500', 'bg' => 'bg-green-500', 'border' => 'border-green-500'];
@@ -35,8 +36,6 @@ function getStateColor($state)
             return (object)['text' => 'text-red-500', 'bg' => 'bg-red-500', 'border' => 'border-red-500'];
         case Key::REJECTED:
             return (object)['text' => 'text-violet-500', 'bg' => 'bg-violet-500', 'border' => 'border-violet-500'];
-        case Key::UPDATED:
-            return (object)['text' => 'text-TEAL-500', 'bg' => 'bg-TEAL-500', 'border' => 'border-TEAL-500'];
         default:
             return (object)['text' => 'text-gray-700', 'bg' => 'bg-gray-700', 'border' => 'border-gray-700'];
     }
@@ -46,4 +45,9 @@ function isUserSubmitter($keyOrId)
 {
     return true;            // zmazat tento riadok ked bude na logine prichadzat id
     return (is_numeric($keyOrId) ? $keyOrId : $keyOrId['state']['createdById']) == loggedUser()['id'];
+}
+
+function parseDateStrToYmd($str)
+{
+    return $str ? Carbon::parse($str)->format('Y-m-d') : '';
 }

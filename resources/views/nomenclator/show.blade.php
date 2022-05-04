@@ -56,7 +56,7 @@
                                     @endif
                                     {{-- Edit buttons - USER --}}
                                     @if (isUserSubmitter($key))
-                                        <a href="#" class="px-2 py-1.5 btn btn-primary">
+                                        <a href="{{ route('nomenclator.edit_users', $key['id']) }}" class="px-2 py-1.5 btn btn-primary">
                                             Users
                                         </a>
                                         <a href="#" class="px-2 py-1.5 btn btn-primary">
