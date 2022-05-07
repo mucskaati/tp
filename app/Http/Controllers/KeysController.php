@@ -98,6 +98,8 @@ class KeysController extends Controller
 
         $va = unsetMissingValues($va);                  // cuz if value == null api still reads it as submitted
 
+        //dd($va);
+
 
         $req = Http::acceptJson()->withHeaders([
             'authorization' => loggedUser()['token'],
@@ -241,7 +243,6 @@ class KeysController extends Controller
         if (!$response->successful()) abort(404);
         $key = $response->json();
 
-        dd($key);
 
         return view('nomenclator.edit', compact('places', 'keyUsers', 'key'));
     }
@@ -359,8 +360,8 @@ class KeysController extends Controller
     {
         $response = Http::accept('application/json')->withHeaders([
             'authorization' => loggedUser()['token'],
-        ])->get($this->api_base_url . '/archives?limit=2');
-        $response = $response->json();
+        ])->get($this->api_base_url . '/archives');
+        $response = $response->json()['items'];
         $archives = collect([]);
         $archives->push([
             'name' => 'Archiv 1',
