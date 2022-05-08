@@ -34,7 +34,7 @@ class StoreKeyRequest extends FormRequest
         return [
             'folder' => 'nullable|required_if:folder_text,null',
             'archive' => 'nullable|required_if:archive_text,null',
-            'fond' => 'nullable|required_if:folder_text,null',
+            'fond' => 'nullable|required_if:fond_text,null',
             'folder_text' => 'nullable',
             'archive_text' => 'nullable',
             'fond_text' => 'nullable',

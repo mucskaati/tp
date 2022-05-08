@@ -98,6 +98,8 @@ class KeysController extends Controller
 
         $va = unsetMissingValues($va);                  // cuz if value == null api still reads it as submitted
 
+        //dd($va);
+
 
         $req = Http::acceptJson()->withHeaders([
             'authorization' => loggedUser()['token'],
@@ -241,7 +243,6 @@ class KeysController extends Controller
         if (!$response->successful()) abort(404);
         $key = $response->json();
 
-        dd($key);
 
         return view('nomenclator.edit', compact('places', 'keyUsers', 'key'));
     }
@@ -359,77 +360,9 @@ class KeysController extends Controller
     {
         $response = Http::accept('application/json')->withHeaders([
             'authorization' => loggedUser()['token'],
-        ])->get($this->api_base_url . '/archives?limit=2');
-        $response = $response->json();
+        ])->get($this->api_base_url . '/archives');
+        $response = $response->json()['items'];
         $archives = collect([]);
-        $archives->push([
-            'name' => 'Archiv 1',
-            'fonds' => [
-                [
-                    'name' => 'Fond 1',
-                    'folders' => [
-                        [
-                            'name' => 'Folder 1',
-                        ],
-                        [
-                            'name' => 'Folder 2',
-                        ],
-                        [
-                            'name' => 'Folder 3',
-                        ],
-                    ],
-                ],
-                [
-                    'name' => 'Fond 2',
-                    'folders' => [
-                        [
-                            'name' => 'Folder 4',
-                        ],
-                        [
-                            'name' => 'Folder 5',
-                        ],
-                        [
-                            'name' => 'Folder 6',
-                        ],
-                    ],
-                ]
-            ]
-        ]);
-
-        $archives->push([
-            'name' => 'Archiv 2',
-            'fonds' => [
-                [
-                    'name' => 'Fond 3',
-                    'folders' => [
-                        [
-                            'name' => 'Folder 7',
-                        ],
-                        [
-                            'name' => 'Folder 8',
-                        ],
-                        [
-                            'name' => 'Folder 9',
-                        ],
-                    ],
-                ],
-                [
-                    'name' => 'Fond 4',
-                    'folders' => [
-                        [
-                            'name' => 'Folder 10',
-                        ],
-                        [
-                            'name' => 'Folder 11',
-                        ],
-                        [
-                            'name' => 'Folder 12',
-                        ],
-                    ],
-                ]
-            ]
-        ]);
-
 
         if ($response) {
             $archives = collect($response);
@@ -437,24 +370,4 @@ class KeysController extends Controller
 
         return $archives;
     }
-
-    // private function createFolder($request)
-    // {
-    //     $req = Http::acceptJson()->withHeaders([
-    //         'authorization' => loggedUser()['token'],
-    //     ])
-    //         ->accept('application/json');
-
-    //     $response = $req->post($this->api_base_url . '/places', [
-    //         'name' => $place
-    //     ]);
-
-    //     $placeID = $response->json();
-
-    //     if ($placeID) {
-    //         return $placeID['id'];
-    //     }
-
-    //     return null;
-    // }
 }

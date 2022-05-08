@@ -68,7 +68,7 @@
                                 class="input @error('archive') input-error @enderror">
                                 <option v-for="archive in archives" :key="archive.name" :value="archive.name">
                                     {{-- :selected="keyUser.id === key.value" --}}
-                                    @{{ archive . name }}
+                                    @{{ archive . shortName }}
                                 </option>
                             </select>
                             <x-form.input v-model="archive_text" name="archive_text">Or fill the archive name</x-form.input>
