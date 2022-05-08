@@ -15,7 +15,7 @@
                                     {{ $message }} @enderror</span>
                             </label>
                             <select name="keyUserId[]" id="keyUserId[]" v-model="keyUser.id"
-                                class="input @error('keyUserId') input-error @enderror">
+                                class="input @error('keyUserId') input-error @enderror" :disabled="keyUser.persisted">
                                 <option v-for="key in allKeyUsers" :key="`ks${key.value}${index}`" :value="key.value"> {{-- :selected="keyUser.id === key.value" --}}
                                     @{{ key . label }}
                                 </option>
@@ -25,14 +25,15 @@
                             <label for="keyUserName[]" class="input-label">
                                 Or fill the user name
                             </label>
-                            <input name="keyUserName[]" type="text" class="input" v-model="keyUser.name">
+                            <input name="keyUserName[]" type="text" class="input" v-model="keyUser.name" :disabled="keyUser.persisted">
                          </div>
                         <div class="flex items-center form-element">
                             <label :for="'main' + index" class="input-label">
                                 <input :name="'keyUserMain[' + index + ']'" {{-- value="1" :checked="keyUser.isMainUser" --}}
                                     v-model="keyUser.isMainUser"
                                     type="checkbox" :id="'main'+index"
-                                    class="input @error('keyUserMain') input-error @enderror">
+                                    class="input @error('keyUserMain') input-error @enderror"
+                                    :disabled="keyUser.persisted">
                                 <span class="ml-2">Is main user?</span>
                                 <span class="input-label-error">
                                     @error('keyUserMain')
