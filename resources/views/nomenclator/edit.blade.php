@@ -26,10 +26,10 @@
                         {"value":"en", "label":"English"}
                         ]</x-form.select>
 
-                    <x-form.input name="usedFrom" type="date" value="{{ parseDateStrToYmd($key['usedFrom'] ?? '') }}">
+                    <x-form.input name="usedFrom" type="date" value="{{ parseDateToYmd($key['usedFrom'] ?? '') }}">
                         Used from
                     </x-form.input>
-                    <x-form.input name="usedTo" type="date" value="{{ parseDateStrToYmd($key['usedTo'] ?? '') }}">Used to</x-form.input>
+                    <x-form.input name="usedTo" type="date" value="{{ parseDateToYmd($key['usedTo'] ?? '') }}">Used to</x-form.input>
                     <x-form.input name="usedAround" value="{{ $key['usedAround'] ?? '' }}">Used around</x-form.input>
                 </div>
 

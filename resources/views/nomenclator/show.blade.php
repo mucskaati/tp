@@ -163,7 +163,7 @@
                                     </svg>
                                     <span>Dated from</span>
                                 </div>
-                                <span class="text-base text-blue-400">{{ $key['usedFrom'] ?: 'Unknown' }}</span>
+                                <span class="text-base text-blue-400">{{ parseDateToJny($key['usedFrom']) ?: 'Unknown' }}</span>
                             </li>
                             <li>
                                 <div class="flex items-center gap-2 mb-1">
@@ -172,7 +172,7 @@
                                     </svg>
                                     <span>Dated to</span>
                                 </div>
-                                <span class="text-base text-blue-400">{{ $key['usedTo'] ?: 'Unknown' }}</span>
+                                <span class="text-base text-blue-400">{{ parseDateToJny($key['usedTo']) ?: 'Unknown' }}</span>
                             </li>
                             <li>
                                 <div class="flex items-center gap-2 mb-1">

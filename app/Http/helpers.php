@@ -47,7 +47,12 @@ function isUserSubmitter($keyOrId)
     return (is_numeric($keyOrId) ? $keyOrId : $keyOrId['state']['createdById']) == loggedUser()['id'];
 }
 
-function parseDateStrToYmd($str)
+function parseDateToYmd($str)
 {
     return $str ? Carbon::parse($str)->format('Y-m-d') : '';
+}
+
+function parseDateToJny($str)
+{
+    return $str ? Carbon::parse($str)->format('j.n.Y') : '';
 }
