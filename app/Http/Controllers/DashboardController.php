@@ -31,7 +31,9 @@ class DashboardController extends Controller
         $response = Http::withHeaders([
             'authorization' => loggedUser()['token']
         ])
-            ->accept('application/json')->get($this->api_base_url . '/nomenclatorKeys');
+            ->accept('application/json')->get($this->api_base_url . '/nomenclatorKeys', [
+                'myKeys' => true
+            ]);
         $keys = $response->json()['items'];
 
         KeyService::setMainUsersString($keys);

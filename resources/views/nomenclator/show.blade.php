@@ -70,7 +70,7 @@
                             </div>
                         @endif
 
-                        @if (loggedIsAdmin() && $key['state']['note'])
+                        @if ((loggedIsAdmin() || isUserSubmitter($key)) && $key['state']['note'])
                             {{-- Optional state ingo --}}
                             <div class="flex items-center gap-3 p-4 mt-4 bg-white border-b {{ getStateColor($key['state']['state'])->border }} rounded shadow-md">
                                 <x-heroicon-o-information-circle class="w-5 h-5 {{ getStateColor($key['state']['state'])->text }}" />

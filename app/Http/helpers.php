@@ -43,7 +43,6 @@ function getStateColor($state)
 
 function isUserSubmitter($keyOrId)
 {
-    return true;            // zmazat tento riadok ked bude na logine prichadzat id
     return (is_numeric($keyOrId) ? $keyOrId : $keyOrId['state']['createdById']) == loggedUser()['id'];
 }
 

@@ -103,7 +103,7 @@ class LoginController extends Controller
                 'token' => $token['token'],
                 'expiration' => $token['expiresAt'],
                 'isAdmin' => isset($token['isAdmin']) ? $token['isAdmin'] : false,
-                'id' => isset($token['id']) ? $token['id'] : null,
+                'id' => isset($token['userId']) ? $token['userId'] : null,
             ]
         ]);
     }
