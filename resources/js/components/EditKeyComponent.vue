@@ -30,7 +30,8 @@ export default {
     methods: {
         async setAff() {
             // if (!this.nomenclator.folder) return
-            this.archive = this.nomenclator.folder?.fond?.archive?.name
+            this.archive = this.nomenclator.folder?.fond?.archive?.shortName
+            // this.archive = this.archives.find(a => a.shortName == this.nomenclator.folder?.fond?.archive?.shortName)
             await this.loadFonds()
             this.fond = this.nomenclator.folder?.fond?.name
             await this.loadFolders()
@@ -50,7 +51,7 @@ export default {
             let th = this
             this.loadedFonds = true
             this.fonds = await this.archives.find((item) => {
-                if (item.name === th.archive) {
+                if (item.shortName === th.archive) {
                     return item.fonds
                 }
             }).fonds
