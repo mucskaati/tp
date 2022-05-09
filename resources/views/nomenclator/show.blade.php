@@ -59,9 +59,9 @@
                                         <a href="{{ route('nomenclator.edit_users', $key['id']) }}" class="px-2 py-1.5 btn btn-primary">
                                             Users
                                         </a>
-                                        <a href="#" class="px-2 py-1.5 btn btn-primary">
+                                        {{-- <a href="#" class="px-2 py-1.5 btn btn-primary">
                                             Folder
-                                        </a>
+                                        </a> --}}
                                         <a href="{{ route('nomenclator.edit', $key['id']) }}" class="px-2 py-1.5 btn btn-primary">
                                             Key
                                         </a>

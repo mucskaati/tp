@@ -56,8 +56,8 @@
                                 user</button>
                         </div>
                     </div>
-
                     <button type="submit" @click.prevent="addKeyUser" class="mt-3 mb-3 btn btn-primary">Add user</button>
+                    
                     <div class="grid grid-cols-3 gap-5">
                         <div class="form-element mb-5">
                             <label for="archive" class="input-label">

@@ -202,8 +202,6 @@ class KeysController extends Controller
 
     public function edit($nomenclatorID)
     {
-        // dd(session('user'));
-        if (!isUserSubmitter($nomenclatorID)) abort(401);
         $response = Http::withHeaders([
             'authorization' => loggedUser()['token']
         ])
@@ -234,7 +232,6 @@ class KeysController extends Controller
             ];
         });
 
-
         $response = Http::withHeaders([
             'authorization' => loggedUser()['token']
         ])
@@ -243,26 +240,32 @@ class KeysController extends Controller
         if (!$response->successful()) abort(404);
         $key = $response->json();
 
+        if (!isUserSubmitter($key['state']['createdById'])) abort(401);
 
-        return view('nomenclator.edit', compact('places', 'keyUsers', 'key'));
+        $archives = $this->getArchives();
+        $keys = $this->getAllNomenclatorKeys();
+        // dd($key, $keys);
+
+        return view('nomenclator.edit', compact('places', 'keyUsers', 'key', 'archives', 'keys'));
     }
 
     public function update(UpdateKeyRequest $request, $nomenclatorID)
     {
         $va = $request->validated();                    // validated attributes
 
-        // if (isset($va['keyUserId'])) {
-        //     $va['keyUsers'] = KeyService::prepareUsersForPost($va['keyUserId'], $va['keyUserName'], $va['keyUserMain']);
-        // }
-
-        // if ($request->has('nomenclatorImages')) {
-        //     $va['nomenclatorImages'] = KeyService::prepareImagesForPost($request, $va['structure'], $va['hasInstructions'], $this->api_base_url);
-        // }
-
-
         KeyService::unsetFormKeyUsersData($va);
 
-        // KeyService::prepareImage($va);
+        if ($va['archive_text']) {
+            $va['archive'] =  $va['archive_text'];
+        }
+        
+        if ($va['fond_text']) {
+            $va['fond'] =  $va['fond_text'];
+        }
+        
+        if ($va['folder_text']) {
+            $va['folder'] =  $va['folder_text'];
+        }
 
         $va = unsetMissingValues($va);
 
@@ -272,8 +275,6 @@ class KeysController extends Controller
             ->accept('application/json');
 
         $response = $req->post("$this->api_base_url/nomenclatorKeys/$nomenclatorID", $va);
-
-        // dd($response->json(), $response, $response->successful());
 
         if ($response->successful()) {
             alert()->success('Successfully edited key', 'Success');

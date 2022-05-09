@@ -13,7 +13,8 @@ class UpdateKeyRequest extends FormRequest
      */
     public function authorize()
     {
-        return isUserSubmitter($this->nomenclator);
+        return true;
+        // return isUserSubmitter($this->nomenclator);
     }
 
     protected function prepareForValidation()
@@ -32,7 +33,12 @@ class UpdateKeyRequest extends FormRequest
     public function rules()
     {
         return [
-            'folder' => 'nullable',
+            'folder' => 'nullable|required_if:folder_text,null',
+            'archive' => 'nullable|required_if:archive_text,null',
+            'fond' => 'nullable|required_if:fond_text,null',
+            'folder_text' => 'nullable',
+            'archive_text' => 'nullable',
+            'fond_text' => 'nullable',
             'signature' => 'nullable',
             'completeStructure' => 'required',
             'cipherType' => 'nullable',

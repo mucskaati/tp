@@ -2,17 +2,21 @@
 export default {
     name: "edit-key",
     // *----------------------- P r o p s ----------------------------------------------------------
-    props: ["preSubmittedKeyUsers", "allKeyUsers", "nomenclatorKeyId"],
+    props: ["nomenclatorKeyId", "archives", "nomenclator"],
     // *----------------------- D a t a -----------------------------------------------------------
     data() {
         return {
-            keyUsers: [],
-            allKeyUsersModified: [],
-            images: [],
-            keyUserAddUrl: `${window._api_base_url}/nomenclatorKeys/${this.nomenclatorKeyId}/addKeyUsers`,
-            keyUserRemoveUrl: `${window._api_base_url}/nomenclatorKeys/${this.nomenclatorKeyId}/removeKeyUsers`,
             filledNames: [],
-            test: null,
+            archive: "",
+            fond: "",
+            fonds: "",
+            folder: "",
+            folders: [],
+            archive_text: "",
+            fond_text: "",
+            folder_text: "",
+            loadedFonds: false,
+            loadedFolders: false,
         }
     },
     // *----------------------- C o m p u t e d ---------------------------------------------------
@@ -20,97 +24,37 @@ export default {
     // *----------------------- L i f e   c i r c l e ---------------------------------------------
     created() {},
     mounted() {
-        this.addPreSubmittedKeyUsers()
-        this.addAllKeyUsersModified = this.allKeyUsers
+        this.setAff()
     },
     // *----------------------- M e t h o d s -----------------------------------------------------
     methods: {
-        addKeyUser() {
-            this.keyUsers.push({
-                id: "",
-                name: "",
-                isMainUser: false,
-                persisted: false,
-            })
+        async setAff() {
+            // if (!this.nomenclator.folder) return
+            this.archive = this.nomenclator.folder?.fond?.archive?.name
+            await this.loadFonds()
+            this.fond = this.nomenclator.folder?.fond?.name
+            await this.loadFolders()
+            this.folder = this.nomenclator.folder?.name
+        },
+        async loadFolders(fond) {
+            let th = this
+            this.loadedFolders = true
+            this.folders = await this.fonds.find((item) => {
+                if (item.name === th.fond) {
+                    return item.folders
+                }
+            }).folders
         },
 
-        async storeKeyUser(keyUser) {
-            if (!keyUser.name && !keyUser.id) return
-            let userData = {
-                isMainUser: keyUser.isMainUser,
-            }
-            keyUser.name
-                ? (userData.name = keyUser.name)
-                : (userData.id = keyUser.id)
-
-            userData = [userData]
-
-            const response = await fetch(this.keyUserAddUrl, {
-                method: "POST",
-                mode: "cors",
-                headers: {
-                    "Content-Type": 'application/json',
-                    'authorization': window._token,
-                },
-                body: JSON.stringify(userData),
-            })
-
-            if (response.ok) {
-                keyUser.persisted = true
-            }
-        },
-
-        async deleteKeyUser(keyUser, index) {
-            if (!keyUser.name && !keyUser.id) return
-            let userData = {}
-            keyUser.name
-                ? (userData.name = keyUser.name)
-                : (userData.id = keyUser.id)
-
-            userData = [userData]
-
-            const response = await fetch(this.keyUserRemoveUrl, {
-                method: "POST",
-                mode: "cors",
-                headers: {
-                    "Content-Type": 'application/json',
-                    'authorization': window._token,
-                },
-                body: JSON.stringify(userData),
-            })
-
-            if (response.ok) {
-                this.keyUsers.splice(index, 1)
-            }            
-        },
-
-        addImage() {
-            this.images.push({
-                id: "",
-            })
-        },
-
-        deleteImage(index) {
-            this.images.splice(index, 1)
-        },
-
-        addPreSubmittedKeyUsers() {
-            if (!this.preSubmittedKeyUsers) return
-            const pskus = JSON.parse(this.preSubmittedKeyUsers)
-            pskus.forEach((psku) => {
-                this.keyUsers.push({
-                    id: psku.id,
-                    name: null,
-                    isMainUser:
-                        psku.isMainUser === 1 ||
-                        psku.isMainUser === "1" ||
-                        psku.isMainUser === true,
-                    persisted: true,
-                })
-            })
-        },
-        nameFilled(event, key) {
-            console.log(event, key)
+        async loadFonds(archive) {
+            let th = this
+            this.loadedFonds = true
+            this.fonds = await this.archives.find((item) => {
+                if (item.name === th.archive) {
+                    return item.fonds
+                }
+            }).fonds
+            // this.archive = this.archive.name;
         },
     },
     // *----------------------- W a t c h ---------------------------------------------------------
