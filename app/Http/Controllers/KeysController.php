@@ -287,8 +287,6 @@ class KeysController extends Controller
 
     public function editUsers($nomenclatorID)
     {
-        if (!isUserSubmitter($nomenclatorID)) abort(401);
-
         $response = Http::withHeaders([
             'authorization' => loggedUser()['token']
         ])
@@ -311,6 +309,8 @@ class KeysController extends Controller
 
         if (!$response->successful()) abort(404);
         $key = $response->json();
+
+        if (!isUserSubmitter($key)) abort(401);
 
         return view('nomenclator.edit-users', compact('keyUsers', 'key'));
     }
