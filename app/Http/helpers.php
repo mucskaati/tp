@@ -43,7 +43,9 @@ function getStateColor($state)
 
 function isUserSubmitter($keyOrId)
 {
-    return (is_numeric($keyOrId) ? $keyOrId : $keyOrId['state']['createdById']) == loggedUser()['id'];
+    $user = loggedUser();
+    if (!$user) return $user;
+    return (is_numeric($keyOrId) ? $keyOrId : $keyOrId['state']['createdById']) == $user['id'];
 }
 
 function parseDateToYmd($str)

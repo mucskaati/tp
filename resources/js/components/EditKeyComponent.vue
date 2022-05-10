@@ -29,7 +29,7 @@ export default {
     // *----------------------- M e t h o d s -----------------------------------------------------
     methods: {
         async setAff() {
-            // if (!this.nomenclator.folder) return
+            if (!this.nomenclator.folder) return
             this.archive = this.nomenclator.folder?.fond?.archive?.shortName
             // this.archive = this.archives.find(a => a.shortName == this.nomenclator.folder?.fond?.archive?.shortName)
             await this.loadFonds()

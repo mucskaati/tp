@@ -55,7 +55,7 @@
                                         </a>
                                     @endif
                                     {{-- Edit buttons - USER --}}
-                                    @if (isUserSubmitter($key))
+                                    @if (isUserSubmitter($key) && $key['state']['state'] != \App\Models\Key::DELETED)
                                         <a href="{{ route('nomenclator.edit_users', $key['id']) }}" class="px-2 py-1.5 btn btn-primary">
                                             Users
                                         </a>
