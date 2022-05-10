@@ -15,7 +15,7 @@
             </div>
 
             {{-- Datatables --}}
-            <x-datatable-keys :keys="$keys" :state="true" />
+            <x-datatable-keys :keys="$keys" :state="true" :with-updated-at="true" />
         </div>
     </section>
 

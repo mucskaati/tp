@@ -75,9 +75,9 @@ class KeyService
             $str = '';
             if ($key['usedAround']) $str = $key['usedAround'];
             else {
-                if ($key['usedFrom']) $str .= 'from ' . date('Y-m-d', strtotime($key['usedFrom']));
+                if ($key['usedFrom']) $str .= 'from ' . date('j.n.Y', strtotime($key['usedFrom']));
                 if ($key['usedFrom'] && $key['usedTo']) $str .= ' ';
-                if ($key['usedTo']) $str .= 'to ' . date('Y-m-d', strtotime($key['usedTo']));
+                if ($key['usedTo']) $str .= 'to ' . date('j.n.Y', strtotime($key['usedTo']));
             }
             $keys[$ind]['date'] = $str;
         }
