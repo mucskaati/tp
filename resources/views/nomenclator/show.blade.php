@@ -2,7 +2,29 @@
 @section('title', 'Key detail - ' . $key['signature'])
 @section('content')
 
-    <div class="container">
+    <div class="container" x-data="{ openEditState: false }">
+        {{-- Edit state form --}}
+        @if (loggedIsAdmin())
+            <div x-cloak x-show="openEditState" class="mt-4 box">
+                <h1 class="mb-5 text-xl font-semibold text-center text-gray-900">Edit state</h1>
+                <form action="{{ route('nomenclator.edit_state', $key['id']) }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
+
+                    <x-form.select name="state" label="New state" :value="$key['state']['state']">
+                        {!! json_encode(\App\Models\Key::STATES) !!}
+                    </x-form.select>
+                    <x-form.textarea name="note" :value="$key['state']['note']" class="mt-5">Note</x-form.textarea>
+
+                    <div class="flex items-center justify-end gap-3 mt-5">
+                        <button type="button" x-on:click="openEditState = false" class="btn btn-secondary">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Update state</button>
+                    </div>
+                </form>
+            </div>
+        @endif
+
+        {{-- Key detail --}}
         <div class="mt-4 box">
             <div class="flex flex-col-reverse gap-10 lg:flex-row">
                 {{-- images --}}
@@ -50,9 +72,7 @@
                                     <span class="text-sm font-semibold tracking-wide text-gray-500 uppercase">Edit :</span>
                                     {{-- Edit state button - ADMIN --}}
                                     @if (loggedIsAdmin())
-                                        <a href="{{ route('nomenclator.edit_state', $key['id']) }}" class="px-2 py-1.5 btn btn-primary">
-                                            State
-                                        </a>
+                                        <button type="button" x-on:click="openEditState = !openEditState" class="px-2 py-1.5 btn btn-primary">State</button>
                                     @endif
                                     {{-- Edit buttons - USER --}}
                                     @if (isUserSubmitter($key) && $key['state']['state'] != \App\Models\Key::DELETED)
