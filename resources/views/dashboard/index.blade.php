@@ -30,7 +30,7 @@
                         <span class="text-2xl font-semibold text-gray-700">{{ 10 }}</span>
                         <h3 class="text-lg text-gray-700 capitalize">Languages</h3>
                     </div>
-                    <p class="max-w-md mx-auto text-center">Nomenclator keys are devided into {{ 10 }} languages.</p>
+                    <p class="max-w-md mx-auto text-center">Nomenclator keys are divided into {{ 10 }} languages.</p>
                 </div>
 
                 <div class="p-5 transition-all bg-white border-b-4 border-blue-400 shadow-md lg:col-span-2 hover:scale-105">
@@ -39,7 +39,7 @@
                         <span class="text-2xl font-semibold text-gray-700">{{ 20 }}</span>
                         <h3 class="text-lg text-gray-700 capitalize">Archives</h3>
                     </div>
-                    <p class="max-w-md mx-auto text-center">Nomenclator keys are devided into {{ 20 }} archives.</p>
+                    <p class="max-w-md mx-auto text-center">Nomenclator keys are divided into {{ 20 }} archives.</p>
                 </div>
 
                 <div class="p-5 transition-all bg-white border-b-4 border-blue-400 shadow-md lg:col-span-3 hover:scale-105">
@@ -57,7 +57,7 @@
                         <span class="text-2xl font-semibold text-gray-700">{{ '1.1.1978' }}</span>
                         <h3 class="text-lg text-gray-700 capitalize">Oldest key</h3>
                     </div>
-                    <p class="max-w-md mx-auto text-center">Oldes nomenclator key is dated from {{ '1.1.1978' }}.</p>
+                    <p class="max-w-md mx-auto text-center">Oldest nomenclator key is dated from {{ '1.1.1978' }}.</p>
                 </div>
             </div>
         </div>
