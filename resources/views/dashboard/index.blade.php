@@ -14,32 +14,50 @@
 
     <section id="stats" class="mt-10 md:mt-20">
         <div class="container">
-            <div class="grid gap-10 text-gray-500 md:grid-cols-2 lg:grid-cols-3">
-                <div class="p-5 transition-all bg-white border-b-4 border-blue-400 shadow-md hover:scale-105">
+            <div class="grid gap-5 text-gray-500 md:gap-10 md:grid-cols-2 lg:grid-cols-6">
+                <div class="p-5 transition-all bg-white border-b-4 border-blue-400 shadow-md md:col-span-2 lg:col-span-2 hover:scale-105">
                     <div class="flex items-center justify-center gap-3 mb-5">
                         <x-heroicon-o-database class="w-10 h-10 text-blue-400" />
                         <span class="text-2xl font-semibold text-gray-700">{{ 54 }}</span>
-                        <h3 class="text-lg text-gray-700 capitalize">Cryptograms</h3>
+                        <h3 class="text-lg text-gray-700 capitalize">Nomenclator keys</h3>
                     </div>
-                    <p class="max-w-md mx-auto text-center">Our complete database contains {{ 54 }} cryptograms.</p>
+                    <p class="max-w-md mx-auto text-center">Our complete database contains {{ 54 }} nomenclator keys.</p>
                 </div>
 
-                <div class="p-5 transition-all bg-white border-b-4 border-blue-400 shadow-md hover:scale-105">
+                <div class="p-5 transition-all bg-white border-b-4 border-blue-400 shadow-md lg:col-span-2 hover:scale-105">
                     <div class="flex items-center justify-center gap-3 mb-5">
-                        <x-heroicon-o-lock-closed class="w-10 h-10 text-blue-400" />
+                        <x-heroicon-o-translate class="w-10 h-10 text-blue-400" />
                         <span class="text-2xl font-semibold text-gray-700">{{ 10 }}</span>
-                        <h3 class="text-lg text-gray-700 capitalize">New Cryptograms</h3>
+                        <h3 class="text-lg text-gray-700 capitalize">Languages</h3>
                     </div>
-                    <p class="max-w-md mx-auto text-center">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rerum, modi.</p>
+                    <p class="max-w-md mx-auto text-center">Nomenclator keys are devided into {{ 10 }} languages.</p>
                 </div>
 
-                <div class="p-5 transition-all bg-white border-b-4 border-blue-400 shadow-md hover:scale-105">
+                <div class="p-5 transition-all bg-white border-b-4 border-blue-400 shadow-md lg:col-span-2 hover:scale-105">
                     <div class="flex items-center justify-center gap-3 mb-5">
-                        <x-heroicon-o-sparkles class="w-10 h-10 text-blue-400" />
+                        <x-heroicon-o-collection class="w-10 h-10 text-blue-400" />
                         <span class="text-2xl font-semibold text-gray-700">{{ 20 }}</span>
-                        <h3 class="text-lg text-gray-700 capitalize">Solved Cryptograms</h3>
+                        <h3 class="text-lg text-gray-700 capitalize">Archives</h3>
                     </div>
-                    <p class="max-w-md mx-auto text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, praesentium?</p>
+                    <p class="max-w-md mx-auto text-center">Nomenclator keys are devided into {{ 20 }} archives.</p>
+                </div>
+
+                <div class="p-5 transition-all bg-white border-b-4 border-blue-400 shadow-md lg:col-span-3 hover:scale-105">
+                    <div class="flex items-center justify-center gap-3 mb-5">
+                        <x-heroicon-o-calendar class="w-10 h-10 text-blue-400" />
+                        <span class="text-2xl font-semibold text-gray-700">{{ '10.5.2022' }}</span>
+                        <h3 class="text-lg text-gray-700 capitalize">Newest key</h3>
+                    </div>
+                    <p class="max-w-md mx-auto text-center">Newest nomenclator key is dated from {{ '10.5.2022' }}.</p>
+                </div>
+
+                <div class="p-5 transition-all bg-white border-b-4 border-blue-400 shadow-md lg:col-span-3 hover:scale-105">
+                    <div class="flex items-center justify-center gap-3 mb-5">
+                        <x-heroicon-o-calendar class="w-10 h-10 text-blue-400" />
+                        <span class="text-2xl font-semibold text-gray-700">{{ '1.1.1978' }}</span>
+                        <h3 class="text-lg text-gray-700 capitalize">Oldest key</h3>
+                    </div>
+                    <p class="max-w-md mx-auto text-center">Oldes nomenclator key is dated from {{ '1.1.1978' }}.</p>
                 </div>
             </div>
         </div>
@@ -52,7 +70,7 @@
                 {{-- Box Heading --}}
                 <div class="bg-white block sm:flex items-center justify-betweenlg:mt-1.5 mb-5">
                     <div class="flex items-center justify-between w-full">
-                        <h1 class="text-xl font-semibold text-gray-900">Newest nomenclator keys</h1>
+                        <h1 class="text-xl font-semibold text-gray-900">All nomenclator keys</h1>
                     </div>
                 </div>
 
