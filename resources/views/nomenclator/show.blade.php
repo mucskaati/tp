@@ -247,5 +247,5 @@
 @endsection
 
 @section('bottom-script')
-    <script src="{{ mix('js/lightbox.js') }}"></script>
+    <script src="{{ mix('js/lightbox.js') }}" defer></script>
 @endsection

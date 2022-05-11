@@ -1,4 +1,4 @@
-@props(['name', 'old', 'label' => '', 'value' => null])
+@props(['name', 'old', 'label' => '', 'value' => null, 'required' => null])
 
 @php
 $options = json_decode($slot);
@@ -6,14 +6,17 @@ $options = json_decode($slot);
 
 <div class="form-element">
     <label for="{{ $name }}" class="input-label">
-        {{ $label }} <span class="input-label-error">
+        {{ $label }}
+        @if ($required)
+            <span class="text-red-500">*</span>
+        @endif
+        <span class="input-label-error">
             @error($name)
                 {{ $message }}
             @enderror
         </span>
     </label>
-    <select name="{{ $name }}" id="{{ $name }}" value="{{ old($name) ? old($name) : $value }}"
-        class="input @error($name) input-error @enderror">
+    <select name="{{ $name }}" id="{{ $name }}" value="{{ old($name) ? old($name) : $value }}" class="input @error($name) input-error @enderror">
         @if (gettype($options[0]) == 'string')
             @foreach ($options as $option)
                 <option value="{{ $option }}" @if (old($name) ? old($name) == $option : $value == $option) selected @endif>
