@@ -5,7 +5,7 @@
     <create-key :archives="{{ $archives->toJSON() }}" inline-template v-cloak>
         <div class="container">
             <div class="mt-4 box">
-                <h1 class="mb-5 text-xl font-semibold text-center text-gray-900">Add new nomenclator key</h1>
+                <h1 class="mb-5 text-xl font-semibold text-center text-gray-900">Create new cipher key</h1>
                 <form action="{{ route('nomenclator.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
@@ -41,8 +41,7 @@
                         <x-form.input name="keyUserName[]">Or fill the user name</x-form.input>
                         <div class="flex items-center form-element">
                             <label :for="'keyUserMain[' + index + ']'" class="input-label">
-                                <input :name="'keyUserMain[' + index + ']'" value="1" type="checkbox" id="'main'+index"
-                                    class="input @error('keyUserMain') input-error @enderror">
+                                <input :name="'keyUserMain[' + index + ']'" value="1" type="checkbox" id="'main'+index" class="input @error('keyUserMain') input-error @enderror">
                                 <span class="ml-2">Is main user?</span>
                                 <span class="input-label-error">
                                     @error('keyUserMain')
@@ -57,48 +56,55 @@
                         </div>
                     </div>
                     <button type="submit" @click.prevent="addKeyUser" class="mt-3 mb-3 btn btn-primary">Add user</button>
-                    
+
                     <div class="grid grid-cols-3 gap-5">
-                        <div class="form-element mb-5">
+                        <div class="mb-5 form-element">
                             <label for="archive" class="input-label">
-                                Choose an archive* <span class="input-label-error">@error('archive')
-                                    {{ $message }} @enderror</span>
+                                Choose an archive* <span class="input-label-error">
+                                    @error('archive')
+                                        {{ $message }}
+                                    @enderror
+                                </span>
                             </label>
-                            <select name="archive" @change="loadFonds($event)" v-model="archive" id="archive"
-                                class="input @error('archive') input-error @enderror">
+                            <select name="archive" @change="loadFonds($event)" v-model="archive" id="archive" class="input @error('archive') input-error @enderror">
                                 <option v-for="archive in archives" :key="archive.name" :value="archive.name">
                                     {{-- :selected="keyUser.id === key.value" --}}
-                                    @{{ archive . shortName }}
+                                    @{{ archive.shortName }}
                                 </option>
                             </select>
                             <x-form.input v-model="archive_text" name="archive_text">Or fill the archive name</x-form.input>
                         </div>
-                        <div class="form-element mb-5">
+                        <div class="mb-5 form-element">
 
                             <label for="fond" class="input-label">
-                                Choose a fond* <span class="input-label-error">@error('fond')
-                                    {{ $message }} @enderror</span>
+                                Choose a fond* <span class="input-label-error">
+                                    @error('fond')
+                                        {{ $message }}
+                                    @enderror
+                                </span>
                             </label>
-                            <select name="fond" @change="loadFolders($event)" v-model="fond" id="fond"
-                                class="input @error('fond') input-error @enderror">
+                            <select name="fond" @change="loadFolders($event)" v-model="fond" id="fond" class="input @error('fond') input-error @enderror">
                                 <option v-for="fond in fonds" :key="fond.name" :value="fond.name">
                                     {{-- :selected="keyUser.id === key.value" --}}
-                                    @{{ fond . name }}
+                                    @{{ fond.name }}
                                 </option>
                             </select>
 
                             <x-form.input v-model="fond_text" name="fond_text">Or fill the fond name</x-form.input>
                         </div>
-                        <div class="form-element mb-5">
+                        <div class="mb-5 form-element">
 
                             <label for="folder" class="input-label">
-                                Choose a folder* <span class="input-label-error">@error('folder')
-                                    {{ $message }} @enderror</span>
+                                Choose a folder* <span class="input-label-error">
+                                    @error('folder')
+                                        {{ $message }}
+                                    @enderror
+                                </span>
                             </label>
                             <select name="folder" id="folder" class="input @error('folder') input-error @enderror">
                                 <option v-for="folder in folders" :key="folder.name" :value="folder.name">
                                     {{-- :selected="keyUser.id === key.value" --}}
-                                    @{{ folder . name }}
+                                    @{{ folder.name }}
                                 </option>
                             </select>
                             <x-form.input v-model="folder_text" name="folder_text">Or fill the folder name</x-form.input>
@@ -131,9 +137,7 @@
                         <x-form.input name="structure[]">Key structure on image</x-form.input>
                         <div class="flex items-center form-element">
                             <label :for="'hasInstructions' + ind" class="input-label">
-                                <input :name="'hasInstructions[' + ind + ']'" value="1" type="checkbox"
-                                    :id="'hasInstructions' + ind"
-                                    class="input @error('hasInstructions') input-error @enderror">
+                                <input :name="'hasInstructions[' + ind + ']'" value="1" type="checkbox" :id="'hasInstructions' + ind" class="input @error('hasInstructions') input-error @enderror">
                                 <span class="ml-2">Has instructions? </span>
                                 <span class="input-label-error">
                                     @error('instruct')

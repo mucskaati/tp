@@ -6,8 +6,8 @@
     <section class="relative bg-center bg-no-repeat bg-cover" style="background-image: url({{ asset('images/hero.jpg') }}); box-shadow: inset 0 0 0 2000px #3089ffCC;">
         <div class="container relative flex justify-center pt-32 pb-24 md:pt-40 md:pb-32 lg:pt-52 lg:pb-44">
             <div class="text-center text-white">
-                <h1 class="mb-4 text-xl leading-snug tracking-wider md:mb-8 sm:text-2xl md:text-3xl lg:text-4xl">HC Portal database of cryptograms</h1>
-                <p class="max-w-sm mx-auto mb-6 text-sm lg:max-w-md md:mb-8 sm:text-base md:text-lg">The Portal of Historical Ciphers (HCPortal) is a gateway to the world of historical ciphers. You can find a comprehensive database of cryptograms, useful tools and many more..</p>
+                <h1 class="mb-4 text-xl leading-snug tracking-wider md:mb-8 sm:text-2xl md:text-3xl lg:text-4xl">Welcome to the cipher keys database.</h1>
+                <p class="max-w-sm mx-auto mb-6 text-sm lg:max-w-md md:mb-8 sm:text-base md:text-lg">Our database contains cipher keys with detailed informations. You can contribute to our database with adding more cipher keys after registration.</p>
             </div>
         </div>
     </section>
@@ -19,9 +19,9 @@
                     <div class="flex items-center justify-center gap-3 mb-5">
                         <x-heroicon-o-database class="w-10 h-10 text-blue-400" />
                         <span class="text-2xl font-semibold text-gray-700">{{ 54 }}</span>
-                        <h3 class="text-lg text-gray-700 capitalize">Nomenclator keys</h3>
+                        <h3 class="text-lg text-gray-700 capitalize">Cipher keys</h3>
                     </div>
-                    <p class="max-w-md mx-auto text-center">Our complete database contains {{ 54 }} nomenclator keys.</p>
+                    <p class="max-w-md mx-auto text-center">Our complete database contains {{ 54 }} cipher keys.</p>
                 </div>
 
                 <div class="p-5 transition-all bg-white border-b-4 border-blue-400 shadow-md lg:col-span-2 hover:scale-105">
@@ -30,7 +30,7 @@
                         <span class="text-2xl font-semibold text-gray-700">{{ 10 }}</span>
                         <h3 class="text-lg text-gray-700 capitalize">Languages</h3>
                     </div>
-                    <p class="max-w-md mx-auto text-center">Nomenclator keys are divided into {{ 10 }} languages.</p>
+                    <p class="max-w-md mx-auto text-center">Cipher keys are divided into {{ 10 }} languages.</p>
                 </div>
 
                 <div class="p-5 transition-all bg-white border-b-4 border-blue-400 shadow-md lg:col-span-2 hover:scale-105">
@@ -39,7 +39,7 @@
                         <span class="text-2xl font-semibold text-gray-700">{{ 20 }}</span>
                         <h3 class="text-lg text-gray-700 capitalize">Archives</h3>
                     </div>
-                    <p class="max-w-md mx-auto text-center">Nomenclator keys are divided into {{ 20 }} archives.</p>
+                    <p class="max-w-md mx-auto text-center">Cipher keys are divided into {{ 20 }} archives.</p>
                 </div>
 
                 <div class="p-5 transition-all bg-white border-b-4 border-blue-400 shadow-md lg:col-span-3 hover:scale-105">
@@ -48,7 +48,7 @@
                         <span class="text-2xl font-semibold text-gray-700">{{ '10.5.2022' }}</span>
                         <h3 class="text-lg text-gray-700 capitalize">Newest key</h3>
                     </div>
-                    <p class="max-w-md mx-auto text-center">Newest nomenclator key is dated from {{ '10.5.2022' }}.</p>
+                    <p class="max-w-md mx-auto text-center">Newest cipher key is dated from {{ '10.5.2022' }}.</p>
                 </div>
 
                 <div class="p-5 transition-all bg-white border-b-4 border-blue-400 shadow-md lg:col-span-3 hover:scale-105">
@@ -57,7 +57,7 @@
                         <span class="text-2xl font-semibold text-gray-700">{{ '1.1.1978' }}</span>
                         <h3 class="text-lg text-gray-700 capitalize">Oldest key</h3>
                     </div>
-                    <p class="max-w-md mx-auto text-center">Oldest nomenclator key is dated from {{ '1.1.1978' }}.</p>
+                    <p class="max-w-md mx-auto text-center">Oldest cipher key is dated from {{ '1.1.1978' }}.</p>
                 </div>
             </div>
         </div>
@@ -70,7 +70,7 @@
                 {{-- Box Heading --}}
                 <div class="bg-white block sm:flex items-center justify-betweenlg:mt-1.5 mb-5">
                     <div class="flex items-center justify-between w-full">
-                        <h1 class="text-xl font-semibold text-gray-900">All nomenclator keys</h1>
+                        <h1 class="text-xl font-semibold text-gray-900">All cipher keys</h1>
                     </div>
                 </div>
 

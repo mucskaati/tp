@@ -5,9 +5,8 @@
     <create-key inline-template v-cloak>
         <div class="container">
             <div class="mt-4 box">
-                <h1 class="mb-5 text-xl font-semibold text-center text-gray-900">Edit a nomenclator key state</h1>
-                <form action="{{ route('nomenclator.edit_state', $key['id']) }}" method="POST"
-                    enctype="multipart/form-data">
+                <h1 class="mb-5 text-xl font-semibold text-center text-gray-900">Edit a cipher key state</h1>
+                <form action="{{ route('nomenclator.edit_state', $key['id']) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
 
