@@ -50,9 +50,7 @@ class LoginController extends Controller
             return redirect()->route('dashboard');
         }
 
-        return view('auth.login', [
-            'message' => 'Vaše prihlasovacie údaje neboli správne.'
-        ]);
+        return back()->with('error', 'Username or password is incorrect.');
     }
 
     public function register(RegisterRequest $request)
@@ -72,14 +70,10 @@ class LoginController extends Controller
         if ($response->successful()) {
             $user = $response->json();
 
-            return view('auth.login', [
-                'message' => 'Úspešne ste sa zaregistrovali. Môžete sa prihlásiť.'
-            ]);
+            return view('auth.login', ['success' => 'Registration was successful. You can login now.']);
         }
 
-        return view('auth.registration', [
-            'message' => 'Uživateľ už existuje.'
-        ]);
+        return back()->with('error', 'Username is already taken.');
     }
 
     public function logout()
