@@ -22,6 +22,7 @@ class UpdateKeyRequest extends FormRequest
         $this->merge([
             'keyUserMain' => $this->keyUserMain ?? [],
             'hasInstructions' => $this->hasInstructions ?? [],
+            'language' => $this->language ?? 'Undefined',
         ]);
     }
 

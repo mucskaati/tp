@@ -22,10 +22,11 @@
                         {"value":"e", "label":"e"},
                         {"value":"ed", "label":"ed"}
                         ]</x-form.select>
-                    <x-form.select name="language" label="Language" value="{{ $key['language'] }}">[
+                    {{-- <x-form.select name="language" label="Language" value="{{ $key['language'] }}">[
                         {"value":"sk", "label":"Slovak"},
                         {"value":"en", "label":"English"}
-                        ]</x-form.select>
+                        ]</x-form.select> --}}
+                    <x-form.input name="language" placeholder="Undefined" value="{{ $key['language'] }}" required>Language</x-form.input>
 
                     <x-form.input name="usedFrom" type="date" value="{{ parseDateToYmd($key['usedFrom'] ?? '') }}">
                         Used from
