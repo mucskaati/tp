@@ -187,6 +187,7 @@ class KeysController extends Controller
 
         $va = unsetMissingValues($va);
 
+
         $req = Http::acceptJson()->withHeaders($header)->accept('application/json');
 
         $response = $req->post($this->api_base_url . "/nomenclatorKeys/$nomenclatorID/state", $va);
@@ -258,11 +259,11 @@ class KeysController extends Controller
         if ($va['archive_text']) {
             $va['archive'] =  $va['archive_text'];
         }
-        
+
         if ($va['fond_text']) {
             $va['fond'] =  $va['fond_text'];
         }
-        
+
         if ($va['folder_text']) {
             $va['folder'] =  $va['folder_text'];
         }

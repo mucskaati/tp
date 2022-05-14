@@ -47,6 +47,8 @@ class LoginController extends Controller
             //Login
             $this->createLoginSession($token, $validatedData);
 
+            alert()->success('Successfully', 'Login was successful.');
+
             return redirect()->route('dashboard');
         }
 
@@ -85,7 +87,8 @@ class LoginController extends Controller
             redirect()->route('login');
         }
 
-        return redirect()->back();
+        alert()->success('Successfully', 'Logout was successful.');
+        return redirect()->route('dashboard');
     }
 
     private function createLoginSession($token, $data)

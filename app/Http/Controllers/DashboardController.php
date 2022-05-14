@@ -23,10 +23,15 @@ class DashboardController extends Controller
         ]);
         $keys = $response->json()['items'];
 
+
+        $response = Http::accept('application/json')->get($this->api_base_url . '/statistics');
+        $statistics = $response->json();
+
+
         KeyService::setMainUsersString($keys);
         KeyService::setDateString($keys);
 
-        return view('dashboard.index', compact('keys'));
+        return view('dashboard.index', compact('keys', 'statistics'));
     }
 
     public function myKeys()
