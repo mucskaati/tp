@@ -71,7 +71,7 @@
                             </label>
                             <select name="archive" @change="loadFonds($event)" v-model="archive" id="archive"
                                 class="input @error('archive') input-error @enderror">
-                                <option v-for="archive in archives" :key="archive.name" :value="archive.shortName">
+                                <option v-for="archive in archives" :key="archive.name" :value="archive.name">
                                     {{-- :selected="keyUser.id === key.value" --}}
                                     @{{ archive . shortName }}
                                 </option>
