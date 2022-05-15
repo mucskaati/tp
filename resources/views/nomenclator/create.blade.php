@@ -35,14 +35,16 @@
                         {{-- <x-form.input name="main_users" class="col-span-3">Hlavní použivateľia</x-form.input>
                 <x-form.input name="users" class="col-span-3">Použivatelia</x-form.input> --}}
                     </div>
-                    <div class="grid grid-cols-2 gap-4 mt-3 mb-3 lg:grid-cols-3" v-for="(user, index) in keyUsers" :key="index">
+                    <div class="grid grid-cols-2 gap-4 mt-3 mb-3 lg:grid-cols-3" v-for="(user, index) in keyUsers"
+                        :key="index">
                         <x-form.select name="keyUserId[]" label="Choose a key user">
                             {!! $keyUsers->toJSON() !!}
                         </x-form.select>
                         <x-form.input name="keyUserName[]">Or fill the user name</x-form.input>
                         <div class="flex items-center justify-between col-span-2 form-element lg:col-span-1">
                             <label :for="'keyUserMain[' + index + ']'" class="input-label">
-                                <input :name="'keyUserMain[' + index + ']'" value="1" type="checkbox" id="'main'+index" class="input @error('keyUserMain') input-error @enderror">
+                                <input :name="'keyUserMain[' + index + ']'" value="1" type="checkbox" id="'main'+index"
+                                    class="input @error('keyUserMain') input-error @enderror">
                                 <span class="ml-2">Is main user?</span>
                                 <span class="text-red-500">
                                     @error('keyUserMain')
@@ -50,7 +52,8 @@
                                     @enderror
                                 </span>
                             </label>
-                            <button type="submit" @click.prevent="deleteKeyUser(index)" class="btn btn-secondary whitespace-nowrap">Delete user</button>
+                            <button type="submit" @click.prevent="deleteKeyUser(index)"
+                                class="btn btn-secondary whitespace-nowrap">Delete user</button>
                         </div>
                     </div>
                     <button type="submit" @click.prevent="addKeyUser" class="mt-3 mb-3 btn btn-primary">Add user</button>
@@ -66,10 +69,11 @@
                                     @enderror
                                 </span>
                             </label>
-                            <select name="archive" @change="loadFonds($event)" v-model="archive" id="archive" class="input @error('archive') input-error @enderror">
-                                <option v-for="archive in archives" :key="archive.name" :value="archive.name">
+                            <select name="archive" @change="loadFonds($event)" v-model="archive" id="archive"
+                                class="input @error('archive') input-error @enderror">
+                                <option v-for="archive in archives" :key="archive.name" :value="archive.shortName">
                                     {{-- :selected="keyUser.id === key.value" --}}
-                                    @{{ archive.shortName }}
+                                    @{{ archive . shortName }}
                                 </option>
                             </select>
                             <x-form.input v-model="archive_text" name="archive_text">Or fill the archive name</x-form.input>
@@ -85,10 +89,11 @@
                                     @enderror
                                 </span>
                             </label>
-                            <select name="fond" @change="loadFolders($event)" v-model="fond" id="fond" class="input @error('fond') input-error @enderror">
+                            <select name="fond" @change="loadFolders($event)" v-model="fond" id="fond"
+                                class="input @error('fond') input-error @enderror">
                                 <option v-for="fond in fonds" :key="fond.name" :value="fond.name">
                                     {{-- :selected="keyUser.id === key.value" --}}
-                                    @{{ fond.name }}
+                                    @{{ fond . name }}
                                 </option>
                             </select>
 
@@ -108,7 +113,7 @@
                             <select name="folder" id="folder" class="input @error('folder') input-error @enderror">
                                 <option v-for="folder in folders" :key="folder.name" :value="folder.name">
                                     {{-- :selected="keyUser.id === key.value" --}}
-                                    @{{ folder.name }}
+                                    @{{ folder . name }}
                                 </option>
                             </select>
                             <x-form.input v-model="folder_text" name="folder_text">Or fill the folder name</x-form.input>
@@ -138,7 +143,9 @@
                         <x-form.input name="structure[]">Key structure on image</x-form.input>
                         <div class="flex items-center justify-between col-span-2 form-element lg:col-span-1">
                             <label :for="'hasInstructions' + ind" class="input-label">
-                                <input :name="'hasInstructions[' + ind + ']'" value="1" type="checkbox" :id="'hasInstructions' + ind" class="input @error('hasInstructions') input-error @enderror">
+                                <input :name="'hasInstructions[' + ind + ']'" value="1" type="checkbox"
+                                    :id="'hasInstructions' + ind"
+                                    class="input @error('hasInstructions') input-error @enderror">
                                 <span class="ml-2">Has instructions? </span>
                                 <span class="text-red-500">
                                     @error('instruct')
@@ -147,12 +154,14 @@
                                 </span>
                             </label>
 
-                            <button type="submit" @click.prevent="deleteImage(ind)" class="btn btn-secondary whitespace-nowrap">Delete image</button>
+                            <button type="submit" @click.prevent="deleteImage(ind)"
+                                class="btn btn-secondary whitespace-nowrap">Delete image</button>
                         </div>
                     </div>
                     <button type="submit" @click.prevent="addImage" class="mt-3 mb-3 btn btn-primary">Add image</button>
 
-                    <p class="text-sm text-right text-gray-700"><span class="text-sm text-red-600">*</span> these fields are required</p>
+                    <p class="text-sm text-right text-gray-700"><span class="text-sm text-red-600">*</span> these fields are
+                        required</p>
 
                     <div class="flex items-center justify-end gap-3 mt-5">
                         <a href="{{ route('dashboard') }}" class="btn btn-secondary">Cancel</a>
